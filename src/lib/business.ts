@@ -50,8 +50,8 @@ export const BUSINESS = {
   // per-action conversion labels from Google Ads → Goals → Conversions. Left
   // empty, the Ads tag and Ads conversions stay off and only GA4 records events.
   googleAds: {
-    id: "" as string,
-    labels: { phoneCall: "", lead: "" },
+    id: "AW-11049816816",
+    labels: { phoneCall: "AjA6CKni3eccEPCl-5Qp", lead: "6vOICKzi3eccEPCl-5Qp" },
   },
 } as const;
 
