@@ -30,12 +30,12 @@ function HamburgerIcon({ open }: { open: boolean }) {
 function Wordmark() {
   return (
     <Image
-      src="/logo.png"
+      src="/logo-boss.png"
       alt="Boss Tire — Your Tire Partner"
       width={158}
-      height={50}
+      height={72}
       priority
-      className="h-10 w-auto brightness-110"
+      className="h-12 w-auto"
     />
   );
 }

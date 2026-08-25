@@ -146,6 +146,28 @@
 }
 .live-dot { animation: livePulse 1.6s ease-in-out infinite; }
 
+/* ── Offer ticker ─────────────────────────────────────────────────────────────
+   News-style headline crawl. The track holds the headline group twice; sliding
+   it by exactly half its width loops seamlessly. Pauses on hover, and the
+   reduced-motion rule below parks it so the first group stays legible. */
+@keyframes tickerScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.ticker-track {
+  display: flex;
+  width: max-content;
+  flex-wrap: nowrap;
+  animation: tickerScroll 32s linear infinite;
+  will-change: transform;
+}
+.ticker-track:hover { animation-play-state: paused; }
+/* Fade the headlines in and out at the band's edges. */
+.ticker-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 4rem, #000 calc(100% - 4rem), transparent);
+          mask-image: linear-gradient(to right, transparent, #000 4rem, #000 calc(100% - 4rem), transparent);
+}
+
 /* Horizontal gutters for full-bleed sticky/fixed bars, notch-safe. */
 .gutter-safe {
   padding-left: max(1rem, env(safe-area-inset-left));

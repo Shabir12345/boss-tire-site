@@ -1,27 +1,49 @@
 import { ALIGNMENT_OFFERS } from "@/lib/services";
 
-// Live promos, keyed to wheel alignment. The one place red fills a full band.
+// Live promos as a news-style headline crawl. The one place red fills a full
+// band. A fixed "Live offer" chyron tag sits on the left; the offers scroll
+// past it on an infinite loop (see .ticker-track in globals.css). The headline
+// group is rendered twice so the -50% slide loops with no visible seam.
+const HEADLINES = [
+  "Buy your tires here, save on the alignment",
+  ...ALIGNMENT_OFFERS.map((o) => `${o.saving} when you buy ${o.buy}`),
+  "Same-day service on Danforth Rd, Scarborough",
+];
+
+function HeadlineGroup({ ariaHidden = false }: { ariaHidden?: boolean }) {
+  return (
+    <div className="flex shrink-0 items-center" aria-hidden={ariaHidden || undefined}>
+      {HEADLINES.map((line, i) => (
+        <span key={i} className="flex items-center">
+          <span className="px-6 text-base font-bold text-white sm:px-8 sm:text-lg">{line}</span>
+          <span className="text-white/45" aria-hidden>
+            ◆
+          </span>
+        </span>
+      ))}
+    </div>
+  );
+}
+
 export function OffersBand() {
   return (
-    <section className="bg-[var(--color-red-cta)]">
-      <div className="gutter-safe mx-auto flex max-w-6xl flex-col gap-6 py-9 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <p className="flex items-center gap-2 font-display text-sm font-bold uppercase tracking-[0.18em] text-white/80">
-            <span className="live-dot h-2 w-2 rounded-full bg-white" aria-hidden />
+    <section aria-label="Live offers" className="overflow-hidden bg-[var(--color-red-cta)]">
+      <div className="flex items-stretch">
+        {/* Chyron tag — fixed, does not scroll. */}
+        <div className="relative z-10 flex shrink-0 items-center gap-2 bg-[var(--color-red-deep)] px-4 shadow-[8px_0_16px_-6px_rgba(0,0,0,0.35)] sm:px-6">
+          <span className="live-dot h-2 w-2 rounded-full bg-white" aria-hidden />
+          <span className="font-display text-sm font-bold uppercase tracking-[0.18em] text-white">
             Live offer
-          </p>
-          <p className="mt-1 text-2xl font-bold text-white sm:text-3xl">
-            Buy your tires here, save on the alignment.
-          </p>
+          </span>
         </div>
-        <ul className="flex flex-col gap-2 sm:flex-row sm:gap-8">
-          {ALIGNMENT_OFFERS.map((o) => (
-            <li key={o.buy} className="text-white">
-              <span className="font-display text-lg font-extrabold uppercase">{o.saving}</span>
-              <span className="block text-sm text-white/80">when you buy {o.buy}</span>
-            </li>
-          ))}
-        </ul>
+
+        {/* Scrolling headline crawl. */}
+        <div className="ticker-mask relative flex-1 overflow-hidden py-4">
+          <div className="ticker-track">
+            <HeadlineGroup />
+            <HeadlineGroup ariaHidden />
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -21,11 +21,11 @@ export function Footer() {
           {/* Brand + rating */}
           <div>
             <Image
-              src="/logo.png"
+              src="/logo-boss.png"
               alt="Boss Tire — Your Tire Partner"
               width={180}
-              height={57}
-              className="h-12 w-auto brightness-110"
+              height={82}
+              className="h-14 w-auto"
             />
             <p className="mt-4 text-sm">
               <span className="font-semibold text-white tabular">{REVIEWS.rating}★</span>{" "}
