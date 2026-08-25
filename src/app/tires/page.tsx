@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { PageHeader } from "@/components/sections/PageHeader";
+import { TrustStrip } from "@/components/sections/TrustStrip";
 import { OffersBand } from "@/components/sections/OffersBand";
 import { CTABand } from "@/components/sections/CTABand";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -12,7 +14,7 @@ const BRANDS = ["Ilink", "Mazzini", "Kpsen", "Haida"];
 const POINTS = [
   {
     title: "New tires, fitted same day",
-    body: "We stock tires in the sizes most common on Scarborough roads, from compact sedans to SUVs and light trucks. A full set fitted is typically $560 to $640, and single tires start around $73.",
+    body: "We stock tires in the sizes most common on Scarborough roads, from compact sedans to SUVs and light trucks. Tell us your size and we'll match you to the right set and give you the price on the spot.",
   },
   {
     title: "Quality used tires",
@@ -27,7 +29,7 @@ const POINTS = [
 export const metadata: Metadata = buildMetadata({
   title: "New & Used Tires in Scarborough",
   description:
-    "New and used tires fitted the same day at Boss Tire, Scarborough. Sizes for cars, SUVs and light trucks, balanced and torqued, from around $73 a tire. Call (647) 871-2393.",
+    "New and used tires fitted the same day at Boss Tire, Scarborough. Sizes for cars, SUVs and light trucks, balanced and torqued to spec. Call (647) 871-2393 for your size and price.",
   path: "/tires",
   keywords: ["tires scarborough", "new tires scarborough", "used tires scarborough", "cheap tires scarborough"],
 });
@@ -42,6 +44,18 @@ export default function TiresPage() {
         sub="Tell us your size and we will get you rolling: mounted, balanced and torqued while you wait, at a fair price you hear up front."
         showCall
       />
+
+      <div className="relative aspect-[16/9] w-full overflow-hidden sm:aspect-[21/9]">
+        <Image
+          src="/photos/tires-shop.jpg"
+          alt="Rows of new and used tires stocked in the shop"
+          fill
+          sizes="100vw"
+          className="object-cover"
+          priority
+        />
+      </div>
+      <TrustStrip />
 
       <section className="bg-[var(--color-paper)]">
         <div className="gutter-safe mx-auto max-w-6xl py-16 sm:py-20">

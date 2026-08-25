@@ -1,12 +1,13 @@
-// Slim proof strip that sits directly under the hero, before the reviews. Four
-// scannable reasons to trust the shop — every one verifiable from the shop's own
-// facts (published prices, same-day, free inclusions, quote-before-work). No
-// invented claims (no warranties, years, or certifications the site can't back).
+// Slim proof strip used under the hero and on every interior page. Four
+// scannable, page-agnostic reasons to trust the shop — each backed by the shop's
+// own facts (a priced service list, same-day work, quote-before-work, and the
+// full range of services under one roof). No invented claims: no warranties,
+// years in business, or certifications the site can't stand behind.
 const TRUST = [
-  { label: "Prices published", sub: "No surprise quotes" },
+  { label: "Prices up front", sub: "Every service, with the price on it" },
   { label: "Same-day service", sub: "In and out, not booked out" },
-  { label: "Torqued to spec", sub: "Pressures set before you leave" },
-  { label: "Quote before we start", sub: "You approve the price first" },
+  { label: "A quote before we start", sub: "You approve the price first" },
+  { label: "One shop, every job", sub: "Tires, wheels, alignment, exhaust" },
 ];
 
 function CheckMark() {

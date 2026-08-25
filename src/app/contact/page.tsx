@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/sections/PageHeader";
+import { TrustStrip } from "@/components/sections/TrustStrip";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { CallButton } from "@/components/ui/Button";
@@ -24,6 +25,7 @@ export default function ContactPage() {
         title="Call, or send us a message"
         sub="Fastest is the phone — you'll have a straight answer and a fair price in under a minute. Prefer to write? Use the form and we'll get right back to you."
       />
+      <TrustStrip />
 
       <section className="bg-[var(--color-paper)]">
         <div className="gutter-safe mx-auto grid max-w-6xl gap-12 py-16 sm:py-20 lg:grid-cols-2">

@@ -35,7 +35,8 @@ export function HeroCinematic() {
           <span className="text-[var(--color-red)]">same day.</span>
         </h1>
         <p className="mt-5 max-w-lg text-lg leading-relaxed text-[var(--color-on-dark)]">
-          The honest shop on Danforth Rd. Published prices, and the work done while you wait.
+          The tire and auto shop Scarborough keeps coming back to. Tires, wheels, alignment and exhaust on
+          Danforth Rd, done the same day while you wait.
         </p>
         <div className="mt-7 flex flex-wrap items-center gap-3">
           <CallButton size="lg" className="cta-attention" />

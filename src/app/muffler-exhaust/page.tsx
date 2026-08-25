@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHeader } from "@/components/sections/PageHeader";
+import { TrustStrip } from "@/components/sections/TrustStrip";
 import { CTABand } from "@/components/sections/CTABand";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildMetadata } from "@/lib/seo";
@@ -69,6 +70,7 @@ export default function MufflerExhaustPage() {
           priority
         />
       </div>
+      <TrustStrip />
 
       <section className="bg-[var(--color-paper)]">
         <div className="gutter-safe mx-auto max-w-6xl py-16 sm:py-20">

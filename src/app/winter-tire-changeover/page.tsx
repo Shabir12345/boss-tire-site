@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { PageHeader } from "@/components/sections/PageHeader";
+import { TrustStrip } from "@/components/sections/TrustStrip";
 import { OffersBand } from "@/components/sections/OffersBand";
 import { CTABand } from "@/components/sections/CTABand";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -49,6 +51,18 @@ export default function WinterChangeoverPage() {
         sub="Book your seasonal swap early and you pick the time. Leave it until the first snowfall and the whole city is calling the same week."
         showCall
       />
+
+      <div className="relative aspect-[16/9] w-full overflow-hidden sm:aspect-[21/9]">
+        <Image
+          src="/photos/winter-tires.jpg"
+          alt="A winter tire gripping a snow-covered road"
+          fill
+          sizes="100vw"
+          className="object-cover"
+          priority
+        />
+      </div>
+      <TrustStrip />
 
       <section className="bg-[var(--color-paper)]">
         <div className="gutter-safe mx-auto max-w-6xl py-16 sm:py-20">
