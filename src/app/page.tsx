@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { HeroCinematic } from "@/components/sections/HeroCinematic";
+import { ReviewsBand } from "@/components/sections/ReviewsBand";
 import { WhatWeDo } from "@/components/sections/WhatWeDo";
 import { OffersBand } from "@/components/sections/OffersBand";
 import { PriceSheet } from "@/components/sections/PriceSheet";
@@ -26,6 +27,7 @@ export default function HomePage() {
   return (
     <>
       <HeroCinematic />
+      <ReviewsBand />
       <WhatWeDo onDark />
       <OffersBand />
       <section id="prices" className="bg-[var(--color-paper)]">
