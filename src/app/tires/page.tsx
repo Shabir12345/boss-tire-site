@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { PageHeader } from "@/components/sections/PageHeader";
 import { TrustStrip } from "@/components/sections/TrustStrip";
@@ -43,18 +42,9 @@ export default function TiresPage() {
         title="New & used tires, fitted the same day"
         sub="Tell us your size and we will get you rolling: mounted, balanced and torqued while you wait, at a fair price you hear up front."
         showCall
+        image="/photos/tires-shop.jpg"
+        imageAlt="Rows of new and used tires stocked in the shop"
       />
-
-      <div className="relative aspect-[16/9] w-full overflow-hidden sm:aspect-[21/9]">
-        <Image
-          src="/photos/tires-shop.jpg"
-          alt="Rows of new and used tires stocked in the shop"
-          fill
-          sizes="100vw"
-          className="object-cover"
-          priority
-        />
-      </div>
       <TrustStrip />
 
       <section className="bg-[var(--color-paper)]">

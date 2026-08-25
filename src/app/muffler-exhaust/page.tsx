@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { PageHeader } from "@/components/sections/PageHeader";
 import { TrustStrip } from "@/components/sections/TrustStrip";
 import { CTABand } from "@/components/sections/CTABand";
@@ -57,19 +56,9 @@ export default function MufflerExhaustPage() {
         title="Quieter drive, same day"
         sub="Muffler and exhaust work done on Danforth Rd while you wait. We find the actual problem, show you, and quote before we touch it."
         showCall
+        image="/photos/muffler-bay.jpg"
+        imageAlt="The Boss Tire muffler and exhaust bay, a car up on the lift"
       />
-
-      <div className="relative aspect-[16/9] w-full overflow-hidden sm:aspect-[21/9]">
-        <Image
-          src="/photos/muffler-bay.jpg"
-          quality={90}
-          alt="The Boss Tire muffler and exhaust bay, a car up on the lift"
-          fill
-          sizes="100vw"
-          className="object-cover object-center"
-          priority
-        />
-      </div>
       <TrustStrip />
 
       <section className="bg-[var(--color-paper)]">

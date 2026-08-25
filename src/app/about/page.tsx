@@ -26,20 +26,9 @@ export default function AboutPage() {
         eyebrow="About"
         title="Your tire partner on Danforth Rd"
         sub={`A tire and auto shop in Scarborough that puts the prices on the page and gets the work done the same day. ${REVIEWS.rating}★ from ${REVIEWS.count} drivers.`}
+        image="/photos/storefront.jpg"
+        imageAlt="The Boss Tire storefront at 375 Danforth Rd, Scarborough"
       />
-
-      {/* Real storefront */}
-      <div className="relative aspect-[16/9] w-full overflow-hidden sm:aspect-[21/9]">
-        <Image
-          src="/photos/storefront.jpg"
-          quality={90}
-          alt="The Boss Tire storefront at 375 Danforth Rd, Scarborough"
-          fill
-          sizes="100vw"
-          className="object-cover"
-          priority
-        />
-      </div>
 
       <section className="bg-[var(--color-paper)]">
         <div className="gutter-safe mx-auto max-w-6xl py-16 sm:py-20">
