@@ -61,6 +61,7 @@ export default function MufflerExhaustPage() {
       <div className="relative aspect-[16/9] w-full overflow-hidden sm:aspect-[21/9]">
         <Image
           src="/photos/muffler-bay.jpg"
+          quality={90}
           alt="The Boss Tire muffler and exhaust bay, a car up on the lift"
           fill
           sizes="100vw"

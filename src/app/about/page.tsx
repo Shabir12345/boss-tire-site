@@ -32,6 +32,7 @@ export default function AboutPage() {
       <div className="relative aspect-[16/9] w-full overflow-hidden sm:aspect-[21/9]">
         <Image
           src="/photos/storefront.jpg"
+          quality={90}
           alt="The Boss Tire storefront at 375 Danforth Rd, Scarborough"
           fill
           sizes="100vw"

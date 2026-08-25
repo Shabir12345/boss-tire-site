@@ -15,6 +15,10 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 31536000, // 1 year — photos are static, cache-bust by filename
+    // Allow higher-quality encodes for the full-bleed hero photos (default is 75,
+    // which softens the caliper/scrim gradients). Next 16 requires quality values
+    // to be allow-listed here before a component may request them.
+    qualities: [75, 82, 90],
   },
   async redirects() {
     return [

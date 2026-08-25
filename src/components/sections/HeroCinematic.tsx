@@ -14,6 +14,7 @@ export function HeroCinematic() {
         alt="A Boss Tire branded red brake caliper behind a black alloy wheel"
         fill
         priority
+        quality={90}
         sizes="100vw"
         className="object-cover"
       />
