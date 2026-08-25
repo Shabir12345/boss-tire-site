@@ -117,6 +117,35 @@
   80% { transform: rotate(4deg); }
 }
 
+/* ── CTA attention pulse ──────────────────────────────────────────────────────
+   A soft red ring that radiates off the primary Call button to pull the eye to
+   the one action the page wants. Drawn on a pseudo-element so it never disturbs
+   the button's own shadow or lift, pauses while the button is hovered/pressed,
+   and is switched off entirely under prefers-reduced-motion by the rule above. */
+@keyframes ctaPulse {
+  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-red) 55%, transparent); }
+  70%  { box-shadow: 0 0 0 12px color-mix(in srgb, var(--color-red) 0%, transparent); }
+  100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-red) 0%, transparent); }
+}
+.cta-attention { position: relative; }
+.cta-attention::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  animation: ctaPulse 2.6s var(--ease-out-quart) infinite;
+}
+.cta-attention:hover::after,
+.cta-attention:active::after { animation: none; }
+
+/* Blinking status dot for the live offer. */
+@keyframes livePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.35; transform: scale(0.8); }
+}
+.live-dot { animation: livePulse 1.6s ease-in-out infinite; }
+
 /* Horizontal gutters for full-bleed sticky/fixed bars, notch-safe. */
 .gutter-safe {
   padding-left: max(1rem, env(safe-area-inset-left));

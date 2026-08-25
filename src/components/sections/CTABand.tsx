@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { CallButton } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { ReviewBadge } from "@/components/ui/ReviewBadge";
 import { BUSINESS } from "@/lib/business";
 
 // Ink call-to-action band. `cut` adds the diagonal top edge where it follows a
@@ -32,8 +33,9 @@ export function CTABand({
         <h2 className="mx-auto mt-4 max-w-2xl text-4xl font-extrabold text-white sm:text-5xl">{heading}</h2>
         <p className="mx-auto mt-4 max-w-xl text-[var(--color-on-dark)]">{sub}</p>
         <div className="mt-8 flex justify-center">
-          <CallButton size="lg" />
+          <CallButton size="lg" className="cta-attention" />
         </div>
+        <ReviewBadge onDark className="mt-6 justify-center" />
       </div>
     </section>
   );

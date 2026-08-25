@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CallButton } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { REVIEWS } from "@/lib/reviews";
+import { ReviewBadge } from "@/components/ui/ReviewBadge";
 
 // Direction B — "Cinematic garage": full-bleed real shop photo, dark scrim,
 // restrained type. Moody and premium; the photo does the talking.
@@ -35,11 +35,10 @@ export function HeroCinematic() {
           <span className="text-[var(--color-red)]">same day.</span>
         </h1>
         <p className="mt-5 max-w-lg text-lg leading-relaxed text-[var(--color-on-dark)]">
-          The honest shop on Danforth Rd. Published prices, work done while you wait, {REVIEWS.rating}★
-          from {REVIEWS.count} drivers.
+          The honest shop on Danforth Rd. Published prices, and the work done while you wait.
         </p>
         <div className="mt-7 flex flex-wrap items-center gap-3">
-          <CallButton size="lg" />
+          <CallButton size="lg" className="cta-attention" />
           <Link
             href="#prices"
             className="inline-flex min-h-14 items-center justify-center rounded-md border border-white/30 px-8 py-4 font-display text-xl font-bold uppercase tracking-wide text-white transition-colors duration-200 hover:border-white hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-red)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-ink)]"
@@ -47,6 +46,7 @@ export function HeroCinematic() {
             See prices
           </Link>
         </div>
+        <ReviewBadge onDark className="mt-6" />
       </div>
     </section>
   );

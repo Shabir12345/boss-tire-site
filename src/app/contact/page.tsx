@@ -37,7 +37,7 @@ export default function ContactPage() {
                   {BUSINESS.phoneDisplay}
                 </a>
                 <div className="mt-3">
-                  <CallButton />
+                  <CallButton className="cta-attention" />
                 </div>
               </div>
 

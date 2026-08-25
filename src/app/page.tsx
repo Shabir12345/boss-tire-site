@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { HeroCinematic } from "@/components/sections/HeroCinematic";
+import { TrustStrip } from "@/components/sections/TrustStrip";
 import { ReviewsBand } from "@/components/sections/ReviewsBand";
 import { WhatWeDo } from "@/components/sections/WhatWeDo";
 import { OffersBand } from "@/components/sections/OffersBand";
@@ -27,6 +28,7 @@ export default function HomePage() {
   return (
     <>
       <HeroCinematic />
+      <TrustStrip />
       <ReviewsBand />
       <WhatWeDo onDark />
       <OffersBand />
