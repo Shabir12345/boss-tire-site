@@ -35,22 +35,22 @@ export default function ContactPage() {
             <div className="mt-5 space-y-5">
               <div>
                 <p className="font-display text-sm font-bold uppercase tracking-widest text-[var(--color-muted)]">Phone</p>
-                <a href={telHref} className="mt-1 block font-display text-3xl font-extrabold text-[var(--color-heading)]">
+                <a href={telHref} data-track-location="contact" className="mt-1 block font-display text-3xl font-extrabold text-[var(--color-heading)]">
                   {BUSINESS.phoneDisplay}
                 </a>
                 <div className="mt-3">
-                  <CallButton className="cta-attention" />
+                  <CallButton className="cta-attention" trackLocation="contact" />
                 </div>
               </div>
 
               <div>
                 <p className="font-display text-sm font-bold uppercase tracking-widest text-[var(--color-muted)]">Email</p>
-                <a href={mailHref} className="link-grow mt-1 block text-[var(--color-body)]">{BUSINESS.email}</a>
+                <a href={mailHref} data-track-location="contact" className="link-grow mt-1 block text-[var(--color-body)]">{BUSINESS.email}</a>
               </div>
 
               <div>
                 <p className="font-display text-sm font-bold uppercase tracking-widest text-[var(--color-muted)]">Address</p>
-                <a href={mapsLinkHref} target="_blank" rel="noopener noreferrer" className="link-grow mt-1 block text-[var(--color-body)]">
+                <a href={mapsLinkHref} target="_blank" rel="noopener noreferrer" data-track-location="contact" className="link-grow mt-1 block text-[var(--color-body)]">
                   {addressDisplay}
                 </a>
               </div>

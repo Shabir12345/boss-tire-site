@@ -33,7 +33,7 @@ export function CTABand({
         <h2 className="mx-auto mt-4 max-w-2xl text-4xl font-extrabold text-white sm:text-5xl">{heading}</h2>
         <p className="mx-auto mt-4 max-w-xl text-[var(--color-on-dark)]">{sub}</p>
         <div className="mt-8 flex justify-center">
-          <CallButton size="lg" className="cta-attention" />
+          <CallButton size="lg" className="cta-attention" trackLocation="cta_band" />
         </div>
         <ReviewBadge onDark className="mt-6 justify-center" />
       </div>

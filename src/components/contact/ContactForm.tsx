@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { track, reportAdsConversion } from "@/lib/analytics";
+import { BUSINESS } from "@/lib/business";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -31,6 +33,9 @@ export function ContactForm() {
         setStatus("error");
         return;
       }
+      // Lead captured — the site's second conversion after a phone call.
+      track("generate_lead", { location: "contact_form" });
+      reportAdsConversion(BUSINESS.googleAds.labels.lead);
       form.reset();
       setStatus("sent");
     } catch {

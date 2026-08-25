@@ -51,7 +51,7 @@ export function ServiceCatalog() {
         <p className="text-sm text-[var(--color-body)]">
           Prices shown before tax. Some jobs vary by vehicle — call for an exact quote in under a minute.
         </p>
-        <CallButton className="shrink-0" />
+        <CallButton className="shrink-0" trackLocation="service_catalog" />
       </div>
     </div>
   );

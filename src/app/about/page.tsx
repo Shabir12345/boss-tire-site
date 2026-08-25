@@ -89,7 +89,7 @@ export default function AboutPage() {
             <div>
               <h2 className="font-display text-sm font-bold uppercase tracking-widest text-[var(--color-muted)]">Call</h2>
               <p className="mt-3">
-                <a href={telHref} className="link-grow font-semibold text-[var(--color-red-deep)]">
+                <a href={telHref} data-track-location="about" className="link-grow font-semibold text-[var(--color-red-deep)]">
                   {BUSINESS.phoneDisplay}
                 </a>
               </p>

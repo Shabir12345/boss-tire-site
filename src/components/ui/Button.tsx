@@ -14,6 +14,8 @@ export interface ButtonProps {
   children?: React.ReactNode;
   className?: string;
   "aria-label"?: string;
+  /** Names the section for analytics — read by AnalyticsListener on click. */
+  trackLocation?: string;
 }
 
 function PhoneIcon({ className = "" }: { className?: string }) {
@@ -73,40 +75,45 @@ export function Button({
   children,
   className = "",
   "aria-label": ariaLabel,
+  trackLocation,
 }: ButtonProps) {
   const classes = `${base} ${sizeMap[size]} ${variantMap[variant]} ${className}`.trim();
 
   if (href) {
     if (/^(tel:|mailto:|https?:)/.test(href)) {
       return (
-        <a href={href} onClick={onClick} className={classes} aria-label={ariaLabel}>
+        <a href={href} onClick={onClick} className={classes} aria-label={ariaLabel} data-track-location={trackLocation}>
           {children}
         </a>
       );
     }
     return (
-      <Link href={href} onClick={onClick} className={classes} aria-label={ariaLabel}>
+      <Link href={href} onClick={onClick} className={classes} aria-label={ariaLabel} data-track-location={trackLocation}>
         {children}
       </Link>
     );
   }
 
   return (
-    <button type="button" onClick={onClick} className={classes} aria-label={ariaLabel}>
+    <button type="button" onClick={onClick} className={classes} aria-label={ariaLabel} data-track-location={trackLocation}>
       {children}
     </button>
   );
 }
 
 // CallButton — call-first law: always the primary (red) button on its surface.
+// `trackLocation` names the placement so analytics can tell which section's call
+// button actually gets tapped (defaults to a generic label if unset).
 export function CallButton({
   className,
   size = "md",
   compact = false,
+  trackLocation = "call_button",
 }: {
   className?: string;
   size?: ButtonSize;
   compact?: boolean;
+  trackLocation?: string;
 }) {
   return (
     <Button
@@ -115,6 +122,7 @@ export function CallButton({
       href={telHref}
       aria-label={`Call Boss Tire at ${BUSINESS.phoneDisplay}`}
       className={className}
+      trackLocation={trackLocation}
     >
       <PhoneIcon className="group-hover/btn:animate-[phoneRing_0.6s_ease-in-out]" />
       {compact ? (

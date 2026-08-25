@@ -78,7 +78,7 @@ export function Header() {
         </nav>
 
         <div className="ml-auto flex items-center gap-3">
-          <CallButton compact />
+          <CallButton compact trackLocation="header" />
           <button
             type="button"
             className="rounded-md p-3 -mr-3 text-white/90 transition-colors duration-150 hover:text-[var(--color-red)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-red)] lg:hidden"

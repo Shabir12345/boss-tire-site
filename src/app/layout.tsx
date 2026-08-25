@@ -6,6 +6,7 @@ import { BUSINESS } from "@/lib/business";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileCallBar } from "@/components/layout/MobileCallBar";
+import { AnalyticsListener } from "@/components/analytics/AnalyticsListener";
 import { LocalBusinessJsonLd } from "@/lib/jsonld";
 
 const inter = Inter({
@@ -52,8 +53,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${inter.variable} ${barlowCondensed.variable}`}>
       <body className="font-sans antialiased">
         {/* GA4 carried over from the old site so history stays continuous.
-            The AW- conversion tag (absent on the old site) goes here once Fawad's
-            conversion ID is available — see content manifest §6. */}
+            One gtag loader also configures Google Ads once BUSINESS.googleAds.id
+            is set (the old site had no Ads tag). Conversion events are fired from
+            the app: link taps via AnalyticsListener, form leads via ContactForm. */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${BUSINESS.ga4}`}
           strategy="afterInteractive"
@@ -62,10 +64,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', '${BUSINESS.ga4}');`}
+gtag('config', '${BUSINESS.ga4}');${
+            BUSINESS.googleAds.id ? `\ngtag('config', '${BUSINESS.googleAds.id}');` : ""
+          }`}
         </Script>
 
         <LocalBusinessJsonLd />
+        <AnalyticsListener />
         <Header />
         <main>{children}</main>
         <Footer />

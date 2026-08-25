@@ -19,7 +19,7 @@ export function MobileCallBar() {
           </p>
           <p className="mt-1 truncate text-xs text-white/60">Mon–Sat 9–7 · Scarborough</p>
         </div>
-        <CallButton className="cta-attention flex-shrink-0" />
+        <CallButton className="cta-attention flex-shrink-0" trackLocation="mobile_call_bar" />
       </div>
     </div>
   );

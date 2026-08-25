@@ -39,7 +39,7 @@ export function HeroCinematic() {
           Danforth Rd, done the same day while you wait.
         </p>
         <div className="mt-7 flex flex-wrap items-center gap-3">
-          <CallButton size="lg" className="cta-attention" />
+          <CallButton size="lg" className="cta-attention" trackLocation="hero" />
           <Link
             href="#prices"
             className="inline-flex min-h-14 items-center justify-center rounded-md border border-white/30 px-8 py-4 font-display text-xl font-bold uppercase tracking-wide text-white transition-colors duration-200 hover:border-white hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-red)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-ink)]"

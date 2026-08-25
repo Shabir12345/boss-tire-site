@@ -21,7 +21,7 @@ export function PageHeader({
         <h1 className="mt-4 max-w-3xl text-4xl text-white sm:text-6xl">{title}</h1>
         {sub && <p className="mt-5 max-w-2xl text-lg leading-relaxed text-[var(--color-on-dark)]">{sub}</p>}
         <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
-          {showCall && <CallButton size="lg" className="cta-attention" />}
+          {showCall && <CallButton size="lg" className="cta-attention" trackLocation="page_header" />}
           <ReviewBadge onDark />
         </div>
       </div>

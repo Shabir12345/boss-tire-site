@@ -45,6 +45,14 @@ export const BUSINESS = {
   googleBusinessProfile: "https://www.google.com/maps/search/?api=1&query=Boss+Tire+375+Danforth+Rd+Scarborough",
   // GA4 measurement ID carried over from the old site so history stays continuous.
   ga4: "G-39PPPBKJC6",
+  // Google Ads conversion tracking. The old site had none. To turn it on, set
+  // `id` to the account's conversion ID (e.g. "AW-1234567890") and paste the
+  // per-action conversion labels from Google Ads → Goals → Conversions. Left
+  // empty, the Ads tag and Ads conversions stay off and only GA4 records events.
+  googleAds: {
+    id: "" as string,
+    labels: { phoneCall: "", lead: "" },
+  },
 } as const;
 
 export const telHref = `tel:${BUSINESS.phoneRaw}`;
