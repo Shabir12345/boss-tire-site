@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { PageHeader } from "@/components/sections/PageHeader";
 import { WhyBossTire } from "@/components/sections/WhyBossTire";
@@ -12,7 +13,7 @@ import { REVIEWS } from "@/lib/reviews";
 export const metadata: Metadata = buildMetadata({
   title: "About Boss Tire",
   description:
-    "Boss Tire is a tire and auto shop on Danforth Rd in Scarborough: published prices, same-day service, and 4.8★ from 319 drivers. Your tire partner. Call (647) 871-2393.",
+    "Boss Tire is a tire and auto shop on Danforth Rd in Scarborough: published prices, same-day service, and 4.8★ from 321 drivers. Your tire partner. Call (647) 871-2393.",
   path: "/about",
   keywords: ["boss tire scarborough", "tire shop danforth rd", "auto shop scarborough"],
 });
@@ -27,21 +28,46 @@ export default function AboutPage() {
         sub={`A tire and auto shop in Scarborough that puts the prices on the page and gets the work done the same day. ${REVIEWS.rating}★ from ${REVIEWS.count} drivers.`}
       />
 
+      {/* Real storefront */}
+      <div className="relative aspect-[16/9] w-full overflow-hidden sm:aspect-[21/9]">
+        <Image
+          src="/photos/storefront.jpg"
+          alt="The Boss Tire storefront at 375 Danforth Rd, Scarborough"
+          fill
+          sizes="100vw"
+          className="object-cover"
+          priority
+        />
+      </div>
+
       <section className="bg-[var(--color-paper)]">
-        <div className="gutter-safe mx-auto max-w-3xl py-16 sm:py-20">
-          <Eyebrow>Who we are</Eyebrow>
-          <div className="mt-5 space-y-4 text-lg leading-relaxed text-[var(--color-body)]">
-            <p>
-              Boss Tire has been keeping Scarborough drivers on the road from {BUSINESS.address.street.split(",")[0]},
-              off Danforth Rd. Tires, wheels, alignment, exhaust and the everyday maintenance in between, all under
-              one roof.
-            </p>
-            <p>
-              The idea is simple. Publish the prices so you are never guessing. Include the basics like balancing
-              and a condition check instead of adding them to the bill. Do the work the same day so you are not
-              booked out for a week. That is what keeps drivers coming back, and it is why the reviews read the way
-              they do.
-            </p>
+        <div className="gutter-safe mx-auto max-w-6xl py-16 sm:py-20">
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+            <div>
+              <Eyebrow>Who we are</Eyebrow>
+              <div className="mt-5 space-y-4 text-lg leading-relaxed text-[var(--color-body)]">
+                <p>
+                  Boss Tire keeps Scarborough drivers on the road from {BUSINESS.address.street.split(",")[0]}, off
+                  Danforth Rd. Tires, wheels, alignment, exhaust and the everyday maintenance in between, all under
+                  one roof.
+                </p>
+                <p>
+                  The idea is simple. Publish the prices so you are never guessing. Include the basics like balancing
+                  and a condition check instead of adding them to the bill. Do the work the same day so you are not
+                  booked out for a week. That is what keeps drivers coming back, and it is why the reviews read the
+                  way they do.
+                </p>
+              </div>
+            </div>
+            <div className="relative aspect-[4/3] overflow-hidden rounded-lg shadow-lg">
+              <Image
+                src="/photos/team.jpg"
+                alt="The Boss Tire team in the shop"
+                fill
+                sizes="(min-width: 1024px) 32rem, 100vw"
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>

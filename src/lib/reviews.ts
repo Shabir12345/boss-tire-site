@@ -3,6 +3,6 @@
 // jsonld.tsx and the ReviewBadge both read from here.
 export const REVIEWS = {
   rating: 4.8,
-  count: 319,
+  count: 321,
   source: "Google",
 } as const;

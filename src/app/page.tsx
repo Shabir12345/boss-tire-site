@@ -43,7 +43,7 @@ export default function HomePage() {
         </div>
       </section>
       <WhyBossTire onDark />
-      <CTABand />
+      <CTABand image="/photos/storefront.jpg" heading="Come by the shop" sub="Find us at 375 Danforth Rd in Scarborough, Mon–Sat 9 to 7. Call ahead and we'll have you in and out." />
     </>
   );
 }

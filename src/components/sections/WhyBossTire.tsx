@@ -1,4 +1,5 @@
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { REVIEWS } from "@/lib/reviews";
 
 const WHY = [
   {
@@ -14,7 +15,7 @@ const WHY = [
     body: "Balancing, tire pressure and a condition check come with the job — things other shops add to the bill.",
   },
   {
-    title: "4.8★ from 319 drivers",
+    title: `${REVIEWS.rating}★ from ${REVIEWS.count} drivers`,
     body: "Scarborough's own keep coming back to Danforth Rd. The reviews are on Google.",
   },
 ];

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { PageHeader } from "@/components/sections/PageHeader";
 import { CTABand } from "@/components/sections/CTABand";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -56,6 +57,17 @@ export default function MufflerExhaustPage() {
         sub="Muffler and exhaust work done on Danforth Rd while you wait. We find the actual problem, show you, and quote before we touch it."
         showCall
       />
+
+      <div className="relative aspect-[16/9] w-full overflow-hidden sm:aspect-[21/9]">
+        <Image
+          src="/photos/muffler-bay.jpg"
+          alt="The Boss Tire muffler and exhaust bay, a car up on the lift"
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
+          priority
+        />
+      </div>
 
       <section className="bg-[var(--color-paper)]">
         <div className="gutter-safe mx-auto max-w-6xl py-16 sm:py-20">

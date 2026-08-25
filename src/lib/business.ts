@@ -27,8 +27,8 @@ export const BUSINESS = {
     postalCode: "M1L 3X8",
     country: "CA", // ISO 3166-1 alpha-2 — JSON-LD only, never rendered
   },
-  // Real storefront geo (Danforth Rd, Scarborough) for LocalBusiness schema.
-  geo: { latitude: 43.7226, longitude: -79.2686 },
+  // Real storefront geo (from the Google Business Profile) for LocalBusiness schema.
+  geo: { latitude: 43.7048237, longitude: -79.2685917 },
   hours: {
     weekdays: "Mon–Sat: 9:00 AM – 7:00 PM",
     weekend: "Sunday: Closed",
