@@ -1,0 +1,87 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { PageHeader } from "@/components/sections/PageHeader";
+import { OffersBand } from "@/components/sections/OffersBand";
+import { CTABand } from "@/components/sections/CTABand";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { buildMetadata } from "@/lib/seo";
+import { BreadcrumbJsonLd } from "@/lib/jsonld";
+
+const BRANDS = ["Ilink", "Mazzini", "Kpsen", "Haida"];
+
+const POINTS = [
+  {
+    title: "New tires, fitted same day",
+    body: "We stock tires in the sizes most common on Scarborough roads, from compact sedans to SUVs and light trucks. A full set fitted is typically $560 to $640, and single tires start around $73.",
+  },
+  {
+    title: "Quality used tires",
+    body: "Need to match one damaged tire without buying four? We fit quality used tires close in tread depth to what you are running, and inspect every one before it goes on.",
+  },
+  {
+    title: "Balanced and torqued, included",
+    body: "Every tire we fit is balanced on the machine and torqued to spec, with pressures set before you leave. No line items for the basics other shops charge extra for.",
+  },
+];
+
+export const metadata: Metadata = buildMetadata({
+  title: "New & Used Tires in Scarborough",
+  description:
+    "New and used tires fitted the same day at Boss Tire, Scarborough. Sizes for cars, SUVs and light trucks, balanced and torqued, from around $73 a tire. Call (647) 871-2393.",
+  path: "/tires",
+  keywords: ["tires scarborough", "new tires scarborough", "used tires scarborough", "cheap tires scarborough"],
+});
+
+export default function TiresPage() {
+  return (
+    <>
+      <BreadcrumbJsonLd items={[{ name: "Home", path: "/" }, { name: "Tires", path: "/tires" }]} />
+      <PageHeader
+        eyebrow="Tires"
+        title="New & used tires, fitted the same day"
+        sub="Tell us your size and we will get you rolling: mounted, balanced and torqued while you wait, at a fair price you hear up front."
+        showCall
+      />
+
+      <section className="bg-[var(--color-paper)]">
+        <div className="gutter-safe mx-auto max-w-6xl py-16 sm:py-20">
+          <div className="grid gap-8 sm:grid-cols-3">
+            {POINTS.map((p) => (
+              <div key={p.title}>
+                <span className="block h-[3px] w-8 bg-[var(--color-red)]" aria-hidden />
+                <h2 className="mt-3 text-xl text-[var(--color-heading)]">{p.title}</h2>
+                <p className="mt-2 text-[var(--color-body)]">{p.body}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-14 rounded-lg border border-[var(--color-border)] bg-[var(--color-smoke)] p-6 sm:p-8">
+            <Eyebrow>Brands we carry</Eyebrow>
+            <div className="mt-4 flex flex-wrap gap-3">
+              {BRANDS.map((b) => (
+                <span
+                  key={b}
+                  className="rounded-md border border-[var(--color-border)] bg-[var(--color-paper)] px-4 py-2 font-display text-lg font-bold uppercase tracking-wide text-[var(--color-heading)]"
+                >
+                  {b}
+                </span>
+              ))}
+            </div>
+            <p className="mt-4 max-w-2xl text-sm text-[var(--color-body)]">
+              These are honest, budget-friendly import brands, fitted properly and priced fairly. If you want
+              a specific size or a set matched to how you drive, call and we will sort it out. Running winter
+              tires this season? See our{" "}
+              <Link href="/winter-tire-changeover" className="link-grow font-semibold text-[var(--color-red-deep)]">
+                winter changeover
+              </Link>
+              .
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <OffersBand />
+      <CTABand heading="Know your tire size?" sub="It is on the sidewall and the driver's door jamb, a code like 225/65R17. Call it in and we will confirm availability in under a minute." />
+    </>
+  );
+}

@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+/* ════════════════════════════════════════════════════════════════════════════
+   BOSS TIRE — "Race Shop" design system
+   Red / black / white, condensed motorsport display type, a dark stage with one
+   red action, and industrial spec-sheet pricing. See DESIGN.md.
+   ════════════════════════════════════════════════════════════════════════════ */
+
+@theme {
+  /* ── Dark stage ── */
+  --color-ink: #0B0B0C;          /* hero, header, footer, feature bands        */
+  --color-carbon: #141518;       /* raised cards on ink                        */
+  --color-hairline-dark: #2A2C31;/* hairline rules on ink                      */
+
+  /* ── Light surfaces ── */
+  --color-paper: #FFFFFF;        /* light band base                            */
+  --color-smoke: #F4F4F5;        /* alternating light band / surface           */
+  --color-border: #E4E4E7;       /* hairline rules, card edges on light        */
+
+  /* ── Text on light ── */
+  --color-heading: #101113;      /* headings + primary text                    */
+  --color-body: #4B4E55;         /* body copy (AA on paper & smoke)            */
+  --color-muted: #7A7D84;        /* labels, captions, spec keys                */
+
+  /* ── The brand voice: red ── */
+  --color-red: #D81E24;          /* accent — icons, eyebrows, large accents    */
+  --color-red-cta: #C81922;      /* button fill (white text ≈ 4.7:1, AA)       */
+  --color-red-deep: #A9151A;     /* button hover; red-as-text on light (AA)    */
+
+  /* ── Text on ink ── */
+  --color-on-dark: #E7E8EA;      /* body text on ink                          */
+  --color-on-dark-mute: #A2A5AC; /* secondary text on ink                     */
+
+  /* ── Type ── */
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-barlow-condensed), "Arial Narrow", system-ui, sans-serif;
+}
+
+/* ── Semantic, non-color tokens ── */
+:root {
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+
+  --z-base: 0;
+  --z-mobilebar: 40;
+  --z-sticky: 50;
+  --z-overlay: 60;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-body);
+  }
+
+  /* Display voice: heavy condensed, uppercase, tight leading. */
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    color: var(--color-heading);
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 0.95;
+    letter-spacing: 0.005em;
+    text-wrap: balance;
+  }
+
+  p { text-wrap: pretty; }
+
+  /* Prices and spec numbers line up like a parts list. */
+  .tabular { font-variant-numeric: tabular-nums; }
+}
+
+::selection {
+  background: var(--color-red);
+  color: #fff;
+}
+
+/* ── Signature: the diagonal tread cut ───────────────────────────────────────
+   Cuts the bottom edge of a dark stage on a hard diagonal, so the light band
+   below shows through the slash — echoes a tire's contact patch and the promo
+   graphics' angled slashes. Used sparingly (DESIGN.md). */
+.cut-bottom {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 2.5rem), 0 100%);
+}
+.cut-top {
+  clip-path: polygon(0 2.5rem, 100% 0, 100% 100%, 0 100%);
+}
+@media (min-width: 40rem) {
+  .cut-bottom { clip-path: polygon(0 0, 100% 0, 100% calc(100% - 4rem), 0 100%); }
+  .cut-top    { clip-path: polygon(0 4rem, 100% 0, 100% 100%, 0 100%); }
+}
+
+/* Thin red rule used under eyebrows and as a section marker. */
+.rule-red {
+  width: 2.5rem;
+  height: 3px;
+  background: var(--color-red);
+}
+
+/* ── Motion ──────────────────────────────────────────────────────────────────
+   One gentle reveal. Content is visible by default; the Reveal client component
+   adds is-armed/is-in to play a soft fade-up once in view. */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.reveal { opacity: 1; }
+.reveal.is-armed { opacity: 0; }
+.reveal.is-armed.is-in { animation: fadeUp 0.6s var(--ease-out-expo) both; }
+
+/* Phone-icon wiggle on CallButton hover. */
+@keyframes phoneRing {
+  0%, 100% { transform: rotate(0deg); }
+  20% { transform: rotate(-14deg); }
+  40% { transform: rotate(10deg); }
+  60% { transform: rotate(-7deg); }
+  80% { transform: rotate(4deg); }
+}
+
+/* Horizontal gutters for full-bleed sticky/fixed bars, notch-safe. */
+.gutter-safe {
+  padding-left: max(1rem, env(safe-area-inset-left));
+  padding-right: max(1rem, env(safe-area-inset-right));
+}
+@media (min-width: 40rem) {
+  .gutter-safe {
+    padding-left: max(1.5rem, env(safe-area-inset-left));
+    padding-right: max(1.5rem, env(safe-area-inset-right));
+  }
+}
+
+/* Underline-grow for text links (inherits currentColor). */
+.link-grow {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 2px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 0.25s var(--ease-out-quart);
+}
+.link-grow:hover { background-size: 100% 2px; }
+
+/* Card hover — soft lift + red border. */
+.card-lift {
+  transition:
+    transform 0.2s var(--ease-out-quart),
+    box-shadow 0.2s var(--ease-out-quart),
+    border-color 0.2s var(--ease-out-quart);
+}
+.card-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px -14px rgba(0, 0, 0, 0.28);
+  border-color: var(--color-red);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal, .reveal.is-armed { opacity: 1 !important; transform: none !important; }
+}
