@@ -11,8 +11,8 @@ const WHY = [
     body: "Tires, alignment, oil and exhaust done while you wait, not booked out for a week.",
   },
   {
-    title: "Free inclusions",
-    body: "Balancing, tire pressure and a condition check come with the job — things other shops add to the bill.",
+    title: "Done to spec, not rushed",
+    body: "We balance, torque to manufacturer spec and set your pressures on every tire, then check it over before it goes back on.",
   },
   {
     title: `${REVIEWS.rating}★ from ${REVIEWS.count} drivers`,

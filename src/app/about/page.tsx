@@ -53,10 +53,9 @@ export default function AboutPage() {
                   one roof.
                 </p>
                 <p>
-                  The idea is simple. Publish the prices so you are never guessing. Include the basics like balancing
-                  and a condition check instead of adding them to the bill. Do the work the same day so you are not
-                  booked out for a week. That is what keeps drivers coming back, and it is why the reviews read the
-                  way they do.
+                  The idea is simple. Publish the prices so you are never guessing. Do the work the same day so you
+                  are not booked out for a week. Balance, torque and set the pressures properly on every tire. That
+                  is what keeps drivers coming back, and it is why the reviews read the way they do.
                 </p>
               </div>
             </div>

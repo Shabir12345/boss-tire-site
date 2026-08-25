@@ -5,7 +5,7 @@
 const TRUST = [
   { label: "Prices published", sub: "No surprise quotes" },
   { label: "Same-day service", sub: "In and out, not booked out" },
-  { label: "Balancing included", sub: "Plus a free condition check" },
+  { label: "Torqued to spec", sub: "Pressures set before you leave" },
   { label: "Quote before we start", sub: "You approve the price first" },
 ];
 

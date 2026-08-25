@@ -19,8 +19,8 @@ const POINTS = [
     body: "Need to match one damaged tire without buying four? We fit quality used tires close in tread depth to what you are running, and inspect every one before it goes on.",
   },
   {
-    title: "Balanced and torqued, included",
-    body: "Every tire we fit is balanced on the machine and torqued to spec, with pressures set before you leave. No line items for the basics other shops charge extra for.",
+    title: "Balanced and torqued to spec",
+    body: "Every tire we fit is balanced on the machine and torqued to spec, with the pressures set before you leave.",
   },
 ];
 
