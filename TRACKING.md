@@ -37,23 +37,32 @@ aria-label>`.
 GA4 enhanced measurement also records pageviews, scroll depth and outbound
 clicks automatically.
 
-## Turning on Google Ads conversions
+## Google Ads conversions — LIVE
 
-1. In **Google Ads → Goals → Conversions**, create two **Website** conversion
-   actions (choose *"Set up with a Google tag → add the tag yourself"*):
-   - **Website — Phone call** (category: *Phone call lead*)
-   - **Website — Lead form** (category: *Submit lead form*)
-2. Copy the **Conversion ID** (`AW-XXXXXXXXXX`, shared) and each action's
-   **Conversion label** (unique).
-3. Set them in [`src/lib/business.ts`](src/lib/business.ts):
-   ```ts
-   googleAds: {
-     id: "AW-XXXXXXXXXX",
-     labels: { phoneCall: "abc123…", lead: "def456…" },
-   },
-   ```
-   That's the only change — `reportAdsConversion()` and the layout config pick it
-   up automatically.
+Configured in Google Ads account **866-515-8043** and wired in
+[`src/lib/business.ts`](src/lib/business.ts):
+
+- **Conversion ID:** `AW-11049816816` (connected to the site's Google tag).
+- **Website — Phone call** (category *Contact*, Primary) — label `AjA6CKni3eccEPCl-5Qp`,
+  fired on every `tel:` tap.
+- **Website — Lead form** (category *Submit lead form*, Primary) — label
+  `6vOICKzi3eccEPCl-5Qp`, fired on contact-form success.
+
+Both are manual event-snippet actions; the site fires them itself, so Google's
+"Test installation" will verify once the deploy is live and a real (or test) tap
+comes through. Deliberately NOT using Google's forwarding-number call tracking —
+it would swap the real phone number on the site and break NAP consistency.
+
+## Follow-up: GA4 key events → Ads Secondary import (the "observe-only" half)
+
+Not done yet — GA4 can only import an event into Ads after it has *received* it,
+and the event layer just went live. Once a few days of data exist:
+
+1. **GA4 → Admin → Key events:** mark `phone_call` and `generate_lead` as key
+   events (or "Create key event" by name).
+2. **Google Ads → Goals → Conversions → New → Import → GA4:** import both, then
+   set each to **Secondary (observe-only)** so they don't double-count against
+   the Primary AW-tag actions above.
 
 ### Don't double-count
 
