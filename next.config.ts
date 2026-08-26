@@ -60,7 +60,7 @@ const nextConfig: NextConfig = {
       // matching card on the services hub (anchor ids added in ServiceCatalog)
       // instead of 301-ing into a 404. When per-service pages are built, repoint
       // these to /services/<slug>. Anchors match the service slugs in services.ts.
-      { source: "/product/wheel-alignment", destination: "/services#wheel-alignment", permanent: true },
+      { source: "/product/wheel-alignment", destination: "/services/wheel-alignment", permanent: true },
       { source: "/product/rim-repair-bend-repairs", destination: "/services#rim-repair", permanent: true },
       { source: "/product/tire-changeover", destination: "/winter-tire-changeover", permanent: true },
       { source: "/product/tire-storage", destination: "/services#tire-storage", permanent: true },
@@ -74,6 +74,17 @@ const nextConfig: NextConfig = {
 
       // ── Legacy contact variants ──
       { source: "/order-tracking", destination: "/contact", permanent: true },
+
+      // ── Catch-all for the retired WooCommerce store ──
+      // The 180 tire-SKU pages, tire category archives and pagination were
+      // indexed but earned ~0 traffic and have no dedicated replacement; they
+      // now 404. Consolidate anything under these prefixes to the tire landing
+      // page so the old indexed URLs pass their (small) crawl signal to a live
+      // page instead of 404ing. Placed LAST: Next matches redirects top-down and
+      // uses the first hit, so every specific rule above still wins.
+      { source: "/product/:path*", destination: "/tires", permanent: true },
+      { source: "/product-category/:path*", destination: "/tires", permanent: true },
+      { source: "/products/:path*", destination: "/tires", permanent: true },
     ];
   },
 };

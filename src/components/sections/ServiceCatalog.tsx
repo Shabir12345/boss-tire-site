@@ -1,5 +1,16 @@
+import Link from "next/link";
 import { servicesByCategory, formatPrice } from "@/lib/services";
 import { CallButton } from "@/components/ui/Button";
+
+// Services that have a dedicated page of their own. The card links out to it so
+// the hub passes internal-link authority to the deeper page (and users get the
+// fuller write-up). Slugs without an entry stay as informational cards only.
+const DETAIL_PAGES: Record<string, string> = {
+  "wheel-alignment": "/services/wheel-alignment",
+  "tire-changeover": "/winter-tire-changeover",
+  "muffler-repair": "/muffler-exhaust",
+  "exhaust-repair": "/muffler-exhaust",
+};
 
 // Detailed service list — the spec sheet plus the inclusions the old site never
 // surfaced (they lived only in WooCommerce product descriptions). Each service
@@ -41,6 +52,14 @@ export function ServiceCatalog() {
                     </li>
                   ))}
                 </ul>
+                {DETAIL_PAGES[s.slug] && (
+                  <Link
+                    href={DETAIL_PAGES[s.slug]}
+                    className="link-grow mt-4 inline-flex items-center gap-1 font-display text-sm font-bold uppercase tracking-wide text-[var(--color-red-deep)]"
+                  >
+                    See details <span aria-hidden>→</span>
+                  </Link>
+                )}
               </div>
             ))}
           </div>
