@@ -7,6 +7,7 @@ import { CallButton } from "@/components/ui/Button";
 // fuller write-up). Slugs without an entry stay as informational cards only.
 const DETAIL_PAGES: Record<string, string> = {
   "wheel-alignment": "/services/wheel-alignment",
+  "oil-change": "/services/oil-change",
   "tire-changeover": "/winter-tire-changeover",
   "muffler-repair": "/muffler-exhaust",
   "exhaust-repair": "/muffler-exhaust",
