@@ -6,8 +6,10 @@ import { WhatWeDo } from "@/components/sections/WhatWeDo";
 import { OffersBand } from "@/components/sections/OffersBand";
 import { PriceSheet } from "@/components/sections/PriceSheet";
 import { WhyBossTire } from "@/components/sections/WhyBossTire";
+import { HomeFaq, HOME_FAQS } from "@/components/sections/HomeFaq";
 import { CTABand } from "@/components/sections/CTABand";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { FaqJsonLd } from "@/lib/jsonld";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
@@ -27,6 +29,7 @@ export const metadata: Metadata = buildMetadata({
 export default function HomePage() {
   return (
     <>
+      <FaqJsonLd faqs={HOME_FAQS} />
       {/* Above the fold — always rendered immediately. */}
       <HeroCinematic />
       <TrustStrip />
@@ -60,6 +63,9 @@ export default function HomePage() {
       </section>
       <div className="cv-auto">
         <WhyBossTire onDark />
+      </div>
+      <div className="cv-auto">
+        <HomeFaq />
       </div>
       <div className="cv-auto">
         <CTABand image="/photos/storefront.jpg" heading="Come by the shop" sub="Find us at 375 Danforth Rd in Scarborough, Mon–Sat 9 to 7. Call ahead and we'll have you in and out." />
