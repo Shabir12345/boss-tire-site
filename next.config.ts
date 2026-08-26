@@ -13,12 +13,36 @@ const nextConfig: NextConfig = {
   // resizes the self-hosted /photos originals per breakpoint and caches the
   // result; a long minimumCacheTTL keeps repeat visitors on the cached variant.
   images: {
-    formats: ["image/avif", "image/webp"],
+    // WebP only (not AVIF). AVIF compresses ~20% smaller but decodes much slower
+    // on throttled mobile CPUs, which showed up as multi-second LCP *render delay*
+    // on the full-bleed hero — the image downloaded fast but painted late. WebP
+    // decodes far quicker, so the hero paints sooner and mobile LCP clears 90.
+    formats: ["image/webp"],
     minimumCacheTTL: 31536000, // 1 year — photos are static, cache-bust by filename
     // Allow higher-quality encodes for the full-bleed hero photos (default is 75,
     // which softens the caliper/scrim gradients). Next 16 requires quality values
     // to be allow-listed here before a component may request them.
-    qualities: [75, 82, 90],
+    qualities: [72, 75, 82, 90],
+  },
+  // Production security headers, applied to every route. Deliberately no strict
+  // Content-Security-Policy: the site depends on Google Tag (GA4/Ads) and the
+  // Featurable reviews widget, which a tight CSP would break; the headers below
+  // are the safe, high-value hardening (HSTS, MIME-sniff, clickjacking,
+  // referrer, and a Permissions-Policy that denies sensors the site never uses).
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "X-DNS-Prefetch-Control", value: "on" },
+          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
+        ],
+      },
+    ];
   },
   async redirects() {
     return [

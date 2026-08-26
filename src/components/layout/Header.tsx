@@ -34,7 +34,11 @@ function Wordmark() {
       alt="Boss Tire — Your Tire Partner"
       width={158}
       height={72}
-      priority
+      // Eager but NOT priority: a priority logo emits its own image preload that
+      // competes with the LCP hero for the first mobile connections. fetchPriority
+      // high keeps it prompt without preloading ahead of the hero.
+      loading="eager"
+      fetchPriority="high"
       className="h-12 w-auto"
     />
   );

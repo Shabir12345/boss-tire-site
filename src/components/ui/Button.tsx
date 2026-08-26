@@ -120,7 +120,9 @@ export function CallButton({
       variant="primary"
       size={size}
       href={telHref}
-      aria-label={`Call Boss Tire at ${BUSINESS.phoneDisplay}`}
+      // Accessible name must contain the visible text ("Call <number>") to
+      // satisfy WCAG 2.5.3 (label-in-name); the brand suffix is extra context.
+      aria-label={`Call ${BUSINESS.phoneDisplay}, Boss Tire`}
       className={className}
       trackLocation={trackLocation}
     >

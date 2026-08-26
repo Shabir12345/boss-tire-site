@@ -3,9 +3,9 @@ import Link from "next/link";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 
 const TILES = [
-  { href: "/tires", title: "New & Used Tires", photo: "/photos/tire-rack.jpg", alt: "A rack of Boss Tires in stock at the shop" },
+  { href: "/tires", title: "New & Used Tires", photo: "/photos/new-used-tires.jpg", alt: "A stack of new and used tires with detailed tread at Boss Tire" },
   { href: "/services", title: "Wheel Alignment", photo: "/photos/alignment.jpg", alt: "Four-wheel alignment being performed at Boss Tire" },
-  { href: "/winter-tire-changeover", title: "Winter Changeover", photo: "/photos/tire-install.jpg", alt: "Technician mounting a tire during a seasonal changeover" },
+  { href: "/winter-tire-changeover", title: "Winter Changeover", photo: "/photos/winter-changeover.jpg", alt: "Technician mounting a tire on the changer during a seasonal changeover" },
   { href: "/services", title: "Rims & Wheel Repair", photo: "/photos/rims-wall.jpg", alt: "Alloy rims on the wall at Boss Tire" },
 ];
 
@@ -31,11 +31,19 @@ export function WhatWeDo({ onDark = false }: { onDark?: boolean }) {
                 alt={t.alt}
                 fill
                 sizes="(min-width: 1024px) 18rem, (min-width: 640px) 45vw, 90vw"
-                className="object-cover transition-transform duration-500 group-hover:scale-[1.07]"
+                quality={85}
+                // Unified grade so the four photos read as one set: slight
+                // desaturation + a contrast/brightness pull evens out their
+                // different colour temperatures. Hover lifts brightness and
+                // zooms so the tile wakes up.
+                className="object-cover saturate-[.9] contrast-[1.07] brightness-[.94] transition-[transform,filter] duration-500 ease-[var(--ease-out-quart)] group-hover:scale-[1.07] group-hover:brightness-[1.03] group-hover:saturate-100"
               />
               {/* Legibility scrim: heavier at the base so the label reads,
                   clearing to a light top so the photo still shows through. */}
               <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/35 to-black/5" />
+              {/* Uniform ink tint ties the set together and deepens the shadows
+                  so the red accents and white label pop consistently. */}
+              <div aria-hidden className="absolute inset-0 bg-[var(--color-ink)]/15 mix-blend-multiply" />
               {/* Red edge that ignites on hover — separates the tile from the
                   ink stage and carries the brand accent. */}
               <div aria-hidden className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-transparent transition-colors duration-300 group-hover:ring-2 group-hover:ring-[var(--color-red)]" />

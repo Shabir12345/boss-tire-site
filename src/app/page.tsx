@@ -27,11 +27,23 @@ export const metadata: Metadata = buildMetadata({
 export default function HomePage() {
   return (
     <>
+      {/* Above the fold — always rendered immediately. */}
       <HeroCinematic />
       <TrustStrip />
-      <ReviewsBand />
-      <WhatWeDo onDark />
-      <OffersBand />
+      {/* Below the fold — render-skipped until scrolled near (see .cv-auto), so
+          their style/layout/paint doesn't compete with the hero's LCP paint. */}
+      <div className="cv-auto">
+        <ReviewsBand />
+      </div>
+      <div className="cv-auto">
+        <WhatWeDo onDark />
+      </div>
+      <div className="cv-auto">
+        <OffersBand />
+      </div>
+      {/* Not cv-auto: axe-core can't resolve the background of render-skipped
+          content, which mis-flags the (near-black on white) price numbers as low
+          contrast. The sections around it still skip, so the perf win holds. */}
       <section id="prices" className="bg-[var(--color-paper)]">
         <div className="gutter-safe mx-auto max-w-4xl py-16 sm:py-20">
           <Eyebrow>Published pricing</Eyebrow>
@@ -46,8 +58,12 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <WhyBossTire onDark />
-      <CTABand image="/photos/storefront.jpg" heading="Come by the shop" sub="Find us at 375 Danforth Rd in Scarborough, Mon–Sat 9 to 7. Call ahead and we'll have you in and out." />
+      <div className="cv-auto">
+        <WhyBossTire onDark />
+      </div>
+      <div className="cv-auto">
+        <CTABand image="/photos/storefront.jpg" heading="Come by the shop" sub="Find us at 375 Danforth Rd in Scarborough, Mon–Sat 9 to 7. Call ahead and we'll have you in and out." />
+      </div>
     </>
   );
 }

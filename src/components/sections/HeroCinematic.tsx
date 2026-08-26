@@ -14,7 +14,14 @@ export function HeroCinematic() {
         alt="A Boss Tire branded red brake caliper behind a black alloy wheel"
         fill
         priority
-        quality={90}
+        // Explicit fetchPriority: the LCP element must win the first connection.
+        // Next's `priority` emits the preload but not always the img attribute,
+        // and Lighthouse's lcp-discovery audit checks for it.
+        fetchPriority="high"
+        // The LCP element, so its byte size + decode time is the biggest LCP
+        // lever. It sits behind a heavy dark scrim, so 72 is visually identical
+        // here while cutting download and decode enough to hold mobile LCP < ~3s.
+        quality={72}
         sizes="100vw"
         className="object-cover"
       />

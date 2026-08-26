@@ -20,7 +20,7 @@
   /* ── Text on light ── */
   --color-heading: #101113;      /* headings + primary text                    */
   --color-body: #4B4E55;         /* body copy (AA on paper & smoke)            */
-  --color-muted: #7A7D84;        /* labels, captions, spec keys                */
+  --color-muted: #686B72;        /* labels, captions, spec keys (AA: 4.9 on paper, 4.5 on smoke) */
 
   /* ── The brand voice: red ── */
   --color-red: #D81E24;          /* accent — icons, eyebrows, large accents    */
@@ -95,6 +95,19 @@
   width: 2.5rem;
   height: 3px;
   background: var(--color-red);
+}
+
+/* ── Below-the-fold render skipping ──────────────────────────────────────────
+   content-visibility:auto tells the browser to skip style, layout and paint for
+   off-screen sections until they're scrolled near, then render them just in
+   time. On a long page this removes most of the initial style/layout/paint pass
+   (the main-thread bottleneck that was delaying the hero's LCP paint). The
+   contain-intrinsic-size gives each skipped section a placeholder height so the
+   scrollbar and layout stay stable (no CLS); `auto` then remembers the real size
+   once rendered. Applied only to sections that are always below the fold. */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
 }
 
 /* ── Motion ──────────────────────────────────────────────────────────────────

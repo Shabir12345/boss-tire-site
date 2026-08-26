@@ -30,7 +30,7 @@ export default function AboutPage() {
         imageAlt="The Boss Tire storefront at 375 Danforth Rd, Scarborough"
       />
 
-      <section className="bg-[var(--color-paper)]">
+      <section className="cv-auto bg-[var(--color-paper)]">
         <div className="gutter-safe mx-auto max-w-6xl py-16 sm:py-20">
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <div>
@@ -61,9 +61,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <WhyBossTire />
+      <div className="cv-auto">
+        <WhyBossTire />
+      </div>
 
-      <section className="bg-[var(--color-smoke)]">
+      <section className="cv-auto bg-[var(--color-smoke)]">
         <div className="gutter-safe mx-auto max-w-6xl py-14">
           <div className="grid gap-8 sm:grid-cols-3">
             <div>
@@ -92,7 +94,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <CTABand />
+      <div className="cv-auto">
+        <CTABand />
+      </div>
     </>
   );
 }

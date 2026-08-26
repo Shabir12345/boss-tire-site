@@ -7,6 +7,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileCallBar } from "@/components/layout/MobileCallBar";
 import { AnalyticsListener } from "@/components/analytics/AnalyticsListener";
+import { DeferredGtag } from "@/components/analytics/DeferredGtag";
 import { LocalBusinessJsonLd } from "@/lib/jsonld";
 
 const inter = Inter({
@@ -19,9 +20,12 @@ const inter = Inter({
 const barlowCondensed = Barlow_Condensed({
   subsets: ["latin"],
   weight: ["600", "700", "800"],
-  style: ["normal", "italic"],
   variable: "--font-barlow-condensed",
   display: "swap",
+  // Display font (headings/buttons) — never the LCP element, and `swap` renders
+  // it without blocking. Not preloading it frees early mobile bandwidth for the
+  // LCP hero image; the italic style was unused, so it's dropped too.
+  preload: false,
 });
 
 export const viewport: Viewport = {
@@ -52,15 +56,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${inter.variable} ${barlowCondensed.variable}`}>
       <body className="font-sans antialiased">
-        {/* GA4 carried over from the old site so history stays continuous.
-            One gtag loader also configures Google Ads once BUSINESS.googleAds.id
-            is set (the old site had no Ads tag). Conversion events are fired from
-            the app: link taps via AnalyticsListener, form leads via ContactForm. */}
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${BUSINESS.ga4}`}
-          strategy="afterInteractive"
-        />
-        <Script id="ga4-init" strategy="afterInteractive">
+        {/* GA4 (carried over from the old site so history stays continuous) +
+            Google Ads. The stub below defines window.gtag and queues js/config
+            into dataLayer immediately, so events fired early are buffered. The
+            heavy gtag.js itself is loaded by <DeferredGtag/> on first user
+            interaction — keeping ~300KB and ~250ms of blocking off the initial
+            load. Buffered events (incl. phone-tap conversions) flush on load. */}
+        <Script id="gtag-stub" strategy="afterInteractive">
           {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
@@ -68,6 +70,7 @@ gtag('config', '${BUSINESS.ga4}');${
             BUSINESS.googleAds.id ? `\ngtag('config', '${BUSINESS.googleAds.id}');` : ""
           }`}
         </Script>
+        <DeferredGtag />
 
         <LocalBusinessJsonLd />
         <AnalyticsListener />
