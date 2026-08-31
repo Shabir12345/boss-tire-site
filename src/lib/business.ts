@@ -6,8 +6,9 @@
 //  - Phone: 647-871-2393. The old header/footer printed 416-691-0426 on 23 of
 //    24 pages; the schema, the GBP and Boss Tire's own promo graphics all use
 //    647. The 416 number was wrong and is dropped.
-//  - Email: info@boss-tire.ca only. `bossttires@gmail.com` (double-t typo) is
-//    dropped entirely.
+//  - Email: bossttires@gmail.com — the shop's real, working Gmail inbox
+//    (confirmed by Shabir 2026-08-31). Earlier notes calling the double-t a
+//    typo were WRONG; the display-only info@boss-tire.ca is dropped.
 //  - Name: "Boss Tire" (the old site used five spellings; this is the one).
 
 export const BUSINESS = {
@@ -16,12 +17,12 @@ export const BUSINESS = {
   legalNote: "Wheel Alignment & Muffler Repair", // descriptor, not part of the name
   phoneDisplay: "(647) 871-2393",
   phoneRaw: "+16478712393",
-  email: "info@boss-tire.ca",
+  email: "bossttires@gmail.com",
   areaServed: "Scarborough & the Greater Toronto Area, Ontario, Canada",
   tagline: "Your Tire Partner",
   url: "https://boss-tire.ca", // site canonicalises to the bare domain (www 301s to non-www)
   address: {
-    street: "375 Danforth Rd, Unit 8",
+    street: "375 Danforth Rd, Unit 3", // owner holds units 1/3/8; standardised on 3 to match the GBP (2026-08-31)
     locality: "Scarborough",
     region: "ON",
     postalCode: "M1L 3X8",
@@ -58,7 +59,7 @@ export const BUSINESS = {
 export const telHref = `tel:${BUSINESS.phoneRaw}`;
 export const mailHref = `mailto:${BUSINESS.email}`;
 
-// "375 Danforth Rd, Unit 8, Scarborough, ON M1L 3X8"
+// "375 Danforth Rd, Unit 3, Scarborough, ON M1L 3X8"
 export const addressDisplay = `${BUSINESS.address.street}, ${BUSINESS.address.locality}, ${BUSINESS.address.region} ${BUSINESS.address.postalCode}`;
 
 // Interactive Google Map embed — the `output=embed` form needs no API key.

@@ -25,7 +25,7 @@ export const HOME_FAQS = [
   },
   {
     q: "Where is Boss Tire, and when are you open?",
-    a: "Boss Tire is at 375 Danforth Rd, Unit 8, in Scarborough — open Monday to Saturday, 9 AM to 7 PM, and closed Sunday. We're rated 4.8 stars by over 300 drivers on Google. Call (647) 871-2393 before you head over and we'll be ready for you.",
+    a: "Boss Tire is at 375 Danforth Rd, Unit 3, in Scarborough — open Monday to Saturday, 9 AM to 7 PM, and closed Sunday. We're rated 4.8 stars by over 300 drivers on Google. Call (647) 871-2393 before you head over and we'll be ready for you.",
   },
   {
     q: "What else does Boss Tire do besides tires?",
