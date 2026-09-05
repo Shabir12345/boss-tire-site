@@ -22,7 +22,7 @@ const FAQS = [
   },
   {
     q: "Can you store my off-season tires?",
-    a: `Yes. Tire storage is ${storage ? formatPrice(storage.price) : "available"}: we keep your off-season set clean and dry and tag it by position so the next changeover rotates them properly.`,
+    a: `Yes. Tire storage is ${storage ? formatPrice(storage.price!) : "available"}: we keep your off-season set clean and dry and tag it by position so the next changeover rotates them properly.`,
   },
 ];
 
@@ -60,7 +60,7 @@ export default function WinterChangeoverPage() {
             <div>
               <Eyebrow>The changeover</Eyebrow>
               <h2 className="mt-4 text-3xl text-[var(--color-heading)]">
-                {changeover ? formatPrice(changeover.price) : "$60"}, same day, while you wait
+                {changeover ? formatPrice(changeover.price!) : "$60"}, same day, while you wait
               </h2>
               <p className="mt-4 text-[var(--color-body)]">
                 We swap your seasonal set, balance them, torque to spec and set the pressures on all four.

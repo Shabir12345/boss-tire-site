@@ -48,9 +48,13 @@ export function LocalBusinessJsonLd() {
     makesOffer: SERVICES.map((s) => ({
       "@type": "Offer",
       itemOffered: { "@type": "Service", name: s.name },
-      price: s.price,
-      priceCurrency: "CAD",
-      description: s.priceNote ? `${formatPrice(s.price)} ${s.priceNote}` : formatPrice(s.price),
+      ...(s.price !== undefined
+        ? {
+            price: s.price,
+            priceCurrency: "CAD",
+            description: s.priceNote ? `${formatPrice(s.price)} ${s.priceNote}` : formatPrice(s.price),
+          }
+        : {}),
     })),
     sameAs: [
       BUSINESS.socials.facebook,
@@ -79,7 +83,7 @@ export function BreadcrumbJsonLd({ items }: { items: { name: string; path: strin
 }
 
 export function ServiceJsonLd({ service }: { service: Service }) {
-  const data = {
+  const data: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Service",
     name: service.name,
@@ -93,12 +97,10 @@ export function ServiceJsonLd({ service }: { service: Service }) {
     },
     areaServed: BUSINESS.areaServed,
     serviceType: service.name,
-    offers: {
-      "@type": "Offer",
-      price: service.price,
-      priceCurrency: "CAD",
-    },
   };
+  if (service.price !== undefined) {
+    data.offers = { "@type": "Offer", price: service.price, priceCurrency: "CAD" };
+  }
   return (
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
   );

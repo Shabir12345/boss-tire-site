@@ -29,9 +29,15 @@ export function PriceSheet() {
                   <p className="mt-0.5 text-sm text-[var(--color-body)]">{s.blurb}</p>
                 </div>
                 <div className="shrink-0 text-right">
-                  <span className="tabular font-display text-2xl font-extrabold text-[var(--color-heading)]">
-                    {formatPrice(s.price)}
-                  </span>
+                  {s.price !== undefined ? (
+                    <span className="tabular font-display text-2xl font-extrabold text-[var(--color-heading)]">
+                      {formatPrice(s.price)}
+                    </span>
+                  ) : (
+                    <span className="font-display text-sm font-bold uppercase tracking-wide text-[var(--color-red-deep)]">
+                      Call for a quote
+                    </span>
+                  )}
                   {s.priceNote && (
                     <span className="mt-0.5 block text-xs text-[var(--color-muted)]">{s.priceNote}</span>
                   )}

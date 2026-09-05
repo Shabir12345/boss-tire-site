@@ -22,7 +22,7 @@ const SIGNS = [
 const FAQS = [
   {
     q: "How much is a wheel alignment in Scarborough?",
-    a: `A wheel alignment at Boss Tire is ${formatPrice(alignment.price)}, before tax. It's also 50% off when you buy 4 tires with us, or 25% off with 2 tires — so on a tire purchase the alignment is close to free. Call (647) 871-2393 with your vehicle and we'll confirm the exact number.`,
+    a: `A wheel alignment at Boss Tire is ${formatPrice(alignment.price!)}, before tax. It's also 50% off when you buy 4 tires with us, or 25% off with 2 tires — so on a tire purchase the alignment is close to free. Call (647) 871-2393 with your vehicle and we'll confirm the exact number.`,
   },
   {
     q: "How do I know if I need an alignment?",
@@ -116,7 +116,7 @@ export default function WheelAlignmentPage() {
                   Wheel Alignment
                 </span>
                 <span className="tabular font-display text-4xl font-extrabold text-[var(--color-heading)]">
-                  {formatPrice(alignment.price)}
+                  {formatPrice(alignment.price!)}
                 </span>
               </div>
               <p className="mt-4 text-sm text-[var(--color-muted)]">Price before tax. Same-day, while you wait.</p>

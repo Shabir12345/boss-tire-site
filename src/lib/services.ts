@@ -23,7 +23,7 @@ export interface Service {
   name: string;
   shortName: string;
   category: ServiceCategory;
-  price: number; // CAD, ex. tax
+  price?: number; // CAD, ex. tax. Absent = no confirmed price; the page says "call for a quote".
   priceNote?: string; // e.g. "per tire", "price can vary by vehicle"
   blurb: string; // one-line card blurb
   included: string[]; // what the job covers (from WooCommerce short descriptions — new material)
