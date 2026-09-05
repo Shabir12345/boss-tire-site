@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/services/flat-tire-repair", priority: 0.8 },
     { path: "/tires", priority: 0.9 },
     { path: "/tires/used-tires", priority: 0.8 },
+    { path: "/tires/winter-rims-and-packages", priority: 0.8 },
     { path: "/muffler-exhaust", priority: 0.8 },
     { path: "/winter-tire-changeover", priority: 0.8 },
     { path: "/blog", priority: 0.5 },
