@@ -10,6 +10,7 @@ const DETAIL_PAGES: Record<string, string> = {
   "oil-change": "/services/oil-change",
   "flat-tire-repair": "/services/flat-tire-repair",
   "tire-changeover": "/winter-tire-changeover",
+  "tire-storage": "/services/tire-storage",
   "muffler-repair": "/muffler-exhaust",
   "exhaust-repair": "/muffler-exhaust",
 };

@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/services/wheel-alignment", priority: 0.8 },
     { path: "/services/oil-change", priority: 0.8 },
     { path: "/services/flat-tire-repair", priority: 0.8 },
+    { path: "/services/tire-storage", priority: 0.8 },
     { path: "/tires", priority: 0.9 },
     { path: "/tires/used-tires", priority: 0.8 },
     { path: "/tires/winter-rims-and-packages", priority: 0.8 },
