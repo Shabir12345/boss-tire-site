@@ -8,6 +8,7 @@ import { CallButton } from "@/components/ui/Button";
 const DETAIL_PAGES: Record<string, string> = {
   "wheel-alignment": "/services/wheel-alignment",
   "oil-change": "/services/oil-change",
+  "flat-tire-repair": "/services/flat-tire-repair",
   "tire-changeover": "/winter-tire-changeover",
   "muffler-repair": "/muffler-exhaust",
   "exhaust-repair": "/muffler-exhaust",

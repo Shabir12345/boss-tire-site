@@ -80,6 +80,21 @@ export const SERVICES: Service[] = [
     ],
   },
   {
+    slug: "flat-tire-repair",
+    name: "Flat Tire & Puncture Repair",
+    shortName: "Flat Repair",
+    category: "Tires",
+    // No price: not in the WooCommerce catalogue and not confirmed by the owner.
+    // Renders as "Call for a quote" until it is. Do not guess one.
+    blurb: "Punctures plugged and patched properly, same day.",
+    included: [
+      "Tire taken off the rim and inspected inside and out",
+      "Puncture patched from the inside, not just plugged",
+      "Rebalanced before it goes back on",
+      "Honest call if the tire is not safe to repair",
+    ],
+  },
+  {
     slug: "tire-storage",
     name: "Tire Storage",
     shortName: "Storage",
