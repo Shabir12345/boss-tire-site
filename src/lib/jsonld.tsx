@@ -1,6 +1,7 @@
 import { BUSINESS } from "@/lib/business";
 import { REVIEWS } from "@/lib/reviews";
 import { SERVICES, formatPrice, type Service } from "@/lib/services";
+import type { Post } from "@/lib/posts";
 
 // The old site had no LocalBusiness type at all — only Organization + Place with
 // PostalAddress fields shifted one position, so no hours, geo, price range or
@@ -101,6 +102,24 @@ export function ServiceJsonLd({ service }: { service: Service }) {
   if (service.price !== undefined) {
     data.offers = { "@type": "Offer", price: service.price, priceCurrency: "CAD" };
   }
+  return (
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
+  );
+}
+
+export function ArticleJsonLd({ post }: { post: Post }) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.description,
+    image: `${BUSINESS.url}${post.image}`,
+    datePublished: post.published,
+    dateModified: post.updated ?? post.published,
+    author: { "@id": `${BUSINESS.url}/#business` },
+    publisher: { "@id": `${BUSINESS.url}/#business` },
+    mainEntityOfPage: `${BUSINESS.url}/blog/${post.slug}`,
+  };
   return (
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
   );
