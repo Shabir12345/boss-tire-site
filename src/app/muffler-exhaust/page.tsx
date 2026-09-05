@@ -5,7 +5,7 @@ import { CTABand } from "@/components/sections/CTABand";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildMetadata } from "@/lib/seo";
 import { BreadcrumbJsonLd, FaqJsonLd } from "@/lib/jsonld";
-import { getService, formatPrice } from "@/lib/services";
+import { getService, formatPrice, requirePrice } from "@/lib/services";
 
 const muffler = getService("muffler-repair");
 const exhaust = getService("exhaust-repair");
@@ -73,7 +73,7 @@ export default function MufflerExhaustPage() {
                     </h2>
                     <div className="shrink-0 text-right">
                       <span className="tabular font-display text-2xl font-extrabold text-[var(--color-heading)]">
-                        {formatPrice(s.price!)}
+                        {formatPrice(requirePrice(s))}
                       </span>
                       {s.priceNote && <span className="block text-xs text-[var(--color-muted)]">{s.priceNote}</span>}
                     </div>

@@ -217,3 +217,13 @@ export const servicesByCategory = (): { category: ServiceCategory; items: Servic
 // "$60" / "$60.99" — no trailing ".00", cents shown only when non-zero.
 export const formatPrice = (n: number): string =>
   Number.isInteger(n) ? `$${n}` : `$${n.toFixed(2)}`;
+
+// Pages built around one always-priced service call this instead of asserting
+// with `!`. These pages are statically generated, so an unpriced service fails
+// the build loudly rather than baking "$undefined" into published copy.
+export const requirePrice = (s: Service): number => {
+  if (s.price === undefined) {
+    throw new Error(`Service "${s.slug}" has no price, but a page requires one.`);
+  }
+  return s.price;
+};

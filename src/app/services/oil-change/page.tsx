@@ -6,7 +6,7 @@ import { CTABand } from "@/components/sections/CTABand";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildMetadata } from "@/lib/seo";
 import { BreadcrumbJsonLd, FaqJsonLd, ServiceJsonLd } from "@/lib/jsonld";
-import { getService, formatPrice } from "@/lib/services";
+import { getService, formatPrice, requirePrice } from "@/lib/services";
 
 const oil = getService("oil-change")!;
 
@@ -20,7 +20,7 @@ const WHY = [
 const FAQS = [
   {
     q: "How much is an oil change in Scarborough?",
-    a: `An oil change at Boss Tire is ${formatPrice(oil.price!)}, before tax — oil and a new filter, done the same day while you wait. Call (647) 871-2393 with your year, make and model and we'll confirm the exact number for your vehicle.`,
+    a: `An oil change at Boss Tire is ${formatPrice(requirePrice(oil))}, before tax — oil and a new filter, done the same day while you wait. Call (647) 871-2393 with your year, make and model and we'll confirm the exact number for your vehicle.`,
   },
   {
     q: "How often should I change my oil?",
@@ -114,7 +114,7 @@ export default function OilChangePage() {
                   Oil Change
                 </span>
                 <span className="tabular font-display text-4xl font-extrabold text-[var(--color-heading)]">
-                  {formatPrice(oil.price!)}
+                  {formatPrice(requirePrice(oil))}
                 </span>
               </div>
               <p className="mt-4 text-sm text-[var(--color-muted)]">Price before tax. Same-day, while you wait.</p>
