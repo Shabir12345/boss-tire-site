@@ -30,7 +30,7 @@ Each page task specifies the strings that are SEO-critical and must be exact: th
 ## Task 1: Test harness and route invariants
 
 **Files:**
-- Create: `vitest.config.ts`
+- Create: `vitest.config.mts`
 - Create: `src/lib/__tests__/routes.test.ts`
 
 **Interfaces:**
@@ -110,7 +110,7 @@ Restore the line. Run `npm test` again and confirm PASS.
 - [ ] **Step 3: Commit**
 
 ```bash
-git add vitest.config.ts src/lib/__tests__/routes.test.ts
+git add vitest.config.mts src/lib/__tests__/routes.test.ts
 git commit -m "test: add vitest config and route/sitemap parity invariants"
 ```
 
