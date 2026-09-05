@@ -7,6 +7,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildMetadata } from "@/lib/seo";
 import { BreadcrumbJsonLd, FaqJsonLd, ServiceJsonLd } from "@/lib/jsonld";
 import { getService, formatPrice, requirePrice } from "@/lib/services";
+import { BUSINESS } from "@/lib/business";
 
 const storage = getService("tire-storage")!;
 const changeover = getService("tire-changeover")!;
@@ -14,7 +15,7 @@ const changeover = getService("tire-changeover")!;
 const FAQS = [
   {
     q: "How much does tire storage cost?",
-    a: `Tire storage at Boss Tire is ${formatPrice(requirePrice(storage))}. Call to confirm what your set costs to store — we'll give you an exact number over the phone at (647) 871-2393 rather than have you guess from a website.`,
+    a: `Tire storage at Boss Tire is ${formatPrice(requirePrice(storage))}. Call to confirm what your set costs to store — we'll give you an exact number over the phone at ${BUSINESS.phoneDisplay} rather than have you guess from a website.`,
   },
   {
     q: "Why not just keep my tires in the garage?",
@@ -26,7 +27,7 @@ const FAQS = [
   },
   {
     q: "When should I bring my off-season set in?",
-    a: "Bring it in whenever you do your changeover — most people hand off the set they just took off the car in the same visit. Demand for changeovers picks up hard from mid-October on, so if you'd rather not wait behind everyone else booking in the same week, come earlier. Walk-ins are welcome Monday to Saturday, 9 AM to 7 PM.",
+    a: `Bring it in whenever you do your changeover — most people hand off the set they just took off the car in the same visit. Demand for changeovers picks up hard from mid-October on, so if you'd rather not wait behind everyone else booking in the same week, come earlier. Walk-ins are welcome, ${BUSINESS.hours.weekdays}.`,
   },
   {
     q: "What if I sell the car while you have my tires?",
@@ -121,7 +122,8 @@ export default function TireStoragePage() {
               </p>
               <p className="mt-5 text-[var(--color-body)]">
                 Bring the set in with your car when you do a changeover, or drop it off on its own — either way,
-                call ahead at (647) 871-2393 and we'll have the number ready for your set before you arrive.
+                call ahead at {BUSINESS.phoneDisplay} and we'll have the number ready for your set before you
+                arrive.
               </p>
               <p className="mt-5 text-sm text-[var(--color-muted)]">
                 Also swapping tires this trip?{" "}
@@ -178,8 +180,8 @@ export default function TireStoragePage() {
                 easier to hand over too.
               </p>
               <p className="mt-4 text-[var(--color-body)]">
-                No appointment needed to drop tires off. Walk in Monday to Saturday, 9 AM to 7 PM, and we'll get
-                your set tagged and put away.
+                No appointment needed to drop tires off. Walk in, {BUSINESS.hours.weekdays}, and we'll get your
+                set tagged and put away.
               </p>
             </div>
           </div>
