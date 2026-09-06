@@ -77,6 +77,24 @@ export const POSTS: Post[] = [
     ],
     relatedServices: ["/services/wheel-alignment"],
   },
+  {
+    slug: "can-a-flat-tire-be-repaired",
+    title: "Can a flat tire be repaired, or do you need a new one?",
+    description:
+      "Tread punctures are usually repairable. Sidewall damage almost never is. Here is where the line sits and why a proper patch beats a plug.",
+    published: "2026-09-05",
+    excerpt:
+      "A nail in the middle of the tread is usually a repair. A cut in the sidewall is usually a new tire. The difference is worth knowing before someone sells you four.",
+    image: "/photos/wheels.jpg",
+    imageAlt: "Tires and wheels in the Boss Tire workshop",
+    keywords: [
+      "can a flat tire be repaired",
+      "flat tire repair cost",
+      "tire puncture repair",
+      "when to replace a punctured tire",
+    ],
+    relatedServices: ["/services/flat-tire-repair"],
+  },
 ];
 
 export const getPost = (slug: string): Post | undefined =>
