@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/blog", priority: 0.5 },
     { path: "/blog/catalytic-converter-replacement-cost-toronto", priority: 0.4 },
     { path: "/blog/when-to-put-winter-tires-on-toronto", priority: 0.4 },
+    { path: "/blog/wheel-balancing-vs-wheel-alignment", priority: 0.4 },
     { path: "/about", priority: 0.6 },
     { path: "/contact", priority: 0.7 },
   ];

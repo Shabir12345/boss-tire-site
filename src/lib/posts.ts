@@ -58,6 +58,25 @@ export const POSTS: Post[] = [
       "/services/tire-storage",
     ],
   },
+  {
+    slug: "wheel-balancing-vs-wheel-alignment",
+    title: "Wheel balancing vs wheel alignment: what's the difference?",
+    description:
+      "Balancing fixes vibration. Alignment fixes pulling and uneven tire wear. They are different jobs at different prices — here is how to tell which one your car needs.",
+    published: "2026-09-05",
+    excerpt:
+      "A shake at highway speed is a balancing problem. Pulling to one side is an alignment problem. They get confused constantly, and it costs people money.",
+    image: "/photos/alignment.jpg",
+    imageAlt: "A car on the alignment rack at Boss Tire",
+    keywords: [
+      "wheel balancing vs alignment",
+      "wheel balancing cost",
+      "wheel balancing near me",
+      "4 wheel alignment cost",
+      "wheel alignment cost toronto",
+    ],
+    relatedServices: ["/services/wheel-alignment"],
+  },
 ];
 
 export const getPost = (slug: string): Post | undefined =>
