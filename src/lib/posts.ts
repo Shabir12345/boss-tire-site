@@ -35,6 +35,29 @@ export const POSTS: Post[] = [
     ],
     relatedServices: ["/muffler-exhaust", "/muffler-exhaust/exhaust-leak-repair"],
   },
+  {
+    slug: "when-to-put-winter-tires-on-toronto",
+    title: "When should you put winter tires on in Toronto?",
+    description:
+      "The seven-degree rule, what the Ontario weather actually does, and why booking your changeover in October beats booking it after the first snow.",
+    published: "2026-09-05",
+    excerpt:
+      "Seven degrees, not the first snowfall. Here is why, and what waiting until December actually costs you.",
+    image: "/photos/winter-changeover.jpg",
+    imageAlt: "A winter tire being fitted during a seasonal changeover",
+    keywords: [
+      "when to put winter tires on",
+      "winter tire change",
+      "snow tire change",
+      "winter tire installation",
+      "seasonal tire change",
+    ],
+    relatedServices: [
+      "/winter-tire-changeover",
+      "/tires/winter-rims-and-packages",
+      "/services/tire-storage",
+    ],
+  },
 ];
 
 export const getPost = (slug: string): Post | undefined =>
