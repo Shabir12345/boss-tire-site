@@ -112,18 +112,33 @@ export default function WhenToPutWinterTiresOnPage() {
               One set of rims, or two
             </h2>
             <p>
-              If your winter tires live on the same rims as your summer or all-season set, every changeover
-              means dismounting and remounting tires rather than just swapping wheels — twice a year, every
-              year. A second set of rims turns that into a straight wheel-off, wheel-on job. We've laid out the
-              full case for it, including steel versus alloy and what a package costs, on the{" "}
+              How much work a changeover is also depends on whether your winter tires have their own wheels.
+              We've laid out the full argument — what changes, steel versus alloy, and what a package costs —
+              on the{" "}
               <Link
                 href="/tires/winter-rims-and-packages"
                 className="link-grow font-semibold text-[var(--color-red-deep)]"
               >
                 winter rims and packages
               </Link>{" "}
-              page — worth a read before your next changeover if you're still swapping tires on and off the
-              same wheels.
+              page.
+            </p>
+
+            <h2 className="pt-4 font-display text-2xl font-bold uppercase tracking-wide text-[var(--color-heading)]">
+              Swapping back in spring works the same way, in reverse
+            </h2>
+            <p>
+              The 7°C rule isn't only about putting winter tires on — it's just as much about taking them off.
+              The same soft compound that stays pliable in the cold turns soft in the other direction once the
+              weather warms up, and a tire that's built to flex in the cold wears down faster and grips worse
+              on hot pavement than a proper all-season does. Running winter tires deep into spring costs you
+              tread and control in exactly the conditions they weren't built for.
+            </p>
+            <p>
+              People are usually careful about the fall deadline and casual about the spring one, because a
+              cold morning is unmistakable and a warm one just feels like good weather. The same threshold
+              applies both directions — once daytime highs are reliably back above roughly 7°C, that's the
+              signal to book the swap back, not a date circled on a calendar in April.
             </p>
 
             <h2 className="pt-4 font-display text-2xl font-bold uppercase tracking-wide text-[var(--color-heading)]">
