@@ -16,7 +16,26 @@ export interface Post {
   relatedServices: string[]; // internal routes this post links up to
 }
 
-export const POSTS: Post[] = [];
+export const POSTS: Post[] = [
+  {
+    slug: "catalytic-converter-replacement-cost-toronto",
+    title: "What a catalytic converter replacement costs in Toronto",
+    description:
+      "What a catalytic converter costs to replace in Toronto, why theft has pushed the price up, and how to tell whether yours actually needs replacing.",
+    published: "2026-09-05",
+    excerpt:
+      "Converter theft has made this one of the most expensive parts on the car to lose. Here is what replacement actually costs and how to tell if yours has gone.",
+    image: "/photos/muffler-bay.jpg",
+    imageAlt: "Exhaust and converter work in the Boss Tire service bay",
+    keywords: [
+      "catalytic converter replacement cost",
+      "catalytic converter replacement",
+      "catalytic converter repair",
+      "catalytic converter theft toronto",
+    ],
+    relatedServices: ["/muffler-exhaust", "/muffler-exhaust/exhaust-leak-repair"],
+  },
+];
 
 export const getPost = (slug: string): Post | undefined =>
   POSTS.find((p) => p.slug === slug);
