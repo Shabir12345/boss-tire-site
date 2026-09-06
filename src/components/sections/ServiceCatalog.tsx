@@ -12,7 +12,7 @@ const DETAIL_PAGES: Record<string, string> = {
   "tire-changeover": "/winter-tire-changeover",
   "tire-storage": "/services/tire-storage",
   "muffler-repair": "/muffler-exhaust",
-  "exhaust-repair": "/muffler-exhaust",
+  "exhaust-repair": "/muffler-exhaust/exhaust-leak-repair",
 };
 
 // Detailed service list — the spec sheet plus the inclusions the old site never

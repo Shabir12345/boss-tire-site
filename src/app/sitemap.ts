@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/tires/used-tires", priority: 0.8 },
     { path: "/tires/winter-rims-and-packages", priority: 0.8 },
     { path: "/muffler-exhaust", priority: 0.8 },
+    { path: "/muffler-exhaust/exhaust-leak-repair", priority: 0.8 },
     { path: "/winter-tire-changeover", priority: 0.8 },
     { path: "/blog", priority: 0.5 },
     { path: "/about", priority: 0.6 },
