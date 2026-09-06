@@ -95,6 +95,24 @@ export const POSTS: Post[] = [
     ],
     relatedServices: ["/services/flat-tire-repair"],
   },
+  {
+    slug: "tpms-light-on-what-it-costs",
+    title: "TPMS light on: what it means and what a sensor costs",
+    description:
+      "The tire pressure light can mean low pressure, a dead sensor battery, or a sensor that needs programming after a tire change. Here is how to tell which, and what it costs.",
+    published: "2026-09-05",
+    excerpt:
+      "A TPMS light is not always a flat. Often it is a sensor at the end of its battery life — and the fix is $69.99, not four new tires.",
+    image: "/photos/suv-wheel.jpg",
+    imageAlt: "A wheel and tire being checked at Boss Tire",
+    keywords: [
+      "tpms sensor replacement",
+      "tpms light on",
+      "tpms programming",
+      "tire pressure sensor cost",
+    ],
+    relatedServices: ["/services"],
+  },
 ];
 
 export const getPost = (slug: string): Post | undefined =>

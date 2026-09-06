@@ -22,6 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/blog/when-to-put-winter-tires-on-toronto", priority: 0.4 },
     { path: "/blog/wheel-balancing-vs-wheel-alignment", priority: 0.4 },
     { path: "/blog/can-a-flat-tire-be-repaired", priority: 0.4 },
+    { path: "/blog/tpms-light-on-what-it-costs", priority: 0.4 },
     { path: "/about", priority: 0.6 },
     { path: "/contact", priority: 0.7 },
   ];
