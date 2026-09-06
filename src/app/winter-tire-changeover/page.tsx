@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageHeader } from "@/components/sections/PageHeader";
 import { TrustStrip } from "@/components/sections/TrustStrip";
 import { OffersBand } from "@/components/sections/OffersBand";
 import { CTABand } from "@/components/sections/CTABand";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { CallButton } from "@/components/ui/Button";
 import { buildMetadata } from "@/lib/seo";
 import { BreadcrumbJsonLd, FaqJsonLd } from "@/lib/jsonld";
 import { getService, formatPrice, requirePrice } from "@/lib/services";
@@ -88,12 +90,43 @@ export default function WinterChangeoverPage() {
                 Running winter tires this year? Ask us about fitment when you book and we will sort out the
                 right setup for your vehicle.
               </p>
+              <p className="mt-3 text-[var(--color-body)]">
+                Not ready to give up garage space for the off-season set?{" "}
+                <Link href="/services/tire-storage" className="link-grow font-semibold text-[var(--color-red-deep)]">
+                  We'll store it
+                </Link>
+                . Want winters that live on their own rims so this is a five-minute swap every year?{" "}
+                <Link
+                  href="/tires/winter-rims-and-packages"
+                  className="link-grow font-semibold text-[var(--color-red-deep)]"
+                >
+                  See rim &amp; tire packages
+                </Link>
+                .
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       <OffersBand />
+
+      <section className="bg-[var(--color-paper)]">
+        <div className="gutter-safe mx-auto max-w-6xl pb-16 sm:pb-20">
+          <div className="flex flex-col items-start gap-4 rounded-lg border border-[var(--color-border)] bg-[var(--color-smoke)] p-6 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <Eyebrow>While you're booked in</Eyebrow>
+              <h2 className="mt-2 text-xl text-[var(--color-heading)]">Winter accessories, in stock</h2>
+              <p className="mt-2 max-w-2xl text-sm text-[var(--color-body)]">
+                We also carry snow brushes and ice scrapers, booster cables, emergency car kits and
+                windshield wipers. No online price list for these — ask what's in stock when you book your
+                changeover or call ahead.
+              </p>
+            </div>
+            <CallButton className="shrink-0" trackLocation="winter_accessories" />
+          </div>
+        </div>
+      </section>
 
       <section className="bg-[var(--color-paper)]">
         <div className="gutter-safe mx-auto max-w-3xl py-16 sm:py-20">

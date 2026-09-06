@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageHeader } from "@/components/sections/PageHeader";
 import { TrustStrip } from "@/components/sections/TrustStrip";
 import { CTABand } from "@/components/sections/CTABand";
@@ -102,6 +103,17 @@ export default function MufflerExhaustPage() {
                 </li>
               ))}
             </ul>
+            <p className="mt-6 text-[var(--color-body)]">
+              Dealing with a leak specifically?{" "}
+              <Link href="/muffler-exhaust/exhaust-leak-repair" className="link-grow font-semibold text-[var(--color-red-deep)]">
+                See what an exhaust leak repair involves
+              </Link>{" "}
+              and what it costs. For repair costs on other jobs, we put real numbers on{" "}
+              <Link href="/blog" className="link-grow font-semibold text-[var(--color-red-deep)]">
+                our blog
+              </Link>
+              .
+            </p>
           </div>
         </div>
       </section>

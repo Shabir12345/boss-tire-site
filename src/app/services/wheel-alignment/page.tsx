@@ -164,7 +164,15 @@ export default function WheelAlignmentPage() {
               <Link href="/services" className="link-grow font-semibold text-[var(--color-red-deep)]">
                 See all services &amp; prices
               </Link>{" "}
-              or just call and describe it — we'll tell you if it needs doing.
+              or just call and describe it — we'll tell you if it needs doing. Mixing up alignment and
+              balancing?{" "}
+              <Link
+                href="/blog/wheel-balancing-vs-wheel-alignment"
+                className="link-grow font-semibold text-[var(--color-red-deep)]"
+              >
+                Here's the difference
+              </Link>
+              .
             </p>
           </div>
         </div>

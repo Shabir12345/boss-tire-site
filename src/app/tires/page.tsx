@@ -80,6 +80,18 @@ export default function TiresPage() {
               </Link>
               .
             </p>
+            <p className="mt-3 max-w-2xl text-sm text-[var(--color-body)]">
+              Only need to replace one or two tires and match what's already on the car? See our{" "}
+              <Link href="/tires/used-tires" className="link-grow font-semibold text-[var(--color-red-deep)]">
+                used &amp; budget tires
+              </Link>
+              . Want your winters mounted on their own rims so the seasonal swap takes minutes instead of a
+              shop visit? Look at our{" "}
+              <Link href="/tires/winter-rims-and-packages" className="link-grow font-semibold text-[var(--color-red-deep)]">
+                winter rim &amp; tire packages
+              </Link>
+              .
+            </p>
           </div>
         </div>
       </section>
