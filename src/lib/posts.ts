@@ -90,7 +90,6 @@ export const POSTS: Post[] = [
     keywords: [
       "can a flat tire be repaired",
       "flat tire repair cost",
-      "tire puncture repair",
       "when to replace a punctured tire",
     ],
     relatedServices: ["/services/flat-tire-repair"],
@@ -102,7 +101,7 @@ export const POSTS: Post[] = [
       "The tire pressure light can mean low pressure, a dead sensor battery, or a sensor that needs programming after a tire change. Here is how to tell which, and what it costs.",
     published: "2026-09-05",
     excerpt:
-      "A TPMS light is not always a flat. Often it is a sensor at the end of its battery life — and the fix is $69.99, not four new tires.",
+      "A TPMS light is not always a flat. Often it is a sensor at the end of its battery life, or a relearn that never ran after the last tire change — not four new tires.",
     image: "/photos/suv-wheel.jpg",
     imageAlt: "A wheel and tire being checked at Boss Tire",
     keywords: [

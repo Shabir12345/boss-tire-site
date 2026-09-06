@@ -95,7 +95,7 @@ export default function WinterChangeoverPage() {
                 <Link href="/services/tire-storage" className="link-grow font-semibold text-[var(--color-red-deep)]">
                   We'll store it
                 </Link>
-                . Want winters that live on their own rims so this is a five-minute swap every year?{" "}
+                . Want winters that live on their own rims so the seasonal swap takes minutes every year?{" "}
                 <Link
                   href="/tires/winter-rims-and-packages"
                   className="link-grow font-semibold text-[var(--color-red-deep)]"
@@ -103,6 +103,16 @@ export default function WinterChangeoverPage() {
                   See rim &amp; tire packages
                 </Link>
                 .
+              </p>
+              <p className="mt-3 text-[var(--color-body)]">
+                Still deciding when to book? We go through{" "}
+                <Link
+                  href="/blog/when-to-put-winter-tires-on-toronto"
+                  className="link-grow font-semibold text-[var(--color-red-deep)]"
+                >
+                  when winter tires should actually go on in Toronto
+                </Link>{" "}
+                and what waiting for the first snowfall costs you.
               </p>
             </div>
           </div>

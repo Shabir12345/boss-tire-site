@@ -137,6 +137,23 @@ export default function ExhaustLeakRepairPage() {
             flex pipe near the manifold cracks occasionally too, and it gets fixed the same way as any other
             section — cut out what&apos;s failed, weld in what&apos;s good.
           </p>
+          <p className="mt-4 max-w-2xl text-[var(--color-body)]">
+            One thing worth ruling out first: a roar that arrived overnight, rather than a noise that crept up
+            over weeks, often isn&apos;t a leak at all. That pattern points at the catalytic converter, which is
+            a much bigger bill —{" "}
+            <Link
+              href="/blog/catalytic-converter-replacement-cost-toronto"
+              className="link-grow font-semibold text-[var(--color-red-deep)]"
+            >
+              here&apos;s what drives a converter replacement&apos;s cost in Toronto
+            </Link>{" "}
+            and how to tell whether yours has gone. Either way the car goes up on the lift to find out, which is
+            a sensible moment to get an{" "}
+            <Link href="/services/oil-change" className="link-grow font-semibold text-[var(--color-red-deep)]">
+              oil change
+            </Link>{" "}
+            done in the same visit.
+          </p>
         </div>
       </section>
 

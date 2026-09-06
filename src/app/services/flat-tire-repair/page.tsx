@@ -11,18 +11,18 @@ import { BUSINESS } from "@/lib/business";
 
 const flat = getService("flat-tire-repair")!;
 
-const WHY = [
-  "A puncture in the tread — the flat part that touches the road — is usually repairable",
-  "A puncture in the sidewall or the shoulder, where the tire flexes as you drive, is not; that tire needs replacing",
-  "A patch glued in from the inside is a permanent repair; a plug pushed in from the outside is a temporary one",
-  "Driving on a flat, even a short distance, can wreck the sidewall and turn a repairable tire into one that isn't",
+// What actually happens in the bay. The question of whether a given tire is
+// repairable at all belongs to /blog/can-a-flat-tire-be-repaired — this page
+// answers "fix mine today", not "is mine even fixable".
+const STEPS = [
+  "Walk in or drive in during opening hours — a flat doesn't need an appointment",
+  "The wheel comes off the car and the tire comes off the rim, so both sides can be looked at",
+  "We find where the air is actually escaping rather than working from where the nail is sticking out",
+  "You're told what we've found, and what it costs, before anything is done to the tire",
+  "If it can be repaired: patched from the inside, rebalanced, and back on the car the same day",
 ];
 
 const FAQS = [
-  {
-    q: "Can a flat tire be repaired, or do I need a new one?",
-    a: "It depends on where the puncture is. A hole in the tread — the flat part that touches the road — is usually repairable. A puncture in the sidewall or the shoulder, where the tire flexes as you drive, is not; that tire needs replacing regardless of how small the hole looks. Bring it in and we'll tell you straight which one you've got.",
-  },
   {
     q: "How much does a flat tire repair cost in Scarborough?",
     a: `It depends on the tire and how bad the damage is, so we're not going to guess a number here. Call ${BUSINESS.phoneDisplay} and tell us what happened — where the puncture is, what caused it — and we'll give you a straight answer before you come in.`,
@@ -34,10 +34,6 @@ const FAQS = [
   {
     q: "Do I need an appointment to get a flat fixed?",
     a: `No — walk in. Boss Tire takes flat tire repairs on a walk-in basis, ${BUSINESS.hours.weekdays}, ${BUSINESS.hours.weekend}. Call ${BUSINESS.phoneDisplay} ahead if you want, but you don't need to book.`,
-  },
-  {
-    q: "Why patch a tire from the inside instead of plugging it?",
-    a: "A plug pushed in from outside the tire is a temporary fix — it seals the hole from one side and doesn't let anyone check what's happening on the inside of the tire. A patch is applied from the inside, after the tire's been taken off the rim and inspected properly. It seals against the inner liner where the air pressure holds it in place, and it's a permanent repair rather than a stopgap. We patch. We don't just plug.",
   },
 ];
 
@@ -143,22 +139,37 @@ export default function FlatTireRepairPage() {
             </div>
           </div>
 
-          {/* Why it matters */}
+          {/* What the visit actually looks like */}
           <div className="mt-16 max-w-2xl">
-            <Eyebrow>Why it matters</Eyebrow>
-            <h2 className="mt-4 text-3xl text-[var(--color-heading)]">What decides if a tire can be patched</h2>
+            <Eyebrow>What to expect</Eyebrow>
+            <h2 className="mt-4 text-3xl text-[var(--color-heading)]">What happens when you bring a flat in</h2>
             <ul className="mt-6 space-y-3">
-              {WHY.map((w) => (
-                <li key={w} className="flex gap-3 text-[var(--color-body)]">
+              {STEPS.map((step) => (
+                <li key={step} className="flex gap-3 text-[var(--color-body)]">
                   <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[var(--color-red)]" aria-hidden />
-                  {w}
+                  {step}
                 </li>
               ))}
             </ul>
             <p className="mt-6 text-[var(--color-body)]">
-              If you're not sure which kind of damage you've got, don't guess and don't keep driving on it. Pull
-              over when it's safe, call, or bring it straight in and we'll look at it before you drive any
-              further.
+              Nothing gets decided before the tire is off the rim, because a puncture that looks obvious from
+              outside often isn't where the air is going. Wondering whether yours is even fixable before you
+              drive over?{" "}
+              <Link
+                href="/blog/can-a-flat-tire-be-repaired"
+                className="link-grow font-semibold text-[var(--color-red-deep)]"
+              >
+                We set out where the line sits between a repairable puncture and a write-off
+              </Link>
+              .
+            </p>
+            <p className="mt-4 text-[var(--color-body)]">
+              If the tire turns out to be past saving, you're not automatically buying four. We can look at a{" "}
+              <Link href="/tires/used-tires" className="link-grow font-semibold text-[var(--color-red-deep)]">
+                used or budget tire
+              </Link>{" "}
+              close in tread depth to what's already on that axle instead. And don't keep driving on a flat to
+              get here — pull over somewhere safe and call.
             </p>
           </div>
         </div>

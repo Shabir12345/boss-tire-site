@@ -25,7 +25,7 @@ const CHECKS = [
   },
   {
     title: "Matching to what you're keeping",
-    body: "Tires should be matched in pairs across an axle at minimum — the two on the same axle need to be close in tread depth, or the car can pull or grip unevenly side to side, especially braking in the wet. If you're only replacing one or two, we look at what's staying on the car before we tell you what to put on.",
+    body: "The two tires on one axle need to be close to each other in tread depth. When they aren't, the car can pull or grip unevenly side to side, and it shows up worst braking in the wet. If you're only replacing one or two, we look at what's staying on the car before we tell you what to put on.",
   },
 ];
 
@@ -36,7 +36,7 @@ const FAQS = [
   },
   {
     q: "How much do used tires cost in Scarborough?",
-    a: `Our used and budget tire stock runs from about $73 to $219 each, with most landing around $108, before tax. Where you land in that range depends on the size and the tire itself. Call ${BUSINESS.phoneDisplay} with your size and we'll tell you what's available and what it costs.`,
+    a: `Used tires are priced one at a time — what the tire is, what size it is and how much tread is left decide the number, so there's no single figure we can put on a page. For reference, the budget new tires we stock run from about $73 to $219 each before tax, with most landing around $108; that range is new stock, not the used rack. Call ${BUSINESS.phoneDisplay} with your size and we'll tell you what's on the rack and what it costs.`,
   },
   {
     q: "How do you check a used tire before selling it?",
@@ -102,9 +102,10 @@ export default function UsedTiresPage() {
                   before they go up for sale, and they&apos;re fitted the same day you walk in.
                 </p>
                 <p>
-                  Prices run from about $73 to $219 a tire, before tax, with most landing around the $108 mark.
-                  Where a given tire falls in that range comes down to size and condition, not a sales pitch —
-                  call with your size and we&apos;ll give you the real number.
+                  On the new budget side, prices run from about $73 to $219 a tire before tax, with most
+                  landing around the $108 mark. That range is for new stock. A used tire is priced on its own
+                  merits — the size, the make and how much tread is actually left on it — so the only honest
+                  way to get a number is to call with your size and ask what&apos;s on the rack today.
                 </p>
                 <p>
                   If you&apos;re after a name-brand new set instead, or want to see everything we stock side by
@@ -112,7 +113,16 @@ export default function UsedTiresPage() {
                   <Link href="/tires" className="link-grow font-semibold text-[var(--color-red-deep)]">
                     tires page
                   </Link>{" "}
-                  covers the full range.
+                  covers the full range. If it&apos;s the winter set you&apos;re replacing, it&apos;s worth
+                  pricing{" "}
+                  <Link
+                    href="/tires/winter-rims-and-packages"
+                    className="link-grow font-semibold text-[var(--color-red-deep)]"
+                  >
+                    rims to mount them on
+                  </Link>{" "}
+                  at the same time, so you&apos;re not paying to mount and dismount the same tires twice a
+                  year.
                 </p>
               </div>
             </div>

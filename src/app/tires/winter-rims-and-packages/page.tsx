@@ -62,7 +62,7 @@ export default function WinterRimsAndPackagesPage() {
       <PageHeader
         eyebrow="Rims & Packages"
         title="Winter tires on their own rims"
-        sub="A second set of rims turns the seasonal changeover into a fifteen-minute job instead of an afternoon — and it stops the bead damage that comes from mounting and unmounting the same tires twice a year."
+        sub="A second set of rims turns the seasonal changeover into a job that takes minutes instead of an afternoon — and it stops the bead damage that comes from mounting and unmounting the same tires twice a year."
         showCall
         image="/photos/rims-red.jpg"
         imageAlt="Alloy wheels on display at Boss Tire"
@@ -88,11 +88,17 @@ export default function WinterRimsAndPackagesPage() {
                 <p>
                   Put the winter tires on their own rims and the changeover becomes exactly that: wheels off,
                   wheels on, torqued and checked. It's the same swap either way — the rims just decide whether
-                  it takes fifteen minutes or an afternoon of mounting and balancing.
+                  it takes minutes or an afternoon of mounting and balancing.
                 </p>
                 <p>
-                  A lot of Boss Tire customers who used to just swap tires twice a year end up buying a rim set
-                  the first winter they get tired of the wait, and never go back.
+                  The trade-off is money up front against time and tire wear every season after. A rim set is
+                  bought once and used twice a year for as long as you keep the car, which is why dedicated
+                  winter wheels are so common on cars that see a real Ontario winter. If you're still choosing
+                  the tire that goes on them, the{" "}
+                  <Link href="/tires" className="link-grow font-semibold text-[var(--color-red-deep)]">
+                    tires page
+                  </Link>{" "}
+                  covers what we stock and how sizing works.
                 </p>
               </div>
             </div>

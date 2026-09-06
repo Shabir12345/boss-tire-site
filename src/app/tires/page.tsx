@@ -26,11 +26,11 @@ const POINTS = [
 ];
 
 export const metadata: Metadata = buildMetadata({
-  title: "New & Used Tires in Scarborough",
+  title: "Tires in Scarborough: New, Used & Winter",
   description:
-    "New and used tires fitted the same day at Boss Tire, Scarborough. Sizes for cars, SUVs and light trucks, balanced and torqued to spec. Call (647) 871-2393 for your size and price.",
+    "Every tire Boss Tire sells in one place: new, used and budget, plus winter sets on their own rims. Fitted, balanced and torqued the same day on Danforth Rd. Call (647) 871-2393 with your size.",
   path: "/tires",
-  keywords: ["tires scarborough", "new tires scarborough", "used tires scarborough", "cheap tires scarborough"],
+  keywords: ["tires scarborough", "new tires scarborough", "tires near me", "buy tires scarborough"],
 });
 
 export default function TiresPage() {

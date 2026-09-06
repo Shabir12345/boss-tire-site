@@ -41,9 +41,9 @@ export const metadata: Metadata = buildMetadata({
   path: "/muffler-exhaust",
   keywords: [
     "muffler repair scarborough",
-    "exhaust repair scarborough",
     "muffler replacement scarborough",
-    "exhaust leak repair scarborough",
+    "muffler shop scarborough",
+    "muffler near me",
   ],
 });
 
@@ -108,7 +108,15 @@ export default function MufflerExhaustPage() {
               <Link href="/muffler-exhaust/exhaust-leak-repair" className="link-grow font-semibold text-[var(--color-red-deep)]">
                 See what an exhaust leak repair involves
               </Link>{" "}
-              and what it costs. For repair costs on other jobs, we put real numbers on{" "}
+              and what it costs. Worried it's the catalytic converter instead?{" "}
+              <Link
+                href="/blog/catalytic-converter-replacement-cost-toronto"
+                className="link-grow font-semibold text-[var(--color-red-deep)]"
+              >
+                We explain what drives that cost
+              </Link>{" "}
+              and how to tell whether yours has actually gone. More of what we get asked in the shop is
+              written up on{" "}
               <Link href="/blog" className="link-grow font-semibold text-[var(--color-red-deep)]">
                 our blog
               </Link>

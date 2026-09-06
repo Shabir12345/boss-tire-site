@@ -133,9 +133,9 @@ export default function TpmsLightOnPage() {
             <p>
               TPMS service at Boss Tire is {formatPrice(requirePrice(tpms))}, before tax, and covers{" "}
               {tpms.included[0].toLowerCase()}, {tpms.included[1].toLowerCase()}, and{" "}
-              {tpms.included[2].toLowerCase()}. That's the same price whether the light turns out to be a dying
-              sensor battery or a relearn that never ran after your last tire change — you get a diagnosis first,
-              so you're not paying to guess. See{" "}
+              {tpms.included[2].toLowerCase()}. The diagnosis comes first, so you find out whether you're
+              looking at a dying sensor battery or a relearn that never ran after your last tire change before
+              anything gets replaced. See{" "}
               <Link href="/services#tpms" className="link-grow font-semibold text-[var(--color-red-deep)]">
                 the full service list
               </Link>{" "}

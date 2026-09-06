@@ -15,7 +15,7 @@ const changeover = getService("tire-changeover")!;
 const FAQS = [
   {
     q: "How much does tire storage cost?",
-    a: `Tire storage at Boss Tire is ${formatPrice(requirePrice(storage))}. Call to confirm what your set costs to store — we'll give you an exact number over the phone at ${BUSINESS.phoneDisplay} rather than have you guess from a website.`,
+    a: `Tire storage at Boss Tire starts at ${formatPrice(requirePrice(storage))}. Call to confirm what your set costs to store — we'll give you an exact number over the phone at ${BUSINESS.phoneDisplay} rather than have you guess from a website.`,
   },
   {
     q: "Why not just keep my tires in the garage?",
@@ -65,7 +65,7 @@ export default function TireStoragePage() {
       <PageHeader
         eyebrow="Tire Storage"
         title="Your off-season set, kept properly"
-        sub="Tires stored in a hot garage or stood in sunlight age faster than they should. We keep your off-season set clean, dry and tagged by position, ready to go back on the right corners."
+        sub="For half the year your off-season set is doing nothing but taking up floor space. Leave it with us instead and it comes back ready to go straight back on the car when the weather turns."
         showCall
         image="/photos/winter-tires.jpg"
         imageAlt="Winter tires stacked and tagged in storage"
@@ -112,9 +112,14 @@ export default function TireStoragePage() {
                 <span className="font-display text-lg font-bold uppercase tracking-wide text-[var(--color-heading)]">
                   Tire Storage
                 </span>
-                <span className="tabular font-display text-4xl font-extrabold text-[var(--color-heading)]">
-                  {formatPrice(requirePrice(storage))}
-                </span>
+                <div className="shrink-0 text-right">
+                  <span className="block font-display text-xs font-bold uppercase tracking-[0.14em] text-[var(--color-muted)]">
+                    Starts at
+                  </span>
+                  <span className="tabular font-display text-4xl font-extrabold text-[var(--color-heading)]">
+                    {formatPrice(requirePrice(storage))}
+                  </span>
+                </div>
               </div>
               <p className="mt-4 text-sm text-[var(--color-muted)]">Price before tax.</p>
               <p className="mt-3 font-semibold text-[var(--color-heading)]">
@@ -180,8 +185,23 @@ export default function TireStoragePage() {
                 easier to hand over too.
               </p>
               <p className="mt-4 text-[var(--color-body)]">
+                Timing the swap itself is a separate question, and the first snowfall is the wrong cue to go
+                by. We set out{" "}
+                <Link
+                  href="/blog/when-to-put-winter-tires-on-toronto"
+                  className="link-grow font-semibold text-[var(--color-red-deep)]"
+                >
+                  when winter tires should actually go on in Toronto
+                </Link>{" "}
+                if you want to pick your week rather than join the rush.
+              </p>
+              <p className="mt-4 text-[var(--color-body)]">
                 No appointment needed to drop tires off. Walk in, {BUSINESS.hours.weekdays}, and we'll get your
-                set tagged and put away.
+                set tagged and put away. If you're stacking a few jobs into the same visit, the{" "}
+                <Link href="/services" className="link-grow font-semibold text-[var(--color-red-deep)]">
+                  full service list and prices
+                </Link>{" "}
+                is worth a look before you come over.
               </p>
             </div>
           </div>
