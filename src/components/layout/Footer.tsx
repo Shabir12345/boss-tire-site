@@ -8,6 +8,7 @@ const NAV = [
   { href: "/tires", label: "Tires" },
   { href: "/muffler-exhaust", label: "Muffler & Exhaust" },
   { href: "/winter-tire-changeover", label: "Winter Changeover" },
+  { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
