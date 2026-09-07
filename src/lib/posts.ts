@@ -62,7 +62,7 @@ export const POSTS: Post[] = [
     slug: "wheel-balancing-vs-wheel-alignment",
     title: "Wheel balancing vs wheel alignment: what's the difference?",
     description:
-      "Balancing fixes vibration. Alignment fixes pulling and uneven tire wear. They are different jobs at different prices — here is how to tell which one your car needs.",
+      "Balancing fixes vibration. Alignment fixes pulling and uneven tire wear. They are different jobs at different prices. Here is how to tell which one your car needs.",
     published: "2026-09-05",
     excerpt:
       "A shake at highway speed is a balancing problem. Pulling to one side is an alignment problem. They get confused constantly, and it costs people money.",
@@ -101,7 +101,7 @@ export const POSTS: Post[] = [
       "The tire pressure light can mean low pressure, a dead sensor battery, or a sensor that needs programming after a tire change. Here is how to tell which, and what it costs.",
     published: "2026-09-05",
     excerpt:
-      "A TPMS light is not always a flat. Often it is a sensor at the end of its battery life, or a relearn that never ran after the last tire change — not four new tires.",
+      "A TPMS light is not always a flat. Often it is a sensor at the end of its battery life, or a relearn that never ran after the last tire change, not four new tires.",
     image: "/photos/suv-wheel.jpg",
     imageAlt: "A wheel and tire being checked at Boss Tire",
     keywords: [

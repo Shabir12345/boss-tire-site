@@ -9,7 +9,7 @@ import { postsNewestFirst, formatPostDate } from "@/lib/posts";
 export const metadata: Metadata = buildMetadata({
   title: "Tire & Exhaust Advice",
   description:
-    "Straight answers on tires, wheel alignment and exhaust work from the team at Boss Tire on Danforth Rd, Scarborough — what things cost, when they need doing, and when they don't.",
+    "Straight answers on tires, wheel alignment and exhaust work from the team at Boss Tire on Danforth Rd, Scarborough: what things cost, when they need doing, and when they don't.",
   path: "/blog",
 });
 
@@ -21,7 +21,7 @@ export default function BlogIndexPage() {
       <PageHeader
         eyebrow="Advice"
         title="Straight answers, no upsell"
-        sub="What things actually cost, when they need doing, and when they don't — from the bay on Danforth Rd."
+        sub="What things actually cost, when they need doing, and when they don't, from the bay on Danforth Rd."
         image="/photos/tires-shop.jpg"
         imageAlt="The Boss Tire workshop on Danforth Rd, Scarborough"
       />
@@ -44,7 +44,7 @@ export default function BlogIndexPage() {
       </section>
       <CTABand
         heading="Rather just ask us?"
-        sub="Call the shop and describe it — we'll tell you straight what it needs."
+        sub="Call the shop and describe it, and we'll tell you straight what it needs."
       />
     </>
   );
