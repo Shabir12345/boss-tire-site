@@ -5,7 +5,9 @@
 //
 //  - Phone: 647-871-2393. The old header/footer printed 416-691-0426 on 23 of
 //    24 pages; the schema, the GBP and Boss Tire's own promo graphics all use
-//    647. The 416 number was wrong and is dropped.
+//    647. The 416 number was wrong as the PRIMARY number and was dropped from
+//    site-wide use, but it's a working secondary/forwarding line (confirmed
+//    2026-09-16) — shown only on the Contact page, never as the main number.
 //  - Email: bossttires@gmail.com — the shop's real, working Gmail inbox
 //    (confirmed by Shabir 2026-08-31). Earlier notes calling the double-t a
 //    typo were WRONG; the display-only info@boss-tire.ca is dropped.
@@ -17,6 +19,9 @@ export const BUSINESS = {
   legalNote: "Wheel Alignment & Muffler Repair", // descriptor, not part of the name
   phoneDisplay: "(647) 871-2393",
   phoneRaw: "+16478712393",
+  // Secondary/forwarding line — Contact page only, never the primary CTA number.
+  phoneSecondaryDisplay: "(416) 691-0426",
+  phoneSecondaryRaw: "+14166910426",
   email: "bossttires@gmail.com",
   areaServed: "Scarborough & the Greater Toronto Area, Ontario, Canada",
   tagline: "Your Tire Partner",
@@ -57,6 +62,7 @@ export const BUSINESS = {
 } as const;
 
 export const telHref = `tel:${BUSINESS.phoneRaw}`;
+export const telHrefSecondary = `tel:${BUSINESS.phoneSecondaryRaw}`;
 export const mailHref = `mailto:${BUSINESS.email}`;
 
 // "375 Danforth Rd, Unit 3, Scarborough, ON M1L 3X8"

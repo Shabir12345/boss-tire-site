@@ -6,7 +6,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { CallButton } from "@/components/ui/Button";
 import { buildMetadata } from "@/lib/seo";
 import { BreadcrumbJsonLd } from "@/lib/jsonld";
-import { BUSINESS, addressDisplay, telHref, mailHref, mapsEmbedSrc, mapsLinkHref } from "@/lib/business";
+import { BUSINESS, addressDisplay, telHref, telHrefSecondary, mailHref, mapsEmbedSrc, mapsLinkHref } from "@/lib/business";
 
 export const metadata: Metadata = buildMetadata({
   title: "Contact & Directions",
@@ -37,6 +37,9 @@ export default function ContactPage() {
                 <p className="font-display text-sm font-bold uppercase tracking-widest text-[var(--color-muted)]">Phone</p>
                 <a href={telHref} data-track-location="contact" className="mt-1 block font-display text-3xl font-extrabold text-[var(--color-heading)]">
                   {BUSINESS.phoneDisplay}
+                </a>
+                <a href={telHrefSecondary} data-track-location="contact-secondary" className="mt-1 block text-sm text-[var(--color-muted)] link-grow">
+                  Also reachable at {BUSINESS.phoneSecondaryDisplay}
                 </a>
                 <div className="mt-3">
                   <CallButton className="cta-attention" trackLocation="contact" />
