@@ -21,7 +21,7 @@ const FAQS = [
   },
   {
     q: "What does a winter tire and rim package cost?",
-    a: `A changeover on its own is ${formatPrice(requirePrice(changeover))}. What the full package costs — tires, rims and mounting together — depends on your rim size and which tires you pick, so we're not going to quote a number that doesn't match your car. Call with your size and we'll price it properly.`,
+    a: `A changeover on its own starts at ${formatPrice(requirePrice(changeover))}, depending on your vehicle. What the full package costs — tires, rims and mounting together — depends on your rim size and which tires you pick, so we're not going to quote a number that doesn't match your car. Call with your size and we'll price it properly.`,
   },
   {
     q: "Will aftermarket rims fit my car?",
@@ -110,11 +110,11 @@ export default function WinterRimsAndPackagesPage() {
                   Changeover
                 </span>
                 <span className="tabular font-display text-4xl font-extrabold text-[var(--color-heading)]">
-                  {formatPrice(requirePrice(changeover))}
+                  {formatPrice(requirePrice(changeover))}+
                 </span>
               </div>
               <p className="mt-4 text-sm text-[var(--color-muted)]">
-                Price before tax. Wheels-off swap once your winters are on their own rims.
+                Starting price, before tax, depending on vehicle. Wheels-off swap once your winters are on their own rims.
               </p>
               <p className="mt-5 text-[var(--color-body)]">
                 Already on rims, or thinking about it for next season? See the full{" "}

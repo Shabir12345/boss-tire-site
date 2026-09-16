@@ -138,7 +138,7 @@ export default function TireStoragePage() {
                 >
                   See the winter tire changeover
                 </Link>{" "}
-                — {formatPrice(requirePrice(changeover))}, done the same day.
+                — from {formatPrice(requirePrice(changeover))}, done the same day.
               </p>
             </div>
           </div>

@@ -31,7 +31,7 @@ const FAQS = [
 export const metadata: Metadata = buildMetadata({
   title: "Winter Tire Changeover in Scarborough",
   description:
-    "Winter tire changeover from $60 at Boss Tire, Scarborough. Mounted, balanced and torqued the same day. Book before the November rush and pick your time. (647) 871-2393.",
+    "Winter tire changeover from $160 at Boss Tire, Scarborough. Mounted, balanced and torqued the same day. Book before the November rush and pick your time. (647) 871-2393.",
   path: "/winter-tire-changeover",
   keywords: [
     "winter tire changeover scarborough",
@@ -62,7 +62,7 @@ export default function WinterChangeoverPage() {
             <div>
               <Eyebrow>The changeover</Eyebrow>
               <h2 className="mt-4 text-3xl text-[var(--color-heading)]">
-                {changeover ? formatPrice(requirePrice(changeover)) : "$60"}, same day, while you wait
+                From {changeover ? formatPrice(requirePrice(changeover)) : "$160"}, same day, while you wait
               </h2>
               <p className="mt-4 text-[var(--color-body)]">
                 We swap your seasonal set, balance them, torque to spec and set the pressures on all four.

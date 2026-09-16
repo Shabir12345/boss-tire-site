@@ -42,7 +42,8 @@ export const SERVICES: Service[] = [
     name: "Tire Changeover",
     shortName: "Changeover",
     category: "Tires",
-    price: 60,
+    price: 160,
+    priceNote: "and up, depending on vehicle",
     blurb: "Seasonal swap done right, while you wait.",
     included: [
       "Tire inspection before we start",

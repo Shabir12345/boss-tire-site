@@ -145,7 +145,8 @@ export default function WhenToPutWinterTiresOnPage() {
               What the changeover itself costs
             </h2>
             <p>
-              A seasonal changeover at Boss Tire is {formatPrice(requirePrice(changeover))}, before tax. Tires
+              A seasonal changeover at Boss Tire starts at {formatPrice(requirePrice(changeover))}, before tax,
+              depending on your vehicle. Tires
               inspected, mounted and balanced, pressures set, and everything torqued to spec while you wait. See
               the full{" "}
               <Link href="/winter-tire-changeover" className="link-grow font-semibold text-[var(--color-red-deep)]">
