@@ -8,6 +8,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildMetadata } from "@/lib/seo";
 import { BreadcrumbJsonLd } from "@/lib/jsonld";
 
+const NAME_BRANDS = ["Michelin", "Goodyear", "Bridgestone", "Continental"];
 const BRANDS = ["Ilink", "Mazzini", "Kpsen", "Haida"];
 
 const POINTS = [
@@ -61,7 +62,23 @@ export default function TiresPage() {
 
           <div className="mt-14 rounded-lg border border-[var(--color-border)] bg-[var(--color-smoke)] p-6 sm:p-8">
             <Eyebrow>Brands we carry</Eyebrow>
+            <p className="mt-3 max-w-2xl text-sm text-[var(--color-body)]">
+              Name brands in stock, ready to fit the same day — no waiting on a special order.
+            </p>
             <div className="mt-4 flex flex-wrap gap-3">
+              {NAME_BRANDS.map((b) => (
+                <span
+                  key={b}
+                  className="rounded-md border border-[var(--color-border)] bg-[var(--color-paper)] px-4 py-2 font-display text-lg font-bold uppercase tracking-wide text-[var(--color-heading)]"
+                >
+                  {b}
+                </span>
+              ))}
+            </div>
+            <p className="mt-5 text-xs font-bold uppercase tracking-wide text-[var(--color-muted)]">
+              Budget imports, if you'd rather save
+            </p>
+            <div className="mt-3 flex flex-wrap gap-3">
               {BRANDS.map((b) => (
                 <span
                   key={b}
@@ -72,8 +89,8 @@ export default function TiresPage() {
               ))}
             </div>
             <p className="mt-4 max-w-2xl text-sm text-[var(--color-body)]">
-              These are honest, budget-friendly import brands, fitted properly and priced fairly. If you want
-              a specific size or a set matched to how you drive, call and we will sort it out. Running winter
+              The imports are honest, budget-friendly options, fitted properly and priced fairly. If you want
+              a specific size or brand, call and we will sort it out. Running winter
               tires this season? See our{" "}
               <Link href="/winter-tire-changeover" className="link-grow font-semibold text-[var(--color-red-deep)]">
                 winter changeover
