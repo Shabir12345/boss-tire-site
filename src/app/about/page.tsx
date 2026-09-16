@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { PageHeader } from "@/components/sections/PageHeader";
 import { WhyBossTire } from "@/components/sections/WhyBossTire";
@@ -31,32 +30,19 @@ export default function AboutPage() {
       />
 
       <section className="cv-auto bg-[var(--color-paper)]">
-        <div className="gutter-safe mx-auto max-w-6xl py-16 sm:py-20">
-          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-            <div>
-              <Eyebrow>Who we are</Eyebrow>
-              <div className="mt-5 space-y-4 text-lg leading-relaxed text-[var(--color-body)]">
-                <p>
-                  Boss Tire keeps Scarborough drivers on the road from {BUSINESS.address.street.split(",")[0]}, off
-                  Danforth Rd. Tires, wheels, alignment, exhaust and the everyday maintenance in between, all under
-                  one roof.
-                </p>
-                <p>
-                  The idea is simple. Publish the prices so you are never guessing. Do the work the same day so you
-                  are not booked out for a week. Balance, torque and set the pressures properly on every tire. That
-                  is what keeps drivers coming back, and it is why the reviews read the way they do.
-                </p>
-              </div>
-            </div>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-lg shadow-lg">
-              <Image
-                src="/photos/team.jpg"
-                alt="The Boss Tire team in the shop"
-                fill
-                sizes="(min-width: 1024px) 32rem, 100vw"
-                className="object-cover"
-              />
-            </div>
+        <div className="gutter-safe mx-auto max-w-3xl py-16 sm:py-20">
+          <Eyebrow>Who we are</Eyebrow>
+          <div className="mt-5 space-y-4 text-lg leading-relaxed text-[var(--color-body)]">
+            <p>
+              Boss Tire keeps Scarborough drivers on the road from {BUSINESS.address.street.split(",")[0]}, off
+              Danforth Rd. Tires, wheels, alignment, exhaust and the everyday maintenance in between, all under
+              one roof.
+            </p>
+            <p>
+              The idea is simple. Publish the prices so you are never guessing. Do the work the same day so you
+              are not booked out for a week. Balance, torque and set the pressures properly on every tire. That
+              is what keeps drivers coming back, and it is why the reviews read the way they do.
+            </p>
           </div>
         </div>
       </section>
