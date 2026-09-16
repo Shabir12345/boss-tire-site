@@ -50,7 +50,11 @@ export function PageHeader({
         alt={imageAlt}
         fill
         priority
-        quality={90}
+        fetchPriority="high"
+        // Same scrim treatment as the homepage hero, so 72 is visually
+        // identical here while cutting LCP bytes/decode time — see
+        // HeroCinematic.tsx for the same reasoning.
+        quality={72}
         sizes="100vw"
         className="object-cover"
       />
