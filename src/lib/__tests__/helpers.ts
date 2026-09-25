@@ -10,6 +10,8 @@ export function routesFromFs(dir = "src/app", prefix = ""): string[] {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
     if (entry.name === "api") continue;
     if (entry.name.startsWith("__")) continue;
+    // /book/* are noindex Google Ads landing pages, deliberately not in the sitemap.
+    if (prefix === "" && entry.name === "book") continue;
     const full = join(dir, entry.name);
     if (entry.isDirectory()) out.push(...routesFromFs(full, `${prefix}/${entry.name}`));
     else if (entry.name === "page.tsx") out.push(prefix === "" ? "/" : prefix);

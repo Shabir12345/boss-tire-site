@@ -7,6 +7,9 @@ function pageFiles(dir = "src/app"): string[] {
   const out: string[] = [];
   for (const e of readdirSync(dir, { withFileTypes: true })) {
     const full = join(dir, e.name);
+    // /book/[slug] is one template for the noindex ad landing pages; its
+    // titles are covered in adLandingPages.test.ts.
+    if (e.isDirectory() && full === join("src/app", "book")) continue;
     if (e.isDirectory()) out.push(...pageFiles(full));
     else if (e.name === "page.tsx") out.push(full);
   }
