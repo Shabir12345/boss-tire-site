@@ -3,13 +3,17 @@ import { CallButton } from "@/components/ui/Button";
 import { OpenStatus } from "@/components/ui/OpenStatus";
 import { GoogleReviewsWidget } from "@/components/sections/GoogleReviewsWidget";
 import { BUSINESS, addressDisplay, mapsLinkHref } from "@/lib/business";
-import { REVIEWS, reviewsHref, quotesFor, type ReviewQuote } from "@/lib/reviews";
+import { REVIEWS, reviewsHref, pickReviews, displayName, type GoogleReview } from "@/lib/reviews";
+import { getGoogleReviews } from "@/lib/featurable";
+import { getService } from "@/lib/services";
 
 // "Is this a real shop, and do people like it?" answered in one band, right
 // before the page's closing CTA: what other drivers said, plus where the shop
 // is and whether it's open right now. Every service page and ad landing page
-// carries it. Nothing here is invented — quotes come verbatim from
-// REVIEW_QUOTES; until those are filled in, the live Google widget stands in.
+// carries it. Nothing here is invented: the reviews are the shop's real Google
+// reviews, verbatim, read from Featurable at build time, with the ones that
+// mention this page's service shown first. If Featurable can't be reached, the
+// live widget stands in.
 
 function Stars({ n = 5 }: { n?: number }) {
   return (
@@ -23,18 +27,17 @@ function Stars({ n = 5 }: { n?: number }) {
   );
 }
 
-const monthLabel = (ym: string) => {
-  const [y, m] = ym.split("-").map(Number);
-  return new Date(Date.UTC(y, m - 1, 15)).toLocaleDateString("en-CA", { month: "short", year: "numeric", timeZone: "UTC" });
-};
+const monthLabel = (iso: string) =>
+  new Date(iso).toLocaleDateString("en-CA", { month: "short", year: "numeric", timeZone: "America/Toronto" });
 
-function QuoteCard({ r }: { r: ReviewQuote }) {
+function QuoteCard({ r }: { r: GoogleReview }) {
   return (
     <figure className="flex h-full flex-col rounded-lg border border-[var(--color-border)] bg-[var(--color-paper)] p-5">
-      <Stars n={r.stars} />
-      <blockquote className="mt-3 flex-1 text-[var(--color-heading)]">“{r.text}”</blockquote>
+      <Stars n={Math.round(r.rating)} />
+      {/* Full verbatim text stays in the page; long reviews are only visually clamped. */}
+      <blockquote className="mt-3 line-clamp-6 flex-1 whitespace-pre-line text-[var(--color-heading)]">“{r.text}”</blockquote>
       <figcaption className="mt-4 text-sm text-[var(--color-muted)]">
-        <span className="font-semibold text-[var(--color-body)]">{r.author}</span> · Google review · {monthLabel(r.date)}
+        <span className="font-semibold text-[var(--color-body)]">{displayName(r.author)}</span> · Google review · {monthLabel(r.publishedAt)}
       </figcaption>
     </figure>
   );
@@ -73,24 +76,25 @@ function VisitCard() {
   );
 }
 
-export function LocalTrust({
+export async function LocalTrust({
   service,
   heading = "Don't take our word for it",
   tone = "smoke",
 }: {
-  /** services.ts slug — quotes about this service are shown first. */
+  /** services.ts slug (or a REVIEW_KEYWORDS key like "tires") — reviews about it are shown first. */
   service?: string;
   heading?: string;
   tone?: "paper" | "smoke";
 }) {
-  const quotes = quotesFor(service, 3);
+  const { reviews: quotes, matched } = pickReviews(await getGoogleReviews(), service, 3);
+  const serviceName = service ? (getService(service)?.shortName ?? service.replace(/-/g, " ")).toLowerCase() : undefined;
 
   return (
     <section aria-label="Reviews and location" className={tone === "smoke" ? "bg-[var(--color-smoke)]" : "bg-[var(--color-paper)]"}>
       <div className="gutter-safe mx-auto max-w-6xl py-16 sm:py-20">
         <div className="grid gap-10 lg:grid-cols-[1.6fr_1fr] lg:gap-12">
           <div className="min-w-0">
-            <Eyebrow>What drivers say</Eyebrow>
+            <Eyebrow>{matched > 0 && serviceName ? `What drivers say about ${serviceName}` : "What drivers say"}</Eyebrow>
             <h2 className="mt-4 text-3xl text-[var(--color-heading)] sm:text-4xl">{heading}</h2>
             <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2">
               <span className="tabular font-display text-5xl font-extrabold leading-none text-[var(--color-heading)]">
@@ -114,7 +118,7 @@ export function LocalTrust({
             {quotes.length > 0 ? (
               <div className="mt-8 grid gap-4 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3">
                 {quotes.map((r) => (
-                  <QuoteCard key={`${r.author}-${r.date}`} r={r} />
+                  <QuoteCard key={r.id} r={r} />
                 ))}
               </div>
             ) : (

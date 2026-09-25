@@ -13,7 +13,7 @@ import { REVIEWS } from "@/lib/reviews";
 export const metadata: Metadata = buildMetadata({
   title: "About Boss Tire",
   description:
-    "Boss Tire is a tire and auto shop on Danforth Rd in Scarborough: published prices, same-day service, and 4.8★ from 321 drivers. Your tire partner. Call (647) 871-2393.",
+    "Boss Tire is a tire and auto shop on Danforth Rd in Scarborough: published prices, same-day service, and 4.8★ from 332 drivers. Your tire partner. Call (647) 871-2393.",
   path: "/about",
   keywords: ["boss tire scarborough", "tire shop danforth rd", "auto shop scarborough"],
 });

@@ -68,10 +68,17 @@ Comes from `services.ts`: name, price, price note, "What's included". Set
 
 ### 4. Reviews + visit (`<LocalTrust>`)
 
-Shows up to three **verbatim** Google reviews from `REVIEW_QUOTES`
-(`src/lib/reviews.ts`), the ones about this page's service first. Until quotes
-are added it falls back to the live Google reviews widget. Beside it: address,
-directions link, live open/closed status, hours and a Call button.
+Shows three of the shop's real Google reviews, **verbatim**, read at build time
+from the same Featurable widget the homepage embeds (`src/lib/featurable.ts`,
+refreshed daily). Reviews that mention this page's service come first, matched
+by the service's pattern in `REVIEW_KEYWORDS` (`src/lib/reviews.ts`); the
+eyebrow only says "about <service>" when at least one really does. If
+Featurable is unreachable, the live widget is shown instead. Beside it:
+address, directions link, live open/closed status, hours and a Call button.
+
+A new service needs a `REVIEW_KEYWORDS` pattern *(tested)*. Featurable returns
+the reviews selected in its dashboard (currently 15 of the 332); to give a
+service more matching reviews, include more of them in the widget there.
 
 ### 5. How it works — 3 or 4 steps *(tested)*
 
@@ -93,8 +100,8 @@ answer with the direct answer.
   site doesn't have, confirm it with the owner first and add it to the site too.
 - **Never retype a price.** Prices live in `services.ts`. A price change there
   updates every page and ad landing page at once.
-- **Reviews are verbatim.** Copy from Google, trim to the sentence that matters,
-  never reword.
+- **Reviews are verbatim.** They come straight from Google via Featurable; never
+  type, reword or "tidy up" a review in code.
 - **Specific beats clever.** "$80, done while you wait" beats "Precision
   alignment excellence".
 - Title ≤ 48 characters (the site appends " | Boss Tire"), description 70–160.

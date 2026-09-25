@@ -115,7 +115,7 @@ export default function TiresPage() {
       </section>
 
       <OffersBand />
-      <LocalTrust />
+      <LocalTrust service="tires" />
       <CTABand heading="Know your tire size?" sub="It is on the sidewall and the driver's door jamb, a code like 225/65R17. Call it in and we will confirm availability in under a minute." />
     </>
   );

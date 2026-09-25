@@ -168,7 +168,7 @@ export default function UsedTiresPage() {
       {/* FAQ — also feeds FAQ schema + AI answers */}
       <FaqSection faqs={FAQS} heading="Used tires FAQ" />
 
-      <LocalTrust />
+      <LocalTrust service="tires" />
       <CTABand
         heading="Know your size?"
         sub="Call it in and we'll tell you what's on the rack, used or new, and what it costs — no surprises when you get here."
