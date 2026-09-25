@@ -119,7 +119,7 @@ export const SERVICES: Service[] = [
       "Four-wheel, front-end, or computerized alignment",
       "Camber, caster and toe set to spec",
       "Same-day service",
-      "Free with qualifying tire purchases (see offers)",
+      "Up to 50% off with a tire purchase (see offers)",
     ],
     featured: true,
   },

@@ -17,7 +17,8 @@ export type TrackEvent =
   | "get_directions" // tap on a maps / directions link
   | "email_click" // tap on a mailto: link
   | "outbound_social" // tap through to Facebook / Instagram
-  | "cta_click"; // non-phone call-to-action (e.g. "See prices")
+  | "cta_click" // non-phone call-to-action (e.g. "See prices")
+  | "view_reviews"; // click through to the Google reviews (trust check)
 
 declare global {
   interface Window {

@@ -4,9 +4,9 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 
 const TILES = [
   { href: "/tires", title: "New & Used Tires", photo: "/photos/new-used-tires.jpg", alt: "A stack of new and used tires with detailed tread at Boss Tire" },
-  { href: "/services", title: "Wheel Alignment", photo: "/photos/alignment.jpg", alt: "Four-wheel alignment being performed at Boss Tire" },
+  { href: "/services/wheel-alignment", title: "Wheel Alignment", photo: "/photos/alignment.jpg", alt: "Four-wheel alignment being performed at Boss Tire" },
   { href: "/winter-tire-changeover", title: "Winter Changeover", photo: "/photos/winter-changeover.jpg", alt: "Technician mounting a tire on the changer during a seasonal changeover" },
-  { href: "/services", title: "Rims & Wheel Repair", photo: "/photos/rims-wall.jpg", alt: "Alloy rims on the wall at Boss Tire" },
+  { href: "/services#rim-repair", title: "Rims & Wheel Repair", photo: "/photos/rims-wall.jpg", alt: "Alloy rims on the wall at Boss Tire" },
 ];
 
 // Photo-led service tiles. `onDark` themes the surrounding copy for ink bands.

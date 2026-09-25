@@ -3,6 +3,8 @@ import Link from "next/link";
 import { PageHeader } from "@/components/sections/PageHeader";
 import { TrustStrip } from "@/components/sections/TrustStrip";
 import { CTABand } from "@/components/sections/CTABand";
+import { LocalTrust } from "@/components/sections/LocalTrust";
+import { FaqSection } from "@/components/sections/FaqSection";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildMetadata } from "@/lib/seo";
 import { BreadcrumbJsonLd, FaqJsonLd, ServiceJsonLd } from "@/lib/jsonld";
@@ -176,23 +178,9 @@ export default function FlatTireRepairPage() {
       </section>
 
       {/* FAQ — also feeds FAQ schema + AI answers */}
-      <section className="bg-[var(--color-smoke)]">
-        <div className="gutter-safe mx-auto max-w-3xl py-16 sm:py-20">
-          <Eyebrow>Questions</Eyebrow>
-          <h2 className="mt-4 text-3xl text-[var(--color-heading)]">Flat tire repair FAQ</h2>
-          <dl className="mt-8 space-y-6">
-            {FAQS.map((f) => (
-              <div key={f.q} className="border-b border-[var(--color-border)] pb-6 last:border-0">
-                <dt className="font-display text-lg font-bold uppercase tracking-wide text-[var(--color-heading)]">
-                  {f.q}
-                </dt>
-                <dd className="mt-2 text-[var(--color-body)]">{f.a}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
+      <FaqSection faqs={FAQS} heading="Flat tire repair FAQ" />
 
+      <LocalTrust service="flat-tire-repair" />
       <CTABand
         heading="Got a flat right now?"
         sub="Walk in or call the shop — we'll take the tire off, find the leak, and give you a straight answer the same day."

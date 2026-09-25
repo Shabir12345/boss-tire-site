@@ -7,6 +7,8 @@ export function buildMetadata(opts: {
   path: string;
   image?: string;
   keywords?: string[];
+  /** Keep the page out of Google's index (ad landing pages). Links are still followed. */
+  noindex?: boolean;
 }): Metadata {
   const url = `${BUSINESS.url}${opts.path}`;
   const branded = `${opts.title} | ${BUSINESS.shortName}`;
@@ -23,6 +25,9 @@ export function buildMetadata(opts: {
     description: opts.description,
     keywords: opts.keywords,
     alternates: { canonical: url },
+    ...(opts.noindex
+      ? { robots: { index: false, follow: true, googleBot: { index: false, follow: true } } }
+      : {}),
     openGraph: {
       title: branded,
       description: opts.description,

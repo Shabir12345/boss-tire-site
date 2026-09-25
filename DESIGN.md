@@ -94,6 +94,13 @@ calls — so the red Call button is present and loud on every surface.
   **Cards on ink**: `border-white/10` + `bg-white/[0.03]`, no shadow.
 - **MobileCallBar**: ink strip, red Call button, phone-first.
 - **Inputs**: paper, hairline border, red focus ring.
+- **PriceChip** (in `PageHeader` / `LandingHero`): the service price above the
+  fold on every priced service page — the answer to the search, next to Call.
+- **LocalTrust**: verbatim Google quotes (or the live widget) + a Visit card
+  with address, directions and live `OpenStatus`. Closes every service page.
+- **ProcessSteps**: 3–4 numbered steps, ink rule on top, red tabular numerals.
+- **FaqSection**: the one FAQ block; answers stay open (no accordions).
+- Ad landing pages follow `LANDING-PAGES.md`.
 
 ## Do / Don't
 

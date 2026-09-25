@@ -4,6 +4,7 @@ import { TrustStrip } from "@/components/sections/TrustStrip";
 import { ServiceCatalog } from "@/components/sections/ServiceCatalog";
 import { OffersBand } from "@/components/sections/OffersBand";
 import { CTABand } from "@/components/sections/CTABand";
+import { LocalTrust } from "@/components/sections/LocalTrust";
 import { buildMetadata } from "@/lib/seo";
 import { BreadcrumbJsonLd } from "@/lib/jsonld";
 
@@ -39,6 +40,7 @@ export default function ServicesPage() {
         </div>
       </section>
       <OffersBand />
+      <LocalTrust />
       <CTABand />
     </>
   );

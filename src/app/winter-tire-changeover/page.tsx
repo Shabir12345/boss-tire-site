@@ -4,6 +4,8 @@ import { PageHeader } from "@/components/sections/PageHeader";
 import { TrustStrip } from "@/components/sections/TrustStrip";
 import { OffersBand } from "@/components/sections/OffersBand";
 import { CTABand } from "@/components/sections/CTABand";
+import { LocalTrust } from "@/components/sections/LocalTrust";
+import { FaqSection } from "@/components/sections/FaqSection";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { CallButton } from "@/components/ui/Button";
 import { buildMetadata } from "@/lib/seo";
@@ -51,6 +53,7 @@ export default function WinterChangeoverPage() {
         title="Winter tire changeover, done before the rush"
         sub="Book your seasonal swap early and you pick the time. Leave it until the first snowfall and the whole city is calling the same week."
         showCall
+        price={{ label: "Changeover", amount: `From ${formatPrice(changeover ? requirePrice(changeover) : 160)}`, note: "depending on vehicle" }}
         image="/photos/winter-tires.jpg"
         imageAlt="A winter tire gripping a snow-covered road"
       />
@@ -138,21 +141,9 @@ export default function WinterChangeoverPage() {
         </div>
       </section>
 
-      <section className="bg-[var(--color-paper)]">
-        <div className="gutter-safe mx-auto max-w-3xl py-16 sm:py-20">
-          <Eyebrow>Questions</Eyebrow>
-          <h2 className="mt-4 text-3xl text-[var(--color-heading)]">Changeover FAQ</h2>
-          <dl className="mt-8 space-y-6">
-            {FAQS.map((f) => (
-              <div key={f.q} className="border-b border-[var(--color-border)] pb-6 last:border-0">
-                <dt className="font-display text-lg font-bold uppercase tracking-wide text-[var(--color-heading)]">{f.q}</dt>
-                <dd className="mt-2 text-[var(--color-body)]">{f.a}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
+      <FaqSection faqs={FAQS} heading="Changeover FAQ" tone="paper" />
 
+      <LocalTrust service="tire-changeover" />
       <CTABand heading="Beat the November rush" sub="Call now, pick your changeover time, and skip the week everyone else is waiting in line." />
     </>
   );

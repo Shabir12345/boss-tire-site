@@ -3,6 +3,8 @@ import Link from "next/link";
 import { PageHeader } from "@/components/sections/PageHeader";
 import { TrustStrip } from "@/components/sections/TrustStrip";
 import { CTABand } from "@/components/sections/CTABand";
+import { LocalTrust } from "@/components/sections/LocalTrust";
+import { FaqSection } from "@/components/sections/FaqSection";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildMetadata } from "@/lib/seo";
 import { BreadcrumbJsonLd, FaqJsonLd } from "@/lib/jsonld";
@@ -164,23 +166,9 @@ export default function UsedTiresPage() {
       </section>
 
       {/* FAQ — also feeds FAQ schema + AI answers */}
-      <section className="bg-[var(--color-smoke)]">
-        <div className="gutter-safe mx-auto max-w-3xl py-16 sm:py-20">
-          <Eyebrow>Questions</Eyebrow>
-          <h2 className="mt-4 text-3xl text-[var(--color-heading)]">Used tires FAQ</h2>
-          <dl className="mt-8 space-y-6">
-            {FAQS.map((f) => (
-              <div key={f.q} className="border-b border-[var(--color-border)] pb-6 last:border-0">
-                <dt className="font-display text-lg font-bold uppercase tracking-wide text-[var(--color-heading)]">
-                  {f.q}
-                </dt>
-                <dd className="mt-2 text-[var(--color-body)]">{f.a}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
+      <FaqSection faqs={FAQS} heading="Used tires FAQ" />
 
+      <LocalTrust />
       <CTABand
         heading="Know your size?"
         sub="Call it in and we'll tell you what's on the rack, used or new, and what it costs — no surprises when you get here."
