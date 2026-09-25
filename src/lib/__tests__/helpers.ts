@@ -4,11 +4,13 @@ import sitemap from "@/app/sitemap";
 import { BUSINESS } from "@/lib/business";
 
 // Every page.tsx under src/app, as a route path. Skips the API dir, which
-// serves no HTML and belongs in no sitemap.
+// serves no HTML and belongs in no sitemap, and the Google Ads landing pages
+// under lp/, which are noindex by design and must stay out of the sitemap
+// (see LANDING-PAGES.md; landing-pages.test.ts covers them instead).
 export function routesFromFs(dir = "src/app", prefix = ""): string[] {
   const out: string[] = [];
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
-    if (entry.name === "api") continue;
+    if (entry.name === "api" || (dir === "src/app" && entry.name === "lp")) continue;
     if (entry.name.startsWith("__")) continue;
     const full = join(dir, entry.name);
     if (entry.isDirectory()) out.push(...routesFromFs(full, `${prefix}/${entry.name}`));
