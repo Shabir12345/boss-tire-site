@@ -13,7 +13,7 @@ export const HOME_FAQS = [
   },
   {
     q: "How much does a tire changeover cost at Boss Tire?",
-    a: "A seasonal tire changeover is $60 — mounted, balanced and torqued to spec while you wait. It's the same published price in October as it is the first week of snow, with no rush-season markup. Booking early just means you pick the time instead of waiting in the November line.",
+    a: "A seasonal tire changeover starts at $160, depending on your vehicle — mounted, balanced and torqued to spec while you wait. It's the same published price in October as it is the first week of snow, with no rush-season markup. Booking early just means you pick the time instead of waiting in the November line.",
   },
   {
     q: "Do you do wheel alignment?",
