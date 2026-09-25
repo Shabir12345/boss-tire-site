@@ -11,7 +11,6 @@ export function onFirstInteraction(cb: () => void, timeoutMs = 6000): () => void
   if (typeof window === "undefined") return () => {};
   let done = false;
   const events = ["pointerdown", "touchstart", "keydown", "scroll", "mousemove"] as const;
-  let timer: ReturnType<typeof setTimeout> | undefined;
 
   function run() {
     if (done) return;
@@ -21,10 +20,12 @@ export function onFirstInteraction(cb: () => void, timeoutMs = 6000): () => void
   }
   function dispose() {
     events.forEach((e) => window.removeEventListener(e, run));
-    if (timer) clearTimeout(timer);
+    clearTimeout(timer);
   }
 
   events.forEach((e) => window.addEventListener(e, run, { passive: true }));
-  timer = setTimeout(run, timeoutMs);
+  // Declared last: run/dispose only ever fire from a later event or this timer,
+  // by which point `timer` is initialised.
+  const timer = setTimeout(run, timeoutMs);
   return dispose;
 }
