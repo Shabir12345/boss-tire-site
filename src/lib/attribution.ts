@@ -24,3 +24,40 @@ export function pickAttribution(input: Record<string, unknown>): Attribution {
   }
   return out;
 }
+
+const ATTRIBUTION_STORE = "bt_attribution";
+
+/**
+ * Client only. Click IDs / UTMs from the arrival URL, kept for the session so a
+ * visitor who scrolls, reloads or moves to another page still sends them with
+ * the lead. Storage can be blocked; the URL params still apply.
+ */
+export function readAttribution(): Attribution {
+  const out: Attribution = {};
+  try {
+    Object.assign(out, JSON.parse(sessionStorage.getItem(ATTRIBUTION_STORE) || "{}"));
+  } catch {
+    /* storage blocked */
+  }
+  const params = new URLSearchParams(window.location.search);
+  for (const key of ATTRIBUTION_KEYS) {
+    const v = params.get(key);
+    if (v) out[key] = v;
+  }
+  try {
+    sessionStorage.setItem(ATTRIBUTION_STORE, JSON.stringify(out));
+  } catch {
+    /* ignore */
+  }
+  return out;
+}
+
+/** Client only. Fill a form's hidden attribution inputs (the static HTML ships them empty). */
+export function fillAttributionInputs(form: HTMLFormElement | null): void {
+  if (!form) return;
+  const attribution = readAttribution();
+  for (const key of ATTRIBUTION_KEYS) {
+    const input = form.elements.namedItem(key);
+    if (input instanceof HTMLInputElement) input.value = attribution[key] ?? "";
+  }
+}

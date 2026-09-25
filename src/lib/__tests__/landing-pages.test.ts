@@ -39,10 +39,6 @@ describe("Google Ads landing pages", () => {
         expect(lp.metaDescription.length).toBeGreaterThanOrEqual(70);
       });
 
-      it("has three short hero bullets", () => {
-        expect(lp.hero.bullets).toHaveLength(3);
-        for (const b of lp.hero.bullets) expect(b.length, b).toBeLessThanOrEqual(45);
-      });
 
       it("uses a hero photo that exists", () => {
         expect(existsSync(`public${lp.hero.image}`), lp.hero.image).toBe(true);

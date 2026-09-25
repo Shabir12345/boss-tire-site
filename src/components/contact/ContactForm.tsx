@@ -3,36 +3,12 @@
 import { useEffect, useRef, useState } from "react";
 import { track, reportAdsConversion } from "@/lib/analytics";
 import { BUSINESS } from "@/lib/business";
-import { ATTRIBUTION_KEYS, type Attribution } from "@/lib/attribution";
+import { ATTRIBUTION_KEYS, fillAttributionInputs } from "@/lib/attribution";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
 const field =
   "mt-1.5 w-full rounded-md border border-[var(--color-border)] bg-[var(--color-paper)] px-4 py-3 text-[var(--color-heading)] placeholder:text-[var(--color-muted)] focus:outline-none focus:border-[var(--color-red)] focus:ring-2 focus:ring-[var(--color-red)]/30";
-const ATTRIBUTION_STORE = "bt_attribution";
-
-// Click IDs / UTMs from the arrival URL, kept for the session so a visitor who
-// scrolls, reloads or moves to another page still sends them with the lead.
-function readAttribution(): Attribution {
-  const out: Attribution = {};
-  try {
-    Object.assign(out, JSON.parse(sessionStorage.getItem(ATTRIBUTION_STORE) || "{}"));
-  } catch {
-    /* storage blocked: URL params below still apply */
-  }
-  const params = new URLSearchParams(window.location.search);
-  for (const key of ATTRIBUTION_KEYS) {
-    const v = params.get(key);
-    if (v) out[key] = v;
-  }
-  try {
-    sessionStorage.setItem(ATTRIBUTION_STORE, JSON.stringify(out));
-  } catch {
-    /* ignore */
-  }
-  return out;
-}
-
 const label = "font-display text-sm font-bold uppercase tracking-wide text-[var(--color-heading)]";
 
 // `source` names where the form sits ("contact_page", "lp_<slug>") — it rides
@@ -54,11 +30,7 @@ export function ContactForm({
 
   // Fill the hidden attribution inputs once on the client (the static HTML ships them empty).
   useEffect(() => {
-    const attribution = readAttribution();
-    for (const key of ATTRIBUTION_KEYS) {
-      const input = formRef.current?.elements.namedItem(key);
-      if (input instanceof HTMLInputElement) input.value = attribution[key] ?? "";
-    }
+    fillAttributionInputs(formRef.current);
   }, []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {

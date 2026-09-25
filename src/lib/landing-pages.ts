@@ -38,8 +38,6 @@ export interface LandingPage {
     headline: string;
     /** One or two sentences: what they get, where, how fast. */
     sub: string;
-    /** Exactly three scannable proof points, each under ~40 characters. */
-    bullets: [string, string, string];
     /** A real /photos file. Prefer real shop photos over stock. */
     image: string;
     imageAlt: string;
@@ -60,8 +58,6 @@ export interface LandingPage {
   /** 3–5 objection-handling answers: cost, time, booking, "do I really need it". */
   faqs: Faq[];
 
-  /** Placeholder in the quote form's message box: ask for what the shop needs to quote. */
-  formPrompt: string;
 
   /** Closing CTA band. */
   cta: { heading: string; sub: string };
@@ -73,7 +69,7 @@ export interface LandingPage {
 // ─── Winter Changeover SKAG campaign ────────────────────────────────────────
 // "Boss Tire | Winter Changeover | Search SKAG | 2026" (id 24284278020): one
 // page per ad group. The H1 is that ad group's first pinned headline, word for
-// word. Steps, FAQs and bullets are shared per service so every page says the
+// word. Steps and FAQs are shared per service so every page says the
 // same true things. Storage pages quote by phone (hidePrice) to match the
 // storage ads' "Call for Your Storage Price".
 
@@ -197,9 +193,6 @@ const WINTER_CAMPAIGN_PAGES: LandingPage[] = WINTER_CAMPAIGN.map(([slug, keyword
       eyebrow: `${storage ? "Tire storage" : "Tire changeover"} · Scarborough`,
       headline,
       sub,
-      bullets: storage
-        ? ["Kept clean and dry", "Tagged by wheel position", "Drop off at your changeover"]
-        : ["Done while you wait", "Tires inspected before we start", "Price confirmed before work"],
       image: storage ? "/photos/winter-tires.jpg" : "/photos/winter-changeover.jpg",
       imageAlt: storage
         ? "A winter tire on a snow-covered road"
@@ -208,9 +201,6 @@ const WINTER_CAMPAIGN_PAGES: LandingPage[] = WINTER_CAMPAIGN.map(([slug, keyword
     },
     steps: storage ? STORAGE_STEPS : CHANGEOVER_STEPS,
     faqs: storage ? STORAGE_FAQS : CHANGEOVER_FAQS,
-    formPrompt: storage
-      ? "Your vehicle and tire size, if you know it, and when you want to drop the set off."
-      : "Your vehicle (year, make, model), and are your winters on their own rims?",
     cta: storage
       ? { heading: "Reserve your storage space", sub: "Call the shop, get your storage price, and drop your set off at your changeover." }
       : { heading: "Beat the November rush", sub: "Call now, pick your changeover time, and skip the week everyone else is waiting in line." },
@@ -230,7 +220,6 @@ export const LANDING_PAGES: LandingPage[] = [
       eyebrow: "Winter tire changeover · Scarborough",
       headline: "Winter tire changeover in Scarborough, same day",
       sub: "Swap to your winters on Danforth Rd while you wait. Mounted, balanced, torqued to spec and pressures set on all four.",
-      bullets: ["Done while you wait", "Same price in October as in the first snow", "Quote before we start"],
       image: "/photos/winter-changeover.jpg",
       imageAlt: "A technician mounting a tire on the changer during a seasonal changeover at Boss Tire",
       priceLabel: "Changeover",
@@ -259,7 +248,6 @@ export const LANDING_PAGES: LandingPage[] = [
         a: "Yes. We keep your off-season set clean and dry and tag it by position so the next changeover rotates them properly.",
       },
     ],
-    formPrompt: "Your vehicle (year, make, model), and are your winters on their own rims?",
     cta: { heading: "Beat the November rush", sub: "Call now and get your winters on the same day, before the whole city calls the same week." },
     organicPage: "/winter-tire-changeover",
   },
@@ -274,7 +262,6 @@ export const LANDING_PAGES: LandingPage[] = [
       eyebrow: "Wheel alignment · Scarborough",
       headline: "Wheel alignment in Scarborough, same day",
       sub: "Car pulling or steering wheel off-centre? We set camber, caster and toe to your vehicle's spec on Danforth Rd while you wait.",
-      bullets: ["Done while you wait", "50% off with 4 new tires", "Before-and-after numbers shown"],
       image: "/photos/alignment.jpg",
       imageAlt: "A four-wheel alignment being performed on a car at Boss Tire",
       priceLabel: "Alignment",
@@ -304,7 +291,6 @@ export const LANDING_PAGES: LandingPage[] = [
         a: "Yes: four-wheel, front-end and computerized alignments, set to your vehicle's spec so it tracks straight and the tires wear evenly.",
       },
     ],
-    formPrompt: "Your vehicle (year, make, model), and what it's doing: pulling, off-centre wheel, uneven wear?",
     cta: { heading: "Pulling to one side?", sub: "Call the shop, tell us what the car's doing, and we'll set it straight the same day." },
     organicPage: "/services/wheel-alignment",
   },
@@ -319,7 +305,6 @@ export const LANDING_PAGES: LandingPage[] = [
       eyebrow: "Muffler repair · Scarborough",
       headline: "Muffler repair in Scarborough, done right",
       sub: "Loud drone, rattle or exhaust smell? We find the actual problem, show you, and quote before we touch it.",
-      bullets: ["Quote before any work", "Most jobs same day", "Repair, not replace, when it can be"],
       image: "/photos/muffler-bay.jpg",
       imageAlt: "The Boss Tire muffler and exhaust bay with a car up on the lift",
       priceLabel: "Muffler",
@@ -344,7 +329,6 @@ export const LANDING_PAGES: LandingPage[] = [
         a: "Often not. A single rusted pipe, a broken hanger or a failed weld can be repaired without replacing the whole system. We tell you honestly which one you're looking at.",
       },
     ],
-    formPrompt: "Your vehicle (year, make, model), and what you hear or smell: drone, rattle, hiss?",
     cta: { heading: "Something loud under the car?", sub: "Call the shop, describe what you hear, and we'll tell you what it likely is and what it costs." },
     organicPage: "/muffler-exhaust",
   },

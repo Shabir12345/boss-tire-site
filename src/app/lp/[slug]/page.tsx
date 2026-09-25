@@ -2,25 +2,20 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { LandingHero } from "@/components/landing/LandingHero";
-import { ServicePriceCard } from "@/components/landing/ServicePriceCard";
 import { TrustStrip } from "@/components/sections/TrustStrip";
-import { LocalTrust } from "@/components/sections/LocalTrust";
-import { ProcessSteps } from "@/components/sections/ProcessSteps";
-import { FaqSection } from "@/components/sections/FaqSection";
 import { CTABand } from "@/components/sections/CTABand";
-import { ContactForm } from "@/components/contact/ContactForm";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { CallButton } from "@/components/ui/Button";
 import { OpenStatus } from "@/components/ui/OpenStatus";
 import { buildMetadata } from "@/lib/seo";
-import { BUSINESS } from "@/lib/business";
+import { BUSINESS, addressDisplay, mapsLinkHref } from "@/lib/business";
 import { LANDING_PAGES, getLandingPage } from "@/lib/landing-pages";
-import { getService, formatPrice } from "@/lib/services";
+import { ALIGNMENT_OFFERS, getService, formatPrice } from "@/lib/services";
 
 // ─── Google Ads landing page template ───────────────────────────────────────
 // Every /lp/<slug> page is this file filled from one LANDING_PAGES entry. The
-// section order is the standard (LANDING-PAGES.md): answer → proof → price →
-// process → no-call option → objections → last call. Change it here and every
+// section order is the standard (LANDING-PAGES.md): answer + form → proof →
+// price and process → objections + visit → last call. Change it here and every
 // landing page changes with it.
 
 // Static generation only: every slug is known at build time, anything else 404s.
@@ -51,16 +46,23 @@ export default async function LandingPageRoute({ params }: { params: Promise<{ s
   // hidePrice: the page quotes by phone, like its ads, even though services.ts
   // has a number (storage: flat vs per-wheel is still unconfirmed).
   const service = lp.hidePrice ? { ...listed, price: undefined, priceNote: undefined } : listed;
+  const price = service.price !== undefined ? formatPrice(service.price) : undefined;
 
-  const heroPrice =
-    service.price !== undefined
-      ? {
-          label: lp.hero.priceLabel,
-          amount: service.priceNote ? `From ${formatPrice(service.price)}` : formatPrice(service.price),
-          // "and up, depending on vehicle" → "depending on vehicle": the amount already says "From".
-          note: service.priceNote?.replace(/^and up,\s*/, "") ?? "before tax",
-        }
-      : undefined;
+  const heroPrice = price
+    ? {
+        label: lp.hero.priceLabel,
+        amount: service.priceNote ? `From ${price}` : price,
+        // "and up, depending on vehicle" → "depending on vehicle": the amount already says "From".
+        note: service.priceNote?.replace(/^and up,\s*/, "") ?? "before tax",
+      }
+    : { label: lp.hero.priceLabel, amount: "Call for your price" };
+
+  const priceHeading = price ? `${service.name}, ${price}${service.priceNote ? " and up" : ""}` : `What ${service.name.toLowerCase()} includes`;
+  const priceNote = !price
+    ? `Call ${BUSINESS.phoneDisplay} and we'll give you the exact price over the phone.`
+    : service.priceNote
+      ? "Depending on vehicle. Call with your make and model for the exact price. Nothing starts until you approve it."
+      : "Before tax. You approve the price before any work starts.";
 
   return (
     <>
@@ -68,80 +70,97 @@ export default async function LandingPageRoute({ params }: { params: Promise<{ s
         eyebrow={lp.hero.eyebrow}
         headline={lp.hero.headline}
         sub={lp.hero.sub}
-        bullets={lp.hero.bullets}
         image={lp.hero.image}
         imageAlt={lp.hero.imageAlt}
         price={heroPrice}
+        service={`${service.name} (${lp.keyword})`}
+        source={`lp_${lp.slug}`}
       />
       <TrustStrip />
 
-      {/* Price + what's included, from services.ts */}
+      {/* What you get (services.ts) beside what happens when you come in. */}
       <section className="bg-[var(--color-paper)]">
         <div className="gutter-safe mx-auto grid max-w-6xl gap-10 py-16 sm:py-20 lg:grid-cols-2 lg:items-start lg:gap-14">
           <div>
-            <Eyebrow>The price</Eyebrow>
-            {lp.hidePrice ? (
-              <>
-                <h2 className="mt-4 text-3xl text-[var(--color-heading)] sm:text-4xl">Your price, in one call</h2>
-                <p className="mt-4 text-lg leading-relaxed text-[var(--color-body)]">
-                  Call with your vehicle and we&apos;ll give you the exact number for your set over the phone.
-                </p>
-              </>
-            ) : (
-              <>
-                <h2 className="mt-4 text-3xl text-[var(--color-heading)] sm:text-4xl">What it costs, before you call</h2>
-                <p className="mt-4 text-lg leading-relaxed text-[var(--color-body)]">
-                  Most shops make you call for a number. Ours is on the page. If your vehicle needs something different,
-                  we tell you the price first and nothing starts until you approve it.
-                </p>
-              </>
+            <Eyebrow>What you get</Eyebrow>
+            <h2 className="mt-4 text-3xl text-[var(--color-heading)]">{priceHeading}</h2>
+            <p className="mt-3 text-[var(--color-body)]">{priceNote}</p>
+            <ul className="mt-6 space-y-2">
+              {service.included.map((inc) => (
+                <li key={inc} className="flex gap-2 text-[var(--color-body)]">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-red)]" aria-hidden />
+                  {inc}
+                </li>
+              ))}
+            </ul>
+            {lp.showAlignmentOffers && (
+              <ul className="mt-6 space-y-2">
+                {ALIGNMENT_OFFERS.map((o) => (
+                  <li key={o.buy} className="rounded-md bg-[var(--color-smoke)] px-4 py-3 text-sm text-[var(--color-heading)]">
+                    <span className="font-semibold">{o.saving}</span> when you buy {o.buy}
+                  </li>
+                ))}
+              </ul>
             )}
-            <div className="mt-6">
-              <CallButton trackLocation="lp_price" />
-            </div>
           </div>
-          <ServicePriceCard service={service} showAlignmentOffers={lp.showAlignmentOffers} />
+          <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-smoke)] p-6 sm:p-8">
+            <Eyebrow>What to expect</Eyebrow>
+            <h2 className="mt-4 text-2xl text-[var(--color-heading)]">What happens when you come in</h2>
+            <ol className="mt-5 space-y-4">
+              {lp.steps.map((step, i) => (
+                <li key={step.title} className="flex gap-4">
+                  <span className="tabular font-display text-xl font-extrabold leading-none text-[var(--color-red)]">{i + 1}</span>
+                  <div>
+                    <p className="font-display text-base font-bold uppercase tracking-wide text-[var(--color-heading)]">{step.title}</p>
+                    <p className="mt-1 text-[var(--color-body)]">{step.body}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
       </section>
 
-      <LocalTrust service={lp.service} />
-
-      <ProcessSteps steps={lp.steps} heading="What happens when you come in" />
-
-      {/* The no-call path: after-hours visitors and people who'd rather type. */}
-      <section id="quote" className="scroll-mt-20 bg-[var(--color-ink)]">
-        <div className="gutter-safe mx-auto grid max-w-6xl gap-10 py-16 sm:py-20 lg:grid-cols-[1fr_1.2fr] lg:gap-14">
+      {/* Objections beside the visit details. */}
+      <section className="bg-[var(--color-smoke)]">
+        <div className="gutter-safe mx-auto grid max-w-6xl gap-10 py-16 sm:py-20 lg:grid-cols-[1fr_20rem] lg:gap-14">
           <div>
-            <Eyebrow onDark>Rather not call?</Eyebrow>
-            <h2 className="mt-4 text-3xl text-white sm:text-4xl">Get a quote by message</h2>
-            <p className="mt-4 text-lg leading-relaxed text-[var(--color-on-dark)]">
-              Send your vehicle and what you need. We reply with a price, and if the shop is closed we call you back
-              first thing when we open.
+            <Eyebrow>Questions</Eyebrow>
+            <h2 className="mt-4 text-3xl text-[var(--color-heading)]">Before you book</h2>
+            <dl className="mt-8 space-y-6">
+              {lp.faqs.map((f) => (
+                <div key={f.q} className="border-b border-[var(--color-border)] pb-6 last:border-0">
+                  <dt className="font-display text-lg font-bold uppercase tracking-wide text-[var(--color-heading)]">{f.q}</dt>
+                  <dd className="mt-2 text-[var(--color-body)]">{f.a}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+          <aside className="h-fit rounded-lg border border-[var(--color-border)] bg-[var(--color-paper)] p-6">
+            <Eyebrow>Visit the shop</Eyebrow>
+            <p className="mt-4 font-display text-xl font-bold uppercase tracking-wide text-[var(--color-heading)]">{BUSINESS.name}</p>
+            <p className="mt-2 text-[var(--color-body)]">{addressDisplay}</p>
+            <OpenStatus className="mt-3" />
+            <p className="mt-1 text-sm text-[var(--color-muted)]">
+              {BUSINESS.hours.weekdays}
+              <br />
+              {BUSINESS.hours.weekend}
             </p>
-            <OpenStatus onDark className="mt-6" />
-            <p className="mt-2 text-sm text-[var(--color-on-dark-mute)]">
-              {BUSINESS.hours.weekdays} · {BUSINESS.hours.weekend}
-            </p>
+            <a href={mapsLinkHref} className="link-grow mt-4 inline-block font-semibold text-[var(--color-red-deep)]" data-track-location="lp_visit">
+              Get directions
+            </a>
             <div className="mt-6">
-              <CallButton trackLocation="lp_quote" />
+              <CallButton trackLocation="lp_visit" />
             </div>
-          </div>
-          <div className="rounded-xl bg-[var(--color-paper)] p-6 sm:p-8">
-            <ContactForm source={`lp_${lp.slug}`} messagePlaceholder={lp.formPrompt} submitLabel="Get my quote" />
-          </div>
+            <p className="mt-6 text-sm text-[var(--color-muted)]">
+              More about{" "}
+              <Link href={lp.organicPage} className="link-grow font-semibold text-[var(--color-red-deep)]">
+                {service.name.toLowerCase()} at Boss Tire
+              </Link>
+              .
+            </p>
+          </aside>
         </div>
-      </section>
-
-      <FaqSection faqs={lp.faqs} heading="Before you call" tone="paper" />
-
-      <section className="bg-[var(--color-paper)]">
-        <p className="gutter-safe mx-auto max-w-3xl pb-12 text-sm text-[var(--color-muted)]">
-          Want the full write-up?{" "}
-          <Link href={lp.organicPage} className="link-grow font-semibold text-[var(--color-red-deep)]">
-            More about {service.name.toLowerCase()} at Boss Tire
-          </Link>
-          .
-        </p>
       </section>
 
       <CTABand heading={lp.cta.heading} sub={lp.cta.sub} />
