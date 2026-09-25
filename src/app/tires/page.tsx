@@ -4,6 +4,7 @@ import { PageHeader } from "@/components/sections/PageHeader";
 import { TrustStrip } from "@/components/sections/TrustStrip";
 import { OffersBand } from "@/components/sections/OffersBand";
 import { CTABand } from "@/components/sections/CTABand";
+import { LocalTrust } from "@/components/sections/LocalTrust";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildMetadata } from "@/lib/seo";
 import { BreadcrumbJsonLd } from "@/lib/jsonld";
@@ -114,6 +115,7 @@ export default function TiresPage() {
       </section>
 
       <OffersBand />
+      <LocalTrust service="tires" />
       <CTABand heading="Know your tire size?" sub="It is on the sidewall and the driver's door jamb, a code like 225/65R17. Call it in and we will confirm availability in under a minute." />
     </>
   );

@@ -3,6 +3,8 @@ import Link from "next/link";
 import { PageHeader } from "@/components/sections/PageHeader";
 import { TrustStrip } from "@/components/sections/TrustStrip";
 import { CTABand } from "@/components/sections/CTABand";
+import { LocalTrust } from "@/components/sections/LocalTrust";
+import { FaqSection } from "@/components/sections/FaqSection";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildMetadata } from "@/lib/seo";
 import { BreadcrumbJsonLd, FaqJsonLd, ServiceJsonLd } from "@/lib/jsonld";
@@ -22,7 +24,7 @@ const SIGNS = [
 const FAQS = [
   {
     q: "How much is a wheel alignment in Scarborough?",
-    a: `A wheel alignment at Boss Tire is ${formatPrice(requirePrice(alignment))}, before tax. It's also 50% off when you buy 4 tires with us, or 25% off with 2 tires — so on a tire purchase the alignment is close to free. Call (647) 871-2393 with your vehicle and we'll confirm the exact number.`,
+    a: `A wheel alignment at Boss Tire is ${formatPrice(requirePrice(alignment))}, before tax. It's also 50% off when you buy 4 tires with us, or 25% off with 2 tires — so with four new tires the alignment is $40. Call (647) 871-2393 with your vehicle and we'll confirm the exact number.`,
   },
   {
     q: "How do I know if I need an alignment?",
@@ -74,6 +76,7 @@ export default function WheelAlignmentPage() {
         title="Set straight, same day"
         sub="Four-wheel alignment on Danforth Rd while you wait — camber, caster and toe set to your vehicle's spec so it tracks true and your tires last."
         showCall
+        price={{ label: "Wheel alignment", amount: formatPrice(requirePrice(alignment)), note: "before tax" }}
         image="/photos/alignment.jpg"
         imageAlt="A four-wheel alignment being performed on a car at Boss Tire"
       />
@@ -179,26 +182,12 @@ export default function WheelAlignmentPage() {
       </section>
 
       {/* FAQ — also feeds FAQ schema + AI answers */}
-      <section className="bg-[var(--color-smoke)]">
-        <div className="gutter-safe mx-auto max-w-3xl py-16 sm:py-20">
-          <Eyebrow>Questions</Eyebrow>
-          <h2 className="mt-4 text-3xl text-[var(--color-heading)]">Wheel alignment FAQ</h2>
-          <dl className="mt-8 space-y-6">
-            {FAQS.map((f) => (
-              <div key={f.q} className="border-b border-[var(--color-border)] pb-6 last:border-0">
-                <dt className="font-display text-lg font-bold uppercase tracking-wide text-[var(--color-heading)]">
-                  {f.q}
-                </dt>
-                <dd className="mt-2 text-[var(--color-body)]">{f.a}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
+      <FaqSection faqs={FAQS} heading="Wheel alignment FAQ" />
 
+      <LocalTrust service="wheel-alignment" />
       <CTABand
         heading="Pulling to one side?"
-        sub="Call the shop, tell us what the car's doing, and we'll set it straight the same day — often free with a set of tires."
+        sub="Call the shop, tell us what the car's doing, and we'll set it straight the same day — half price with four new tires."
       />
     </>
   );

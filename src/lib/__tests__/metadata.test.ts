@@ -3,9 +3,12 @@ import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { POSTS } from "@/lib/posts";
 
+// Ad landing pages (src/app/lp) are one templated file driven by
+// LANDING_PAGES, noindex, and checked by landing-pages.test.ts instead.
 function pageFiles(dir = "src/app"): string[] {
   const out: string[] = [];
   for (const e of readdirSync(dir, { withFileTypes: true })) {
+    if (dir === "src/app" && e.name === "lp") continue;
     const full = join(dir, e.name);
     if (e.isDirectory()) out.push(...pageFiles(full));
     else if (e.name === "page.tsx") out.push(full);

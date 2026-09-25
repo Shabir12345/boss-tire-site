@@ -3,6 +3,8 @@ import Link from "next/link";
 import { PageHeader } from "@/components/sections/PageHeader";
 import { TrustStrip } from "@/components/sections/TrustStrip";
 import { CTABand } from "@/components/sections/CTABand";
+import { LocalTrust } from "@/components/sections/LocalTrust";
+import { FaqSection } from "@/components/sections/FaqSection";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildMetadata } from "@/lib/seo";
 import { BreadcrumbJsonLd, FaqJsonLd, ServiceJsonLd } from "@/lib/jsonld";
@@ -66,6 +68,7 @@ export default function ExhaustLeakRepairPage() {
         title="Find the leak, weld it, done"
         sub="An exhaust leak gets louder, costs you fuel and can put fumes in the cabin. Most are a cracked joint, a rotted section of pipe or a broken hanger — and most are a weld, not a whole new system."
         showCall
+        price={{ label: "Exhaust repair", amount: `From ${formatPrice(requirePrice(exhaust))}`, note: "before tax" }}
         image="/photos/muffler-bay.jpg"
         imageAlt="Exhaust work underway in the Boss Tire service bay"
       />
@@ -208,23 +211,9 @@ export default function ExhaustLeakRepairPage() {
       </section>
 
       {/* FAQ — also feeds FAQ schema + AI answers */}
-      <section className="bg-[var(--color-paper)]">
-        <div className="gutter-safe mx-auto max-w-3xl py-16 sm:py-20">
-          <Eyebrow>Questions</Eyebrow>
-          <h2 className="mt-4 text-3xl text-[var(--color-heading)]">Exhaust leak repair FAQ</h2>
-          <dl className="mt-8 space-y-6">
-            {FAQS.map((f) => (
-              <div key={f.q} className="border-b border-[var(--color-border)] pb-6 last:border-0">
-                <dt className="font-display text-lg font-bold uppercase tracking-wide text-[var(--color-heading)]">
-                  {f.q}
-                </dt>
-                <dd className="mt-2 text-[var(--color-body)]">{f.a}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
+      <FaqSection faqs={FAQS} heading="Exhaust leak repair FAQ" tone="paper" />
 
+      <LocalTrust service="exhaust-repair" />
       <CTABand
         heading="Exhaust getting louder?"
         sub="Call the shop or drive in — we'll find the leak, show you, and quote before we touch it."

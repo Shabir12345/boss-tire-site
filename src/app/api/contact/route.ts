@@ -11,7 +11,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, error: "Invalid request." }, { status: 400 });
   }
 
-  const { name, phone, email, message } = (body ?? {}) as Record<string, unknown>;
+  const { name, phone, email, message, source, page } = (body ?? {}) as Record<string, unknown>;
 
   if (typeof name !== "string" || !name.trim() || typeof phone !== "string" || !phone.trim() || typeof message !== "string" || !message.trim()) {
     return NextResponse.json({ ok: false, error: "Please add your name, phone and a message." }, { status: 422 });
@@ -23,6 +23,8 @@ export async function POST(request: Request) {
       phone: phone.trim().slice(0, 60),
       email: typeof email === "string" ? email.trim().slice(0, 200) : undefined,
       message: message.trim().slice(0, 4000),
+      source: typeof source === "string" ? source.slice(0, 100) : undefined,
+      page: typeof page === "string" ? page.slice(0, 200) : undefined,
     });
     // skipped (no API key configured) still returns success to the visitor —
     // the message is logged server-side and the form should not appear broken.

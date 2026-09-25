@@ -29,7 +29,11 @@ export function AnalyticsListener() {
       if (!href) return;
       const location = nearestLocation(a);
 
-      if (href.startsWith("tel:")) {
+      // Explicitly tagged links first: the reviews link points at Google Maps,
+      // which the directions regex below would otherwise mis-count.
+      if (a.dataset.trackEvent === "view_reviews") {
+        track("view_reviews", { location, page_path: window.location.pathname });
+      } else if (href.startsWith("tel:")) {
         track("phone_call", { location, page_path: window.location.pathname });
         reportAdsConversion(BUSINESS.googleAds.labels.phoneCall);
       } else if (href.startsWith("mailto:")) {

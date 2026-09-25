@@ -3,6 +3,8 @@ import Link from "next/link";
 import { PageHeader } from "@/components/sections/PageHeader";
 import { TrustStrip } from "@/components/sections/TrustStrip";
 import { CTABand } from "@/components/sections/CTABand";
+import { LocalTrust } from "@/components/sections/LocalTrust";
+import { FaqSection } from "@/components/sections/FaqSection";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildMetadata } from "@/lib/seo";
 import { BreadcrumbJsonLd, FaqJsonLd, ServiceJsonLd } from "@/lib/jsonld";
@@ -67,6 +69,7 @@ export default function TireStoragePage() {
         title="Your off-season set, kept properly"
         sub="For half the year your off-season set is doing nothing but taking up floor space. Leave it with us instead and it comes back ready to go straight back on the car when the weather turns."
         showCall
+        price={{ label: "Tire storage", amount: `From ${formatPrice(requirePrice(storage))}`, note: "before tax" }}
         image="/photos/winter-tires.jpg"
         imageAlt="Winter tires stacked and tagged in storage"
       />
@@ -209,23 +212,9 @@ export default function TireStoragePage() {
       </section>
 
       {/* FAQ — also feeds FAQ schema + AI answers */}
-      <section className="bg-[var(--color-smoke)]">
-        <div className="gutter-safe mx-auto max-w-3xl py-16 sm:py-20">
-          <Eyebrow>Questions</Eyebrow>
-          <h2 className="mt-4 text-3xl text-[var(--color-heading)]">Tire storage FAQ</h2>
-          <dl className="mt-8 space-y-6">
-            {FAQS.map((f) => (
-              <div key={f.q} className="border-b border-[var(--color-border)] pb-6 last:border-0">
-                <dt className="font-display text-lg font-bold uppercase tracking-wide text-[var(--color-heading)]">
-                  {f.q}
-                </dt>
-                <dd className="mt-2 text-[var(--color-body)]">{f.a}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
+      <FaqSection faqs={FAQS} heading="Tire storage FAQ" />
 
+      <LocalTrust service="tire-storage" />
       <CTABand
         heading="Ready to hand off your off-season set?"
         sub="Call the shop or drop by — we'll tag your tires, store them clean and dry, and have them ready when the season turns."

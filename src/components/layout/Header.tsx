@@ -46,10 +46,15 @@ function Wordmark() {
 }
 
 // Ink sticky bar. Call-first: the red CallButton shows at every breakpoint.
+//
+// On Google Ads landing pages (/lp/*) the nav is dropped: logo + Call only. A
+// paid visitor came for one thing, and every nav link is a way to wander off
+// the page that answers it. The logo still links home as the escape hatch.
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const closeMenu = () => setMenuOpen(false);
   const pathname = usePathname();
+  const isLanding = pathname?.startsWith("/lp/") ?? false;
   const isActive = (href: string) =>
     !pathname ? false : href === "/" ? pathname === "/" : pathname.startsWith(href);
 
@@ -67,37 +72,41 @@ export function Header() {
           <Wordmark />
         </Link>
 
-        <nav className="ml-6 hidden items-center gap-6 lg:flex" aria-label="Primary navigation">
-          {NAV.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              aria-current={isActive(href) ? "page" : undefined}
-              className={`link-grow rounded-md text-sm font-medium transition-colors duration-150 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-red)] ${
-                isActive(href) ? "text-white" : "text-white/70"
-              }`}
-            >
-              {label}
-            </Link>
-          ))}
-        </nav>
+        {!isLanding && (
+          <nav className="ml-6 hidden items-center gap-6 lg:flex" aria-label="Primary navigation">
+            {NAV.map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                aria-current={isActive(href) ? "page" : undefined}
+                className={`link-grow rounded-md text-sm font-medium transition-colors duration-150 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-red)] ${
+                  isActive(href) ? "text-white" : "text-white/70"
+                }`}
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
+        )}
 
         <div className="ml-auto flex items-center gap-3">
           <CallButton compact trackLocation="header" />
-          <button
-            type="button"
-            className="rounded-md p-3 -mr-3 text-white/90 transition-colors duration-150 hover:text-[var(--color-red)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-red)] lg:hidden"
-            aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
-            aria-expanded={menuOpen}
-            aria-controls="mobile-nav"
-            onClick={() => setMenuOpen((v) => !v)}
-          >
-            <HamburgerIcon open={menuOpen} />
-          </button>
+          {!isLanding && (
+            <button
+              type="button"
+              className="rounded-md p-3 -mr-3 text-white/90 transition-colors duration-150 hover:text-[var(--color-red)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-red)] lg:hidden"
+              aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-nav"
+              onClick={() => setMenuOpen((v) => !v)}
+            >
+              <HamburgerIcon open={menuOpen} />
+            </button>
+          )}
         </div>
       </div>
 
-      {menuOpen && (
+      {menuOpen && !isLanding && (
         <div id="mobile-nav" className="border-t border-white/10 bg-[var(--color-ink)] px-4 py-4 lg:hidden">
           <nav aria-label="Mobile navigation" className="flex flex-col">
             {NAV.map(({ href, label }) => (

@@ -2,12 +2,43 @@ import Image from "next/image";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { CallButton } from "@/components/ui/Button";
 import { ReviewBadge } from "@/components/ui/ReviewBadge";
+import { OpenStatus } from "@/components/ui/OpenStatus";
+import { BUSINESS } from "@/lib/business";
+
+export interface HeroPrice {
+  /** What the price is for, e.g. "Wheel alignment". */
+  label: string;
+  /** Pre-formatted, e.g. "$80" or "From $160". Use formatPrice() from services.ts. */
+  amount: string;
+  /** Small print, e.g. "before tax" or "depending on vehicle". */
+  note?: string;
+}
+
+// Price chip for the hero. On a service page the price is the answer to the
+// question the visitor searched, so it sits above the fold next to the Call
+// button instead of a scroll away.
+export function PriceChip({ price }: { price: HeroPrice }) {
+  return (
+    <div className="inline-flex items-center gap-4 rounded-md border border-white/15 bg-white/[0.06] px-4 py-2.5 backdrop-blur-sm">
+      <span className="font-display text-sm font-bold uppercase tracking-wide text-[var(--color-on-dark)]">
+        {price.label}
+      </span>
+      <span className="h-6 w-px bg-white/20" aria-hidden />
+      <span className="tabular font-display text-3xl font-extrabold leading-none whitespace-nowrap text-white">{price.amount}</span>
+      {price.note && <span className="text-xs leading-tight text-[var(--color-on-dark-mute)]">{price.note}</span>}
+    </div>
+  );
+}
 
 // Dark interior page header. pt clears the sticky header.
 // When `image` is passed, the photo is blended into the header background
 // behind a dark scrim (matching the homepage hero) instead of sitting in a
 // separate band below — so the picture reinforces the header rather than
 // pushing the trust signals and content down the page.
+//
+// With `showCall`, the header carries the full above-the-fold trust set: the
+// Call button, the linked Google rating, and a live open/closed line with the
+// street — so a visitor knows it's a real, open, nearby shop before scrolling.
 export function PageHeader({
   eyebrow,
   title,
@@ -15,6 +46,7 @@ export function PageHeader({
   showCall = false,
   image,
   imageAlt = "",
+  price,
 }: {
   eyebrow: string;
   title: React.ReactNode;
@@ -22,16 +54,25 @@ export function PageHeader({
   showCall?: boolean;
   image?: string;
   imageAlt?: string;
+  price?: HeroPrice;
 }) {
   const content = (
     <>
       <Eyebrow onDark>{eyebrow}</Eyebrow>
       <h1 className="mt-4 max-w-3xl text-4xl text-white sm:text-6xl">{title}</h1>
       {sub && <p className="mt-5 max-w-2xl text-lg leading-relaxed text-[var(--color-on-dark)]">{sub}</p>}
-      <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
+      {price && (
+        <div className="mt-6">
+          <PriceChip price={price} />
+        </div>
+      )}
+      <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4">
         {showCall && <CallButton size="lg" className="cta-attention" trackLocation="page_header" />}
         <ReviewBadge onDark />
       </div>
+      {showCall && (
+        <OpenStatus onDark className="mt-4" suffix={`${BUSINESS.address.street.split(",")[0]}, ${BUSINESS.address.locality}`} />
+      )}
     </>
   );
 

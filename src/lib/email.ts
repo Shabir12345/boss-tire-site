@@ -6,6 +6,10 @@ export interface ContactPayload {
   phone: string;
   email?: string;
   message: string;
+  /** Which form sent it, e.g. "contact_form" or "lp_wheel-alignment-scarborough". */
+  source?: string;
+  /** Page path the form was submitted from. */
+  page?: string;
 }
 
 // Sends the contact message to the shop. Uses Resend when RESEND_API_KEY is set;
@@ -28,13 +32,17 @@ export async function sendContactEmail(data: ContactPayload): Promise<{ ok: bool
     data.email ? `Email: ${data.email}` : "Email: (not provided)",
     "",
     data.message,
+    "",
+    `Sent from: ${data.page ?? "(unknown page)"}${data.source ? ` [${data.source}]` : ""}`,
   ].join("\n");
 
   await resend.emails.send({
     from,
     to,
     replyTo: data.email || undefined,
-    subject: `New enquiry from ${data.name} — boss-tire.ca`,
+    // Ad landing pages flag themselves in the subject so the shop can tell a
+    // paid lead from an organic one at a glance.
+    subject: `${data.source?.startsWith("lp_") ? "[Ad lead] " : ""}New enquiry from ${data.name} — boss-tire.ca`,
     text: lines,
   });
 

@@ -22,17 +22,24 @@ real leads — not guesses.
 | Event | Fires on | Params | Role |
 |---|---|---|---|
 | `phone_call` | any `tel:` tap | `location`, `page_path` | **Primary conversion** |
-| `generate_lead` | contact form success | `location` | **Primary conversion** |
+| `generate_lead` | contact / quote form success | `location` (`contact_form` or `lp_<slug>`), `page_path` | **Primary conversion** |
 | `get_directions` | maps / address link | `location` | Intent signal |
 | `email_click` | `mailto:` tap | `location` | Intent signal |
 | `outbound_social` | Facebook / Instagram | `network`, `location` | Intent signal |
+| `view_reviews` | click-through to the Google reviews | `location`, `page_path` | Trust signal |
 
 `location` names the section the click came from — `header`, `hero`,
 `mobile_call_bar`, `cta_band`, `page_header`, `service_catalog`, `contact`,
-`footer`, `about` — so you can see *which* call button actually earns calls.
+`footer`, `about`, `local_trust`, and on ad landing pages `lp_hero`, `lp_price`,
+`lp_quote` — so you can see *which* call button actually earns calls.
 It comes from a `data-track-location` attribute (set on `CallButton` and the raw
 contact links) and falls back to the nearest `<header>`/`<footer>`/`<section
 aria-label>`.
+
+Form leads are emailed with the page and source they came from; ad landing page
+leads get an **[Ad lead]** subject prefix. Leads only reach the inbox when
+`RESEND_API_KEY` is set in production — without it the form still shows
+"Message sent" but the message is only written to the server log.
 
 GA4 enhanced measurement also records pageviews, scroll depth and outbound
 clicks automatically.

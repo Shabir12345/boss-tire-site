@@ -10,7 +10,19 @@ const field =
   "mt-1.5 w-full rounded-md border border-[var(--color-border)] bg-[var(--color-paper)] px-4 py-3 text-[var(--color-heading)] placeholder:text-[var(--color-muted)] focus:outline-none focus:border-[var(--color-red)] focus:ring-2 focus:ring-[var(--color-red)]/30";
 const label = "font-display text-sm font-bold uppercase tracking-wide text-[var(--color-heading)]";
 
-export function ContactForm() {
+// `source` names where the form sits ("contact_page", "lp_<slug>") — it rides
+// along in the email so the shop knows which page/ad the lead came from, and is
+// the `location` on the generate_lead event. `messagePlaceholder` lets an ad
+// landing page prompt for the details that service actually needs.
+export function ContactForm({
+  source = "contact_form",
+  messagePlaceholder = "Vehicle, and what you're after — tires, alignment, muffler, a quote…",
+  submitLabel = "Send message",
+}: {
+  source?: string;
+  messagePlaceholder?: string;
+  submitLabel?: string;
+} = {}) {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
 
@@ -25,7 +37,7 @@ export function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, source, page: window.location.pathname }),
       });
       const json = await res.json();
       if (!res.ok || !json.ok) {
@@ -34,7 +46,7 @@ export function ContactForm() {
         return;
       }
       // Lead captured — the site's second conversion after a phone call.
-      track("generate_lead", { location: "contact_form" });
+      track("generate_lead", { location: source, page_path: window.location.pathname });
       reportAdsConversion(BUSINESS.googleAds.labels.lead);
       form.reset();
       setStatus("sent");
@@ -75,7 +87,7 @@ export function ContactForm() {
       </div>
       <div>
         <label htmlFor="message" className={label}>What do you need?</label>
-        <textarea id="message" name="message" required rows={5} className={field} placeholder="Vehicle, and what you're after — tires, alignment, muffler, a quote…" />
+        <textarea id="message" name="message" required rows={5} className={field} placeholder={messagePlaceholder} />
       </div>
 
       {status === "error" && (
@@ -87,7 +99,7 @@ export function ContactForm() {
         disabled={status === "sending"}
         className="inline-flex min-h-12 items-center justify-center rounded-md bg-[var(--color-red-cta)] px-6 py-3 font-display text-lg font-bold uppercase tracking-wide text-white transition-colors duration-200 hover:bg-[var(--color-red-deep)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-red)] focus-visible:ring-offset-2 disabled:opacity-60"
       >
-        {status === "sending" ? "Sending…" : "Send message"}
+        {status === "sending" ? "Sending…" : submitLabel}
       </button>
     </form>
   );
