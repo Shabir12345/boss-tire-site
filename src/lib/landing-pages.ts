@@ -16,6 +16,7 @@
 // that should rank.
 
 import type { Faq } from "./services";
+import { BUSINESS } from "./business";
 import type { Step } from "@/components/sections/ProcessSteps";
 
 export interface LandingPage {
@@ -46,6 +47,10 @@ export interface LandingPage {
     priceLabel: string;
   };
 
+  /** Quote by phone instead of showing the services.ts price (hero chip and
+   *  price card). Use when the ads say "call for price". */
+  hidePrice?: boolean;
+
   /** Show the buy-tires alignment discount in the price card. */
   showAlignmentOffers?: boolean;
 
@@ -64,6 +69,154 @@ export interface LandingPage {
   /** The organic page this LP is the ad version of. Linked once, low on the page. */
   organicPage: string;
 }
+
+// ─── Winter Changeover SKAG campaign ────────────────────────────────────────
+// "Boss Tire | Winter Changeover | Search SKAG | 2026" (id 24284278020): one
+// page per ad group. The H1 is that ad group's first pinned headline, word for
+// word. Steps, FAQs and bullets are shared per service so every page says the
+// same true things. Storage pages quote by phone (hidePrice) to match the
+// storage ads' "Call for Your Storage Price".
+
+const CHANGEOVER_STEPS: Step[] = [
+  { title: "Call or walk in", body: "Tell us your vehicle and whether your winters are on their own rims. Call ahead and we'll have a bay ready." },
+  { title: "Price before we start", body: "We look the tires over and confirm the price for your vehicle before anything comes off the car." },
+  { title: "Swap, balance, torque", body: "Mounted and balanced if they need it, torqued to manufacturer spec, pressures set on all four." },
+  { title: "Drive off, store the rest", body: "You leave the same day. Want the off-season set out of the garage? We'll store it." },
+];
+
+const CHANGEOVER_FAQS: Faq[] = [
+  {
+    q: "How much is a tire changeover?",
+    a: `$160 and up before tax, depending on your vehicle and whether the tires need mounting onto your rims. Call ${BUSINESS.phoneDisplay} with your year, make and model and we'll confirm the exact number.`,
+  },
+  {
+    q: "How long does it take?",
+    a: "An on-rim swap is a same-day job while you wait. Tires that need mounting and balancing onto your rims take a little longer, and we quote a realistic time when you book.",
+  },
+  {
+    q: "When should I switch to winter tires?",
+    a: "Once daytime temperatures stay below about 7°C, usually late October to mid-November. Below that, all-season rubber hardens and loses grip well before the first snow. Coming in early means you pick the day instead of waiting in the November line.",
+  },
+  {
+    q: "Can you store my off-season set?",
+    a: "Yes. We keep it clean and dry and tag it by wheel position, so the next changeover puts each tire back where it came from. Call for your storage price.",
+  },
+];
+
+const STORAGE_STEPS: Step[] = [
+  { title: "Bring your off-season set", body: "Most people hand over the set they just took off at their changeover, in the same visit." },
+  { title: "Price on the phone", body: "Call with your vehicle and we'll tell you what your set costs to store before you drop it off." },
+  { title: "Tagged and shelved", body: "Each tire is tagged by wheel position and kept clean and dry." },
+  { title: "Back on next season", body: "At your next changeover the set comes off the shelf and goes back on the same corner it came off." },
+];
+
+const STORAGE_FAQS: Faq[] = [
+  {
+    q: "How much does tire storage cost?",
+    a: `Call ${BUSINESS.phoneDisplay} and we'll give you the exact number for your set over the phone.`,
+  },
+  {
+    q: "Why not keep my tires in the garage?",
+    a: "A home garage swings hot in summer and cold in winter, and damp corners or direct sun age rubber faster than it should. Your set sits clean and dry with us instead, and you get the corner of your garage back.",
+  },
+  {
+    q: "Do I need an appointment to drop them off?",
+    a: `No. Walk-ins are welcome, ${BUSINESS.hours.weekdays}. Bringing the set at your changeover is easiest.`,
+  },
+  {
+    q: "Can you do the changeover too?",
+    a: "Yes. A tire changeover is $160 and up, depending on vehicle, and we take your off-season set in the same visit.",
+  },
+];
+
+// [slug, keyword, kind, H1 (= pinned headline), sub, meta description]
+const WINTER_CAMPAIGN: [string, string, "changeover" | "storage", string, string, string][] = [
+  ["tire-changeover-near-me", "tire changeover near me", "changeover", "Tire Changeover Near Me",
+    "Boss Tire is at 375 Danforth Rd in Scarborough. Your seasonal set goes on for $160 and up, balanced and torqued to spec while you wait.",
+    "Tire changeover at Boss Tire, 375 Danforth Rd, Scarborough. $160 and up, balanced and torqued while you wait. Mon–Sat 9–7. Call (647) 871-2393."],
+  ["tire-change-near-me", "tire change near me", "changeover", "Tire Change Near Me",
+    "Boss Tire is on Danforth Rd in Scarborough, open Monday to Saturday, 9 to 7. Seasonal tire changes are $160 and up, done while you wait.",
+    "Seasonal tire change at Boss Tire on Danforth Rd, Scarborough. $160 and up, balanced and torqued while you wait. Call (647) 871-2393."],
+  ["tire-change-scarborough", "tire change scarborough", "changeover", "Tire Change Scarborough",
+    "Boss Tire is at 375 Danforth Rd, Unit 3, in Scarborough. Seasonal tire changes are $160 and up, Monday to Saturday, 9 AM to 7 PM.",
+    "Tire change at Boss Tire, 375 Danforth Rd, Unit 3, Scarborough. $160 and up, Mon–Sat 9–7. Call (647) 871-2393 to pick your time."],
+  ["winter-tire-change", "winter tire change", "changeover", "Winter Tire Change",
+    "Get your winter tires on before the cold sets in. $160 and up at Boss Tire on Danforth Rd, balanced and torqued to spec while you wait.",
+    "Winter tire change at Boss Tire, Scarborough. $160 and up, balanced and torqued to spec while you wait. Book before the November rush."],
+  ["winter-tire-change-near-me", "winter tire change near me", "changeover", "Winter Tire Change Near Me",
+    "Boss Tire is on Danforth Rd in Scarborough, open Monday to Saturday, 9 to 7. Winter tire changes are $160 and up, done while you wait.",
+    "Winter tire change at Boss Tire on Danforth Rd, Scarborough. $160 and up, Mon–Sat 9–7. Call (647) 871-2393 to pick your time."],
+  ["snow-tire-change", "snow tire change", "changeover", "Snow Tire Change",
+    "Snow tires on, all-seasons off, for $160 and up. Balanced, torqued to spec and pressures set on all four at Boss Tire in Scarborough.",
+    "Snow tire change at Boss Tire, Scarborough. $160 and up, balanced, torqued and pressures set on all four. Call (647) 871-2393."],
+  ["tire-swap-near-me", "tire swap near me", "changeover", "Tire Swap Near Me",
+    "A seasonal tire swap at 375 Danforth Rd in Scarborough, $160 and up. Call ahead to pick your time, or walk in Monday to Saturday.",
+    "Seasonal tire swap at Boss Tire, 375 Danforth Rd, Scarborough. $160 and up, Mon–Sat 9–7. Call (647) 871-2393 to pick your time."],
+  ["seasonal-tire-change", "seasonal tire change", "changeover", "Seasonal Tire Change",
+    "Summer to winter or winter to summer, Boss Tire swaps your seasonal set for $160 and up and can store the other set until next time.",
+    "Seasonal tire change at Boss Tire, Scarborough. $160 and up, balanced and torqued while you wait, with tire storage available."],
+  ["winter-tire-installation", "winter tire installation", "changeover", "Winter Tire Installation",
+    "Winters already on their own rims, or need them mounted onto yours? Boss Tire does both, $160 and up, balanced and torqued to spec.",
+    "Winter tire installation at Boss Tire, Scarborough. Mounted, balanced and torqued to spec, $160 and up. Call (647) 871-2393."],
+  ["tire-changeover", "tire changeover", "changeover", "Tire Changeover",
+    "Your seasonal changeover at Boss Tire in Scarborough, $160 and up. Every tire is inspected, balanced and torqued to spec.",
+    "Tire changeover at Boss Tire, Scarborough. $160 and up, every tire inspected, balanced and torqued to spec. Call (647) 871-2393."],
+  ["winter-tire-changeover", "winter tire changeover", "changeover", "Winter Tire Changeover",
+    "Book your winter tire changeover before the November rush. $160 and up at Boss Tire, 375 Danforth Rd, Scarborough.",
+    "Winter tire changeover at Boss Tire, 375 Danforth Rd, Scarborough. $160 and up. Book before the November rush: (647) 871-2393."],
+  ["tire-changeover-scarborough", "tire changeover scarborough", "changeover", "Tire Changeover Scarborough",
+    "Boss Tire is at 375 Danforth Rd, Unit 3, in Scarborough. Changeovers are $160 and up, Monday to Saturday, 9 AM to 7 PM.",
+    "Tire changeover at Boss Tire, 375 Danforth Rd, Unit 3, Scarborough. $160 and up, Mon–Sat 9–7. Call (647) 871-2393."],
+  ["tire-changeover-cost", "tire changeover cost", "changeover", "Tire Changeover Cost",
+    "A tire changeover at Boss Tire is $160 and up, depending on your vehicle. Call with your make and model and we'll tell you the number for yours.",
+    "Tire changeover at Boss Tire costs $160 and up, depending on vehicle. Balanced and torqued to spec. Call (647) 871-2393 for your price."],
+  ["tire-storage", "tire storage", "storage", "Tire Storage",
+    "Hand us your off-season set when you do your changeover. We keep it clean and dry, tagged by wheel position, until the season turns.",
+    "Off-season tire storage at Boss Tire, Scarborough. Clean, dry and tagged by wheel position. Call (647) 871-2393 for your storage price."],
+  ["tire-storage-near-me", "tire storage near me", "storage", "Tire Storage Near Me",
+    "Boss Tire stores off-season tires at 375 Danforth Rd in Scarborough. Drop your set off at your changeover and get your garage back.",
+    "Tire storage at Boss Tire, 375 Danforth Rd, Scarborough. Clean, dry and tagged by wheel position. Call (647) 871-2393 for your price."],
+  ["winter-tire-storage", "winter tire storage", "storage", "Winter Tire Storage",
+    "Whichever set is off the car, we keep it clean and dry and tagged by wheel position, ready for your next changeover.",
+    "Winter tire storage at Boss Tire, Scarborough. Clean, dry and tagged by wheel position. Call (647) 871-2393 for your storage price."],
+  ["tire-storage-scarborough", "tire storage scarborough", "storage", "Tire Storage Scarborough",
+    "Off-season tire storage at 375 Danforth Rd, Unit 3, Scarborough. Kept clean and dry, tagged by position, ready when the season turns.",
+    "Tire storage at Boss Tire, 375 Danforth Rd, Unit 3, Scarborough. Clean, dry, tagged by position. Call (647) 871-2393 for your price."],
+];
+
+const WINTER_CAMPAIGN_PAGES: LandingPage[] = WINTER_CAMPAIGN.map(([slug, keyword, kind, headline, sub, metaDescription]) => {
+  const storage = kind === "storage";
+  return {
+    slug,
+    keyword,
+    service: storage ? "tire-storage" : "tire-changeover",
+    hidePrice: storage || undefined,
+    metaTitle: /scarborough/i.test(headline) ? headline : `${headline} in Scarborough`,
+    metaDescription,
+    hero: {
+      eyebrow: `${storage ? "Tire storage" : "Tire changeover"} · Scarborough`,
+      headline,
+      sub,
+      bullets: storage
+        ? ["Kept clean and dry", "Tagged by wheel position", "Drop off at your changeover"]
+        : ["Done while you wait", "Tires inspected before we start", "Price confirmed before work"],
+      image: storage ? "/photos/winter-tires.jpg" : "/photos/winter-changeover.jpg",
+      imageAlt: storage
+        ? "A winter tire on a snow-covered road"
+        : "A technician mounting a tire on the changer during a seasonal changeover",
+      priceLabel: storage ? "Storage" : "Changeover",
+    },
+    steps: storage ? STORAGE_STEPS : CHANGEOVER_STEPS,
+    faqs: storage ? STORAGE_FAQS : CHANGEOVER_FAQS,
+    formPrompt: storage
+      ? "Your vehicle and tire size, if you know it, and when you want to drop the set off."
+      : "Your vehicle (year, make, model), and are your winters on their own rims?",
+    cta: storage
+      ? { heading: "Reserve your storage space", sub: "Call the shop, get your storage price, and drop your set off at your changeover." }
+      : { heading: "Beat the November rush", sub: "Call now, pick your changeover time, and skip the week everyone else is waiting in line." },
+    organicPage: storage ? "/services/tire-storage" : "/winter-tire-changeover",
+  };
+});
 
 export const LANDING_PAGES: LandingPage[] = [
   {
@@ -195,6 +348,7 @@ export const LANDING_PAGES: LandingPage[] = [
     cta: { heading: "Something loud under the car?", sub: "Call the shop, describe what you hear, and we'll tell you what it likely is and what it costs." },
     organicPage: "/muffler-exhaust",
   },
+  ...WINTER_CAMPAIGN_PAGES,
 ];
 
 export const getLandingPage = (slug: string): LandingPage | undefined =>

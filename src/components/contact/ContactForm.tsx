@@ -1,13 +1,38 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { track, reportAdsConversion } from "@/lib/analytics";
 import { BUSINESS } from "@/lib/business";
+import { ATTRIBUTION_KEYS, type Attribution } from "@/lib/attribution";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
 const field =
   "mt-1.5 w-full rounded-md border border-[var(--color-border)] bg-[var(--color-paper)] px-4 py-3 text-[var(--color-heading)] placeholder:text-[var(--color-muted)] focus:outline-none focus:border-[var(--color-red)] focus:ring-2 focus:ring-[var(--color-red)]/30";
+const ATTRIBUTION_STORE = "bt_attribution";
+
+// Click IDs / UTMs from the arrival URL, kept for the session so a visitor who
+// scrolls, reloads or moves to another page still sends them with the lead.
+function readAttribution(): Attribution {
+  const out: Attribution = {};
+  try {
+    Object.assign(out, JSON.parse(sessionStorage.getItem(ATTRIBUTION_STORE) || "{}"));
+  } catch {
+    /* storage blocked: URL params below still apply */
+  }
+  const params = new URLSearchParams(window.location.search);
+  for (const key of ATTRIBUTION_KEYS) {
+    const v = params.get(key);
+    if (v) out[key] = v;
+  }
+  try {
+    sessionStorage.setItem(ATTRIBUTION_STORE, JSON.stringify(out));
+  } catch {
+    /* ignore */
+  }
+  return out;
+}
+
 const label = "font-display text-sm font-bold uppercase tracking-wide text-[var(--color-heading)]";
 
 // `source` names where the form sits ("contact_page", "lp_<slug>") — it rides
@@ -25,6 +50,16 @@ export function ContactForm({
 } = {}) {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
+  const formRef = useRef<HTMLFormElement>(null);
+
+  // Fill the hidden attribution inputs once on the client (the static HTML ships them empty).
+  useEffect(() => {
+    const attribution = readAttribution();
+    for (const key of ATTRIBUTION_KEYS) {
+      const input = formRef.current?.elements.namedItem(key);
+      if (input instanceof HTMLInputElement) input.value = attribution[key] ?? "";
+    }
+  }, []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -39,7 +74,7 @@ export function ContactForm({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...data, source, page: window.location.pathname }),
       });
-      const json = await res.json();
+      const json = await res.json().catch(() => ({}));
       if (!res.ok || !json.ok) {
         setError(json.error || "Something went wrong. Please call us instead.");
         setStatus("error");
@@ -70,7 +105,11 @@ export function ContactForm({
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-5" noValidate>
+    <form ref={formRef} onSubmit={onSubmit} className="space-y-5" noValidate>
+      {/* Hidden ad attribution (gclid, gbraid, wbraid, UTMs), emailed with the lead. */}
+      {ATTRIBUTION_KEYS.map((key) => (
+        <input key={key} type="hidden" name={key} defaultValue="" />
+      ))}
       <div>
         <label htmlFor="name" className={label}>Name</label>
         <input id="name" name="name" type="text" required autoComplete="name" className={field} placeholder="Your name" />

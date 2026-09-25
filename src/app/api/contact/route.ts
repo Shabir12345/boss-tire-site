@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { sendContactEmail } from "@/lib/email";
+import { pickAttribution } from "@/lib/attribution";
 
 export const runtime = "nodejs";
 
@@ -11,7 +12,8 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, error: "Invalid request." }, { status: 400 });
   }
 
-  const { name, phone, email, message, source, page } = (body ?? {}) as Record<string, unknown>;
+  const fields = (body ?? {}) as Record<string, unknown>;
+  const { name, phone, email, message, source, page } = fields;
 
   if (typeof name !== "string" || !name.trim() || typeof phone !== "string" || !phone.trim() || typeof message !== "string" || !message.trim()) {
     return NextResponse.json({ ok: false, error: "Please add your name, phone and a message." }, { status: 422 });
@@ -25,10 +27,19 @@ export async function POST(request: Request) {
       message: message.trim().slice(0, 4000),
       source: typeof source === "string" ? source.slice(0, 100) : undefined,
       page: typeof page === "string" ? page.slice(0, 200) : undefined,
+      attribution: pickAttribution(fields),
     });
-    // skipped (no API key configured) still returns success to the visitor —
-    // the message is logged server-side and the form should not appear broken.
-    return NextResponse.json({ ok: true, skipped: result.skipped ?? false });
+    // No email key configured means the lead went nowhere. Report failure so
+    // the visitor is told to call and no conversion fires. (This used to
+    // return ok:true, which showed "Message sent" and silently dropped every
+    // lead in production until the key was set.)
+    if (result.skipped) {
+      return NextResponse.json(
+        { ok: false, skipped: true, error: "Our form is down right now. Please call us at (647) 871-2393." },
+        { status: 503 },
+      );
+    }
+    return NextResponse.json({ ok: true, skipped: false });
   } catch (err) {
     console.error("[contact] send failed:", err);
     return NextResponse.json({ ok: false, error: "Something went wrong sending your message. Please call us instead." }, { status: 500 });

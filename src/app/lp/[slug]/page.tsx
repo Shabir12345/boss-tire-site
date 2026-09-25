@@ -46,8 +46,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function LandingPageRoute({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const lp = getLandingPage(slug);
-  const service = lp && getService(lp.service);
-  if (!lp || !service) notFound();
+  const listed = lp && getService(lp.service);
+  if (!lp || !listed) notFound();
+  // hidePrice: the page quotes by phone, like its ads, even though services.ts
+  // has a number (storage: flat vs per-wheel is still unconfirmed).
+  const service = lp.hidePrice ? { ...listed, price: undefined, priceNote: undefined } : listed;
 
   const heroPrice =
     service.price !== undefined
@@ -77,11 +80,22 @@ export default async function LandingPageRoute({ params }: { params: Promise<{ s
         <div className="gutter-safe mx-auto grid max-w-6xl gap-10 py-16 sm:py-20 lg:grid-cols-2 lg:items-start lg:gap-14">
           <div>
             <Eyebrow>The price</Eyebrow>
-            <h2 className="mt-4 text-3xl text-[var(--color-heading)] sm:text-4xl">What it costs, before you call</h2>
-            <p className="mt-4 text-lg leading-relaxed text-[var(--color-body)]">
-              Most shops make you call for a number. Ours is on the page. If your vehicle needs something different,
-              we tell you the price first and nothing starts until you approve it.
-            </p>
+            {lp.hidePrice ? (
+              <>
+                <h2 className="mt-4 text-3xl text-[var(--color-heading)] sm:text-4xl">Your price, in one call</h2>
+                <p className="mt-4 text-lg leading-relaxed text-[var(--color-body)]">
+                  Call with your vehicle and we&apos;ll give you the exact number for your set over the phone.
+                </p>
+              </>
+            ) : (
+              <>
+                <h2 className="mt-4 text-3xl text-[var(--color-heading)] sm:text-4xl">What it costs, before you call</h2>
+                <p className="mt-4 text-lg leading-relaxed text-[var(--color-body)]">
+                  Most shops make you call for a number. Ours is on the page. If your vehicle needs something different,
+                  we tell you the price first and nothing starts until you approve it.
+                </p>
+              </>
+            )}
             <div className="mt-6">
               <CallButton trackLocation="lp_price" />
             </div>

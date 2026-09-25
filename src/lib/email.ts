@@ -1,5 +1,6 @@
 import { Resend } from "resend";
 import { BUSINESS } from "@/lib/business";
+import type { Attribution } from "@/lib/attribution";
 
 export interface ContactPayload {
   name: string;
@@ -10,6 +11,8 @@ export interface ContactPayload {
   source?: string;
   /** Page path the form was submitted from. */
   page?: string;
+  /** Ad click IDs and UTM tags from the landing URL (gclid, utm_term, …). */
+  attribution?: Attribution;
 }
 
 // Sends the contact message to the shop. Uses Resend when RESEND_API_KEY is set;
@@ -34,9 +37,13 @@ export async function sendContactEmail(data: ContactPayload): Promise<{ ok: bool
     data.message,
     "",
     `Sent from: ${data.page ?? "(unknown page)"}${data.source ? ` [${data.source}]` : ""}`,
+    ...Object.entries(data.attribution ?? {}).map(([k, v]) => `${k}: ${v}`),
   ].join("\n");
 
-  await resend.emails.send({
+  // Resend does not throw on API errors (revoked key, unverified domain, rate
+  // limit); it returns { error }. Throw so the route answers 500 and the
+  // visitor is told to call, instead of seeing "sent" for an email that never left.
+  const { error } = await resend.emails.send({
     from,
     to,
     replyTo: data.email || undefined,
@@ -45,6 +52,7 @@ export async function sendContactEmail(data: ContactPayload): Promise<{ ok: bool
     subject: `${data.source?.startsWith("lp_") ? "[Ad lead] " : ""}New enquiry from ${data.name} — boss-tire.ca`,
     text: lines,
   });
+  if (error) throw new Error(`Resend rejected the email: ${error.name}: ${error.message}`);
 
   return { ok: true };
 }
