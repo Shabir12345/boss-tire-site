@@ -118,7 +118,15 @@ export default function MufflerExhaustPage() {
               >
                 We explain what drives that cost
               </Link>{" "}
-              and how to tell whether yours has actually gone. More of what we get asked in the shop is
+              and how to tell whether yours has actually gone. Wondering where the law stands on a louder
+              exhaust?{" "}
+              <Link
+                href="/blog/is-a-muffler-delete-legal-in-ontario"
+                className="link-grow font-semibold text-[var(--color-red-deep)]"
+              >
+                Here&rsquo;s whether a muffler delete is legal in Ontario
+              </Link>
+              . More of what we get asked in the shop is
               written up on{" "}
               <Link href="/blog" className="link-grow font-semibold text-[var(--color-red-deep)]">
                 our blog

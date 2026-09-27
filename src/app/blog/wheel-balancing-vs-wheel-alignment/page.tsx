@@ -80,7 +80,11 @@ export default function WheelBalancingVsAlignmentPage() {
               wasn't there before, which usually means a wheel weight has come loose or fallen off entirely.
               Either way it's done on a machine that spins the wheel and shows exactly where the weight needs to
               go. It isn't something anyone can eyeball. At Boss Tire, rebalancing is {formatPrice(requirePrice(rebalancing))}{" "}
-              {rebalancing.priceNote}, before tax.
+              {rebalancing.priceNote}, before tax. More on that in{" "}
+              <Link href="/services/wheel-balancing" className="link-grow font-semibold text-[var(--color-red-deep)]">
+                wheel balancing at Boss Tire
+              </Link>
+              .
             </p>
             <p>
               Left alone, an out-of-balance wheel doesn't fix itself. The vibration tends to get worse rather

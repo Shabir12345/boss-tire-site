@@ -11,6 +11,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/services/oil-change", priority: 0.8 },
     { path: "/services/flat-tire-repair", priority: 0.8 },
     { path: "/services/tire-storage", priority: 0.8 },
+    { path: "/services/wheel-balancing", priority: 0.8 },
+    { path: "/services/rim-repair", priority: 0.8 },
+    { path: "/services/caliper-painting", priority: 0.8 },
     { path: "/tires", priority: 0.9 },
     { path: "/tires/used-tires", priority: 0.8 },
     { path: "/tires/winter-rims-and-packages", priority: 0.8 },
@@ -23,6 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/blog/wheel-balancing-vs-wheel-alignment", priority: 0.4 },
     { path: "/blog/can-a-flat-tire-be-repaired", priority: 0.4 },
     { path: "/blog/tpms-light-on-what-it-costs", priority: 0.4 },
+    { path: "/blog/is-a-muffler-delete-legal-in-ontario", priority: 0.4 },
     { path: "/about", priority: 0.6 },
     { path: "/contact", priority: 0.7 },
   ];

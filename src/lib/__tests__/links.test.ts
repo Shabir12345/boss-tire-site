@@ -47,6 +47,9 @@ describe("internal links", () => {
       "/tires/used-tires",
       "/tires/winter-rims-and-packages",
       "/muffler-exhaust/exhaust-leak-repair",
+      "/services/wheel-balancing",
+      "/services/rim-repair",
+      "/services/caliper-painting",
       "/blog",
     ];
     expect(newPages.filter((p) => !linked.has(p))).toEqual([]);
