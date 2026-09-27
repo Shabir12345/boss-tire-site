@@ -76,10 +76,11 @@ describe("page metadata", () => {
   const files = pageFiles();
 
   // Pins the surface area this suite covers (9 pre-existing + 5 service pages
-  // + 5 blog posts + 1 blog index = 20). If a page is added or removed without
+  // + 5 blog posts + 1 blog index = 20, then 3 service pages + 1 post on
+  // 2026-09-27 = 24). If a page is added or removed without
   // this number changing too, that is a signal to look, not a reason to pass.
-  it("finds all 20 page routes", () => {
-    expect(files.length).toBe(20);
+  it("finds all 24 page routes", () => {
+    expect(files.length).toBe(24);
   });
 
   it("gives every page a unique title", () => {

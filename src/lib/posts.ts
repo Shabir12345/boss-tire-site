@@ -71,11 +71,11 @@ export const POSTS: Post[] = [
     keywords: [
       "wheel balancing vs alignment",
       "wheel balancing cost",
-      "wheel balancing near me",
+      "tire balancing vs alignment",
       "4 wheel alignment cost",
       "wheel alignment cost toronto",
     ],
-    relatedServices: ["/services/wheel-alignment"],
+    relatedServices: ["/services/wheel-alignment", "/services/wheel-balancing"],
   },
   {
     slug: "can-a-flat-tire-be-repaired",
@@ -111,6 +111,25 @@ export const POSTS: Post[] = [
       "tire pressure sensor cost",
     ],
     relatedServices: ["/services"],
+  },
+  {
+    slug: "is-a-muffler-delete-legal-in-ontario",
+    title: "Is a muffler delete legal in Ontario?",
+    description:
+      "What Ontario's Highway Traffic Act says about muffler deletes, straight pipes and resonator deletes, what it means at a safety inspection, and the legal ways to get more sound.",
+    published: "2026-09-27",
+    excerpt:
+      "Short answer: no, not on a car you drive on the road. Here is what the law actually says, where a resonator delete fits, and what to do if you've already been pulled over.",
+    image: "/photos/muffler-bay.jpg",
+    imageAlt: "Exhaust work in the Boss Tire service bay",
+    keywords: [
+      "muffler delete",
+      "is a muffler delete legal in ontario",
+      "resonator delete",
+      "straight pipe exhaust ontario",
+      "muffler delete ticket ontario",
+    ],
+    relatedServices: ["/muffler-exhaust", "/muffler-exhaust/exhaust-leak-repair"],
   },
 ];
 

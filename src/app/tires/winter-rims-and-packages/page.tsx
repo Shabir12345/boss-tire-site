@@ -171,6 +171,13 @@ export default function WinterRimsAndPackagesPage() {
                 specs and your vehicle's year, make and model. We'll check it against your car before anything
                 gets mounted.
               </p>
+              <p className="mt-4 text-[var(--color-body)]">
+                Wheels you already own scraped or bent? Before you replace one, see if it can be saved with{" "}
+                <Link href="/services/rim-repair" className="link-grow font-semibold text-[var(--color-red-deep)]">
+                  rim repair
+                </Link>
+                .
+              </p>
             </div>
           </div>
         </div>
