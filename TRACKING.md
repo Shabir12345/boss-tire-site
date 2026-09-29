@@ -23,10 +23,12 @@ real leads — not guesses.
 |---|---|---|---|
 | `phone_call` | any `tel:` tap | `location`, `page_path` | **Primary conversion** |
 | `generate_lead` | contact / quote form success | `location` (`contact_form` or `lp_<slug>`), `page_path` | **Primary conversion** |
+| `form_start` | first touch of an ad landing page form | `location` (`lp_<slug>`), `page_path` | Funnel step before `generate_lead` |
 | `get_directions` | maps / address link | `location` | Intent signal |
 | `email_click` | `mailto:` tap | `location` | Intent signal |
 | `outbound_social` | Facebook / Instagram | `network`, `location` | Intent signal |
 | `view_reviews` | click-through to the Google reviews | `location`, `page_path` | Trust signal |
+| `cta_click` | the Book button in the mobile bar on `/lp/*` | `location` (`mobile_book_bar`), `page_path` | Intent signal |
 
 `location` names the section the click came from — `header`, `hero`,
 `mobile_call_bar`, `cta_band`, `page_header`, `service_catalog`, `contact`,

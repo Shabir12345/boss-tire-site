@@ -34,11 +34,4 @@ describe("Winter Changeover campaign landing pages", () => {
     });
   }
 
-  it("storage pages quote by phone, like the storage ads", () => {
-    for (const [keyword] of AD_GROUPS.filter(([k]) => k.includes("storage"))) {
-      const lp = getLandingPage(keyword.replace(/ /g, "-"))!;
-      expect(lp.hidePrice).toBe(true);
-      expect(`${lp.hero.sub} ${lp.metaDescription}`).not.toMatch(/\$\d/);
-    }
-  });
 });

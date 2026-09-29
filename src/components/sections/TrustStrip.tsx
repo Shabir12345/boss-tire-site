@@ -1,3 +1,5 @@
+import { REVIEWS } from "@/lib/reviews";
+
 // Slim proof strip used under the hero and on every interior page. Four
 // scannable, page-agnostic reasons to trust the shop — each backed by the shop's
 // own facts (a priced service list, same-day work, quote-before-work, and the
@@ -10,6 +12,15 @@ const TRUST = [
   { label: "One shop, every job", sub: "Tires, wheels, alignment, exhaust" },
 ];
 
+// Ad landing pages (/lp/*) show no prices and promise no turnaround time, so
+// they get their own four. The rating reads from lib/reviews like every badge.
+const TRUST_LANDING = [
+  { label: "Walk-ins welcome", sub: "Mon–Sat, 9 AM to 7 PM" },
+  { label: `${REVIEWS.rating}★ on ${REVIEWS.source}`, sub: `From ${REVIEWS.count} reviews` },
+  { label: "A quote before we start", sub: "You approve the price first" },
+  { label: "Tires + exhaust, one shop", sub: "Tires, wheels, alignment, exhaust" },
+];
+
 function CheckMark() {
   return (
     <svg viewBox="0 0 20 20" width="18" height="18" fill="none" aria-hidden className="shrink-0 text-[var(--color-red)]">
@@ -18,12 +29,13 @@ function CheckMark() {
   );
 }
 
-export function TrustStrip() {
+export function TrustStrip({ variant = "site" }: { variant?: "site" | "landing" }) {
+  const items = variant === "landing" ? TRUST_LANDING : TRUST;
   return (
     <section className="border-b border-[var(--color-hairline-dark)] bg-[var(--color-carbon)]">
       <div className="gutter-safe mx-auto max-w-6xl">
         <ul className="grid grid-cols-2 divide-[var(--color-hairline-dark)] sm:grid-cols-4 sm:divide-x">
-          {TRUST.map((t) => (
+          {items.map((t) => (
             <li key={t.label} className="flex items-start gap-2.5 px-1 py-5 sm:justify-center sm:px-5">
               <CheckMark />
               <div>

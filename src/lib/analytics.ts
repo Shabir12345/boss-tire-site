@@ -14,6 +14,7 @@ import { BUSINESS } from "./business";
 export type TrackEvent =
   | "phone_call" // any tap on a tel: link — the primary conversion
   | "generate_lead" // contact form submitted successfully (GA4 recommended name)
+  | "form_start" // first interaction with an ad landing page form (funnel step before generate_lead)
   | "get_directions" // tap on a maps / directions link
   | "email_click" // tap on a mailto: link
   | "outbound_social" // tap through to Facebook / Instagram

@@ -76,6 +76,52 @@ function VisitCard() {
   );
 }
 
+// Ad landing page proof band: three verbatim Google reviews, the ones about
+// this page's service first. Renders nothing if Featurable can't be reached:
+// the live widget is too heavy for a paid landing page, and the rating badge in
+// the hero still carries the proof.
+export async function ReviewQuotes({ service }: { service: string }) {
+  // Ad pages carry no prices and no turnaround promises, so skip reviews that
+  // quote either. Choosing which reviews to show is fine; editing their words
+  // never is.
+  const usable = (await getGoogleReviews()).filter(
+    (r) => !/\$\s?\d|same[- ]day|while you wait|in and out/i.test(r.text)
+  );
+  const { reviews: quotes, matched } = pickReviews(usable, service, 3);
+  if (quotes.length === 0) return null;
+  const serviceName = (getService(service)?.shortName ?? service.replace(/-/g, " ")).toLowerCase();
+
+  return (
+    <section aria-label="Google reviews" className="bg-[var(--color-smoke)]">
+      <div className="gutter-safe mx-auto max-w-6xl py-12 sm:py-14">
+        <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
+          <div>
+            <Eyebrow>{matched > 0 ? `What drivers say about ${serviceName}` : "What drivers say"}</Eyebrow>
+            <h2 className="mt-3 text-2xl text-[var(--color-heading)] sm:text-3xl">
+              {REVIEWS.rating} stars from {REVIEWS.count} {REVIEWS.source} reviews
+            </h2>
+          </div>
+          <a
+            href={reviewsHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-track-event="view_reviews"
+            className="link-grow text-sm font-semibold text-[var(--color-red-deep)]"
+          >
+            Read them all on {REVIEWS.source}
+            <span className="sr-only"> (opens in a new tab)</span>
+          </a>
+        </div>
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          {quotes.map((r) => (
+            <QuoteCard key={r.id} r={r} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export async function LocalTrust({
   service,
   heading = "Don't take our word for it",

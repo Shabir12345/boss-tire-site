@@ -3,10 +3,10 @@ import { BUSINESS } from "./business";
 // Google rating, synced by hand per the agreed approach (content manifest §1).
 // Update these two numbers when the profile moves; AggregateRating in
 // jsonld.tsx and the ReviewBadge both read from here. Last checked against the
-// Google profile (via Featurable) 2026-09-25: 4.8 from 332.
+// Google profile (via Featurable gbpLocationSummary) 2026-09-29: 4.8 from 334.
 export const REVIEWS = {
   rating: 4.8,
-  count: 332,
+  count: 334,
   source: "Google",
 } as const;
 

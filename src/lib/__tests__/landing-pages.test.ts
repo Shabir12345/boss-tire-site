@@ -40,6 +40,24 @@ describe("Google Ads landing pages", () => {
       });
 
 
+      // Owner decision 2026-09-29: prices are given on the call, never on an ad
+      // landing page. And no time promise the shop hasn't confirmed.
+      it("shows no price and promises no turnaround time", () => {
+        const copy = [
+          lp.metaTitle,
+          lp.metaDescription,
+          lp.hero.headline,
+          lp.hero.sub,
+          lp.bookLabel,
+          ...lp.steps.flatMap((s) => [s.title, s.body]),
+          ...lp.faqs.flatMap((f) => [f.q, f.a]),
+          lp.cta.heading,
+          lp.cta.sub,
+        ].join("\n");
+        expect(copy).not.toMatch(/\$\s?\d/);
+        expect(copy).not.toMatch(/same[- ]day|while you wait|in and out/i);
+      });
+
       it("uses a hero photo that exists", () => {
         expect(existsSync(`public${lp.hero.image}`), lp.hero.image).toBe(true);
         expect(lp.hero.imageAlt.length).toBeGreaterThan(10);
@@ -61,6 +79,11 @@ describe("Google Ads landing pages", () => {
       });
     });
   }
+
+  it("the template renders no prices", () => {
+    const src = readFileSync("src/app/lp/[slug]/page.tsx", "utf8");
+    expect(src).not.toMatch(/formatPrice|\.price|PriceChip/);
+  });
 
   it("renders every landing page noindex", () => {
     const src = readFileSync("src/app/lp/[slug]/page.tsx", "utf8");

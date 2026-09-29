@@ -3,7 +3,6 @@ import { CallButton } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ReviewBadge } from "@/components/ui/ReviewBadge";
 import { OpenStatus } from "@/components/ui/OpenStatus";
-import { PriceChip, type HeroPrice } from "@/components/sections/PageHeader";
 import { LeadForm } from "@/components/landing/LeadForm";
 import { addressDisplay, mapsLinkHref } from "@/lib/business";
 
@@ -17,7 +16,7 @@ function Fact({ label, children }: { label: string; children: React.ReactNode })
 }
 
 // Ad landing page hero, two columns: the answer on the left (the searched-for
-// words as the H1, price, Call, rating, hours and address) and the call-back
+// words as the H1, a quote line, Call, rating, hours and address) and the call-back
 // form on the right. On a phone the form stacks under the Call button, which
 // stays above the fold. See LANDING-PAGES.md § Hero.
 export function LandingHero({
@@ -26,7 +25,7 @@ export function LandingHero({
   sub,
   image,
   imageAlt,
-  price,
+  bookLabel,
   service,
   source,
 }: {
@@ -35,7 +34,8 @@ export function LandingHero({
   sub: string;
   image: string;
   imageAlt: string;
-  price?: HeroPrice;
+  /** Form button, e.g. "Book my changeover". */
+  bookLabel: string;
   /** Service name, written into the lead email. */
   service: string;
   /** "lp_<slug>", passed to the form. */
@@ -55,11 +55,11 @@ export function LandingHero({
           <h1 className="mt-4 max-w-3xl text-4xl text-white sm:text-6xl">{headline}</h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-[var(--color-on-dark)]">{sub}</p>
 
-          {price && (
-            <div className="mt-6">
-              <PriceChip price={price} />
-            </div>
-          )}
+          {/* No price on ad pages: it's given on the call (owner decision 2026-09-29). */}
+          <p className="mt-6 inline-flex flex-col gap-1 rounded-md border border-white/15 bg-white/5 px-4 py-3">
+            <span className="font-display text-lg font-bold uppercase tracking-wide text-white">Call for a quote for your vehicle</span>
+            <span className="text-xs text-[var(--color-on-dark-mute)]">You approve the price before any work starts.</span>
+          </p>
 
           <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4">
             <CallButton size="lg" className="cta-attention" trackLocation="lp_hero" />
@@ -82,7 +82,7 @@ export function LandingHero({
           <p className="font-display text-2xl font-bold uppercase tracking-wide text-[var(--color-heading)]">Request a time</p>
           <p className="mt-1 text-sm text-[var(--color-body)]">Leave your number and the shop will call you back.</p>
           <div className="mt-5">
-            <LeadForm service={service} source={source} />
+            <LeadForm service={service} source={source} submitLabel={bookLabel} />
           </div>
         </div>
       </div>

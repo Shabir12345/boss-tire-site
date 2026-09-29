@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { LandingHero } from "@/components/landing/LandingHero";
 import { TrustStrip } from "@/components/sections/TrustStrip";
+import { ReviewQuotes } from "@/components/sections/LocalTrust";
 import { CTABand } from "@/components/sections/CTABand";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { CallButton } from "@/components/ui/Button";
@@ -10,13 +11,16 @@ import { OpenStatus } from "@/components/ui/OpenStatus";
 import { buildMetadata } from "@/lib/seo";
 import { BUSINESS, addressDisplay, mapsLinkHref } from "@/lib/business";
 import { LANDING_PAGES, getLandingPage } from "@/lib/landing-pages";
-import { ALIGNMENT_OFFERS, getService, formatPrice } from "@/lib/services";
+import { ALIGNMENT_OFFERS, getService } from "@/lib/services";
 
 // ─── Google Ads landing page template ───────────────────────────────────────
 // Every /lp/<slug> page is this file filled from one LANDING_PAGES entry. The
 // section order is the standard (LANDING-PAGES.md): answer + form → proof →
-// price and process → objections + visit → last call. Change it here and every
+// what you get and process → objections + visit → last call. No prices: the
+// price is given on the call (owner decision 2026-09-29). Change it here and every
 // landing page changes with it.
+
+const NO_TIME_PROMISE = /same[- ]day|while you wait|in and out/i;
 
 // Static generation only: every slug is known at build time, anything else 404s.
 export const dynamicParams = false;
@@ -41,28 +45,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function LandingPageRoute({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const lp = getLandingPage(slug);
-  const listed = lp && getService(lp.service);
-  if (!lp || !listed) notFound();
-  // hidePrice: the page quotes by phone, like its ads, even though services.ts
-  // has a number (storage: flat vs per-wheel is still unconfirmed).
-  const service = lp.hidePrice ? { ...listed, price: undefined, priceNote: undefined } : listed;
-  const price = service.price !== undefined ? formatPrice(service.price) : undefined;
-
-  const heroPrice = price
-    ? {
-        label: lp.hero.priceLabel,
-        amount: service.priceNote ? `From ${price}` : price,
-        // "and up, depending on vehicle" → "depending on vehicle": the amount already says "From".
-        note: service.priceNote?.replace(/^and up,\s*/, "") ?? "before tax",
-      }
-    : { label: lp.hero.priceLabel, amount: "Call for your price" };
-
-  const priceHeading = price ? `${service.name}, ${price}${service.priceNote ? " and up" : ""}` : `What ${service.name.toLowerCase()} includes`;
-  const priceNote = !price
-    ? `Call ${BUSINESS.phoneDisplay} and we'll give you the exact price over the phone.`
-    : service.priceNote
-      ? "Depending on vehicle. Call with your make and model for the exact price. Nothing starts until you approve it."
-      : "Before tax. You approve the price before any work starts.";
+  const service = lp && getService(lp.service);
+  if (!lp || !service) notFound();
 
   return (
     <>
@@ -72,21 +56,26 @@ export default async function LandingPageRoute({ params }: { params: Promise<{ s
         sub={lp.hero.sub}
         image={lp.hero.image}
         imageAlt={lp.hero.imageAlt}
-        price={heroPrice}
+        bookLabel={lp.bookLabel}
         service={`${service.name} (${lp.keyword})`}
         source={`lp_${lp.slug}`}
       />
-      <TrustStrip />
+      <TrustStrip variant="landing" />
+      <ReviewQuotes service={lp.service} />
 
       {/* What you get (services.ts) beside what happens when you come in. */}
       <section className="bg-[var(--color-paper)]">
         <div className="gutter-safe mx-auto grid max-w-6xl gap-10 py-16 sm:py-20 lg:grid-cols-2 lg:items-start lg:gap-14">
           <div>
             <Eyebrow>What you get</Eyebrow>
-            <h2 className="mt-4 text-3xl text-[var(--color-heading)]">{priceHeading}</h2>
-            <p className="mt-3 text-[var(--color-body)]">{priceNote}</p>
+            <h2 className="mt-4 text-3xl text-[var(--color-heading)]">What your {service.name.toLowerCase()} includes</h2>
+            <p className="mt-3 text-[var(--color-body)]">
+              The price depends on your vehicle. Call {BUSINESS.phoneDisplay} and we&apos;ll give it to you on the call, before any work starts.
+            </p>
             <ul className="mt-6 space-y-2">
-              {service.included.map((inc) => (
+              {/* services.ts is shared with the organic pages; drop turnaround
+                  promises the ad pages don't make. */}
+              {service.included.filter((inc) => !NO_TIME_PROMISE.test(inc)).map((inc) => (
                 <li key={inc} className="flex gap-2 text-[var(--color-body)]">
                   <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-red)]" aria-hidden />
                   {inc}
