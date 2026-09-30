@@ -59,8 +59,28 @@ Configured in Google Ads account **866-515-8043** and wired in
 
 Both are manual event-snippet actions; the site fires them itself, so Google's
 "Test installation" will verify once the deploy is live and a real (or test) tap
-comes through. Deliberately NOT using Google's forwarding-number call tracking —
-it would swap the real phone number on the site and break NAP consistency.
+comes through.
+
+### Website calls of 60 seconds or more (added 2026-09-30)
+
+- **Website — Calls 60s+ (forwarding number)** (category *Phone call lead*,
+  Primary) — label `ouZeCIa47osdEPCl-5Qp`, configured in `layout.tsx` with
+  `phone_conversion_number` set to `BUSINESS.phoneDisplay`.
+
+For a visitor who arrived from an ad click, gtag replaces the displayed number
+and the `tel:` links with a Google forwarding number, and Google counts the call
+only if it lasts a minute. Organic, GBP and direct visitors, Googlebot and the
+static HTML all keep the real number, so NAP consistency is unaffected.
+
+This reverses the earlier decision not to use forwarding numbers. The reason:
+a tap on the number counted the same as a real call, and Sales-Performance
+Max-1 moved 75% of its budget to the Discover feed to collect taps while real
+calls fell from 529 a month to 23. Once this action is recording, set
+**Website — Phone call** (the tap) to Secondary so nothing bids on taps.
+
+The swap matches the number by its displayed text. If `phoneDisplay` changes
+format, the swap follows it automatically; a number typed by hand elsewhere in
+a different format would not be swapped.
 
 ## Follow-up: GA4 key events → Ads Secondary import (the "observe-only" half)
 

@@ -68,6 +68,10 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', '${BUSINESS.ga4}');${
             BUSINESS.googleAds.id ? `\ngtag('config', '${BUSINESS.googleAds.id}');` : ""
+          }${
+            BUSINESS.googleAds.id && BUSINESS.googleAds.websiteCallLabel
+              ? `\ngtag('config', '${BUSINESS.googleAds.id}/${BUSINESS.googleAds.websiteCallLabel}', {'phone_conversion_number': '${BUSINESS.phoneDisplay}'});`
+              : ""
           }`}
         </Script>
         <DeferredGtag />

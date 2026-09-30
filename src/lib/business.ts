@@ -58,6 +58,11 @@ export const BUSINESS = {
   googleAds: {
     id: "AW-11049816816",
     labels: { phoneCall: "AjA6CKni3eccEPCl-5Qp", lead: "6vOICKzi3eccEPCl-5Qp" },
+    // "Website — Calls 60s+ (forwarding number)". For visitors who arrived from
+    // an ad, gtag swaps phoneDisplay for a Google forwarding number and counts
+    // the call only if it lasts a minute. Everyone else, and the static HTML,
+    // still gets the real number. See TRACKING.md.
+    websiteCallLabel: "ouZeCIa47osdEPCl-5Qp",
   },
 } as const;
 
