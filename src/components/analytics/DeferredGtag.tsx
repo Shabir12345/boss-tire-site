@@ -14,14 +14,22 @@ import { onFirstInteraction } from "@/lib/defer";
 // the third-party-cookies Best-Practices audit for non-interacting auditors.
 export function DeferredGtag() {
   useEffect(() => {
-    return onFirstInteraction(() => {
+    function load() {
       if (document.getElementById("gtag-js")) return;
       const s = document.createElement("script");
       s.id = "gtag-js";
       s.async = true;
       s.src = `https://www.googletagmanager.com/gtag/js?id=${BUSINESS.ga4}`;
       document.head.appendChild(s);
-    });
+    }
+    // An ad visitor gets gtag straight away: the forwarding number only swaps
+    // in once gtag.js has run, and someone whose first touch is the call button
+    // would otherwise dial the real number and the call would go uncounted.
+    if (/[?&](gclid|gbraid|wbraid)=/.test(window.location.search)) {
+      load();
+      return;
+    }
+    return onFirstInteraction(load);
   }, []);
   return null;
 }

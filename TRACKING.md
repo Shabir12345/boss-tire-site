@@ -78,6 +78,10 @@ Max-1 moved 75% of its budget to the Discover feed to collect taps while real
 calls fell from 529 a month to 23. Once this action is recording, set
 **Website — Phone call** (the tap) to Secondary so nothing bids on taps.
 
+gtag.js normally loads on the first interaction (see `DeferredGtag`). A visit
+that arrives with a `gclid`, `gbraid` or `wbraid` loads it immediately instead,
+so the forwarding number is in place before a first-touch tap on a call button.
+
 The swap matches the number by its displayed text. If `phoneDisplay` changes
 format, the swap follows it automatically; a number typed by hand elsewhere in
 a different format would not be swapped.
