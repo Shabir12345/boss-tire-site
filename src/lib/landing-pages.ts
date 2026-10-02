@@ -206,6 +206,87 @@ const WINTER_CAMPAIGN_PAGES: LandingPage[] = WINTER_CAMPAIGN.map(([slug, keyword
   };
 });
 
+// ─── Muffler Repair SKAG campaign ───────────────────────────────────────────
+// "Boss Tire | Muffler Repair | Search SKAG | 2026": one page per ad group, H1 =
+// that ad group's first pinned headline, word for word. The muffler-repair-
+// scarborough entry below is the eleventh ad group's page. No prices.
+
+const MUFFLER_STEPS: Step[] = [
+  { title: "Describe the noise", body: "Call or walk in and tell us what you're hearing or smelling." },
+  { title: "We put it on the lift", body: "We find where it's actually failing and show you, instead of guessing from the sound." },
+  { title: "You approve the price", body: "Repair or replace, you get the number first. Nothing starts until you say yes." },
+  { title: "Quiet drive home", body: "Fitted, checked for leaks, and back on the road." },
+];
+
+const MUFFLER_FAQS: Faq[] = [
+  {
+    q: "How much does muffler repair cost?",
+    a: "It depends on your vehicle and whether the muffler can be repaired or needs replacing. We put it on the lift, show you the problem, and give you the price before any work starts.",
+  },
+  {
+    q: "How soon can you look at it?",
+    a: "Call or walk in Monday to Saturday, 9 to 7. We inspect it, show you the problem, and quote before any work starts.",
+  },
+  {
+    q: "Do I need a whole new exhaust?",
+    a: "Often not. A single rusted pipe, a broken hanger or a failed weld can be repaired without replacing the whole system. We tell you honestly which one you're looking at.",
+  },
+];
+
+// [slug, keyword, H1 (= pinned headline), sub, meta description]
+const MUFFLER_CAMPAIGN: [string, string, string, string, string][] = [
+  ["muffler-shop-near-me", "muffler shop near me", "Muffler Shop Near Me",
+    "Boss Tire is a muffler and exhaust shop at 375 Danforth Rd in Scarborough. We find what's failing, show you, and quote before we touch it.",
+    "Muffler shop at Boss Tire, 375 Danforth Rd, Scarborough. We show you the problem and quote first. Mon–Sat 9–7. Call (647) 871-2393."],
+  ["muffler-shop", "muffler shop", "Muffler Shop",
+    "Loud drone, rattle or exhaust smell? Boss Tire on Danforth Rd puts it on the lift, shows you the problem and quotes before any work.",
+    "Muffler repair and replacement at Boss Tire on Danforth Rd, Scarborough. Quote before any work starts. Call (647) 871-2393."],
+  ["muffler-near-me", "muffler near me", "Muffler Near Me",
+    "Muffler repair and replacement at 375 Danforth Rd in Scarborough, open Monday to Saturday, 9 to 7. Walk in or call ahead.",
+    "Muffler repair and replacement at Boss Tire, 375 Danforth Rd, Scarborough. Mon–Sat 9–7. Call (647) 871-2393 for your quote."],
+  ["muffler-repair-near-me", "muffler repair near me", "Muffler Repair Near Me",
+    "Boss Tire is on Danforth Rd in Scarborough. Tell us what you're hearing, we find where it's failing, and you get the price before we start.",
+    "Muffler repair at Boss Tire on Danforth Rd, Scarborough. We show you the problem and quote before any work. Call (647) 871-2393."],
+  ["muffler-shop-scarborough", "muffler shop scarborough", "Muffler Shop Scarborough",
+    "Boss Tire is at 375 Danforth Rd, Unit 3, in Scarborough. Muffler repair or replacement, quoted before any work starts.",
+    "Muffler shop at Boss Tire, 375 Danforth Rd, Unit 3, Scarborough. Repair or replace, quoted first. Mon–Sat 9–7. Call (647) 871-2393."],
+  ["muffler-repair", "muffler repair", "Muffler Repair",
+    "Not every loud muffler needs replacing. We put it on the lift, show you what's failing, and quote the repair before we start.",
+    "Muffler repair at Boss Tire in Scarborough. We show you the problem on the lift and quote before any work. Call (647) 871-2393."],
+  ["muffler-shop-toronto", "muffler shop toronto", "Muffler Shop Toronto",
+    "Boss Tire is a muffler and exhaust shop on Danforth Rd in Scarborough, in east Toronto. Walk in Monday to Saturday, 9 to 7.",
+    "Muffler shop in east Toronto: Boss Tire, 375 Danforth Rd, Scarborough. Repair or replace, quoted first. Call (647) 871-2393."],
+  ["muffler-repair-toronto", "muffler repair toronto", "Muffler Repair Toronto",
+    "Muffler repair in east Toronto at 375 Danforth Rd, Scarborough. We find the real problem, show you, and quote before any work.",
+    "Muffler repair in Toronto at Boss Tire, 375 Danforth Rd, Scarborough. Quote before any work starts. Call (647) 871-2393."],
+  ["car-muffler-repair", "car muffler repair", "Car Muffler Repair",
+    "Drone, rattle or exhaust smell from your car? We put it on the lift at our Danforth Rd shop and quote the fix before we start.",
+    "Car muffler repair at Boss Tire, Scarborough. We find the problem, show you, and quote before any work. Call (647) 871-2393."],
+  ["muffler-replacement", "muffler replacement", "Muffler Replacement",
+    "If your muffler is past repairing, we replace it, fit it and check it for leaks. If a repair will do, we tell you that instead.",
+    "Muffler replacement at Boss Tire, Scarborough. Fitted and checked for leaks, quoted before any work. Call (647) 871-2393."],
+];
+
+const MUFFLER_CAMPAIGN_PAGES: LandingPage[] = MUFFLER_CAMPAIGN.map(([slug, keyword, headline, sub, metaDescription]) => ({
+  slug,
+  keyword,
+  service: "muffler-repair",
+  bookLabel: "Book a muffler check",
+  metaTitle: /scarborough/i.test(headline) ? headline : `${headline} in Scarborough`,
+  metaDescription,
+  hero: {
+    eyebrow: "Muffler repair · Scarborough",
+    headline,
+    sub,
+    image: "/photos/muffler-bay.jpg",
+    imageAlt: "The Boss Tire muffler and exhaust bay with a car up on the lift",
+  },
+  steps: MUFFLER_STEPS,
+  faqs: MUFFLER_FAQS,
+  cta: { heading: "Something loud under the car?", sub: "Call the shop, describe what you hear, and we'll tell you what it likely is and what it costs." },
+  organicPage: "/muffler-exhaust",
+}));
+
 export const LANDING_PAGES: LandingPage[] = [
   {
     slug: "winter-tire-changeover-scarborough",
@@ -296,30 +377,13 @@ export const LANDING_PAGES: LandingPage[] = [
       image: "/photos/muffler-bay.jpg",
       imageAlt: "The Boss Tire muffler and exhaust bay with a car up on the lift",
     },
-    steps: [
-      { title: "Describe the noise", body: "Call or walk in and tell us what you're hearing or smelling." },
-      { title: "We put it on the lift", body: "We find where it's actually failing and show you, instead of guessing from the sound." },
-      { title: "You approve the price", body: "Repair or replace, you get the number first. Nothing starts until you say yes." },
-      { title: "Quiet drive home", body: "Fitted, checked for leaks, and back on the road." },
-    ],
-    faqs: [
-      {
-        q: "How much does muffler repair cost?",
-        a: "It depends on your vehicle and whether the muffler can be repaired or needs replacing. We put it on the lift, show you the problem, and give you the price before any work starts.",
-      },
-      {
-        q: "How soon can you look at it?",
-        a: "Call or walk in Monday to Saturday, 9 to 7. We inspect it, show you the problem, and quote before any work starts.",
-      },
-      {
-        q: "Do I need a whole new exhaust?",
-        a: "Often not. A single rusted pipe, a broken hanger or a failed weld can be repaired without replacing the whole system. We tell you honestly which one you're looking at.",
-      },
-    ],
+    steps: MUFFLER_STEPS,
+    faqs: MUFFLER_FAQS,
     cta: { heading: "Something loud under the car?", sub: "Call the shop, describe what you hear, and we'll tell you what it likely is and what it costs." },
     organicPage: "/muffler-exhaust",
   },
   ...WINTER_CAMPAIGN_PAGES,
+  ...MUFFLER_CAMPAIGN_PAGES,
 ];
 
 export const getLandingPage = (slug: string): LandingPage | undefined =>
