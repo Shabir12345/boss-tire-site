@@ -52,6 +52,9 @@ export interface LandingPage {
   /** Show the buy-tires alignment discount in the price card. */
   showAlignmentOffers?: boolean;
 
+  /** Ask for the tire size in the booking form, so the shop can quote on the first call. */
+  askTireSize?: boolean;
+
   /** 3–4 steps: what happens from the call to driving away. */
   steps: Step[];
 
@@ -330,7 +333,12 @@ const WINTER_TIRE_STEEL_FAQ: Faq = {
   a: "Steel is cheaper and shrugs off road salt and curb knocks. Alloy is lighter and looks better. We fit both, so it comes down to what you want to spend.",
 };
 
-type WinterKind = "tires" | "used" | "packages";
+const WINTER_TIRE_BRANDS_FAQ: Faq = {
+  q: "Which brands do you carry?",
+  a: `Michelin, Goodyear and Bridgestone, along with the other major brands and budget options. Stock changes through the season, so call ${BUSINESS.phoneDisplay} with your size and we'll tell you what we have.`,
+};
+
+type WinterKind = "tires" | "used" | "packages" | "brands";
 const WINTER_KIND = {
   tires: {
     eyebrow: "Winter tires · Scarborough",
@@ -352,6 +360,13 @@ const WINTER_KIND = {
     imageAlt: "Alloy wheels on display at Boss Tire",
     faqs: [WINTER_TIRE_RIMS_FAQ, WINTER_TIRE_STEEL_FAQ, WINTER_TIRE_PRICE_FAQ, WINTER_TIRE_OFFER_FAQ],
     organicPage: "/tires/winter-rims-and-packages",
+  },
+  brands: {
+    eyebrow: "Brand winter tires · Scarborough",
+    image: "/photos/new-used-tires.jpg",
+    imageAlt: "Racks of new and used tires at the Boss Tire shop",
+    faqs: [WINTER_TIRE_BRANDS_FAQ, WINTER_TIRE_PRICE_FAQ, WINTER_TIRE_STOCK_FAQ, WINTER_TIRE_OFFER_FAQ],
+    organicPage: "/tires",
   },
 } as const;
 
@@ -399,6 +414,22 @@ const WINTER_SALES_CAMPAIGN: [string, string, WinterKind, string, string, string
   ["winter-tire-shop-near-me", "winter tire shop near me", "tires", "Winter Tire Shop Near Me",
     "Boss Tire is a tire shop at 375 Danforth Rd in Scarborough, open Monday to Saturday, 9 to 7. New, used and budget winter tires.",
     "Winter tire shop at Boss Tire, 375 Danforth Rd, Scarborough. New, used and budget. Mon–Sat 9–7. Call (647) 871-2393."],
+  // Brand ad groups (Fawad confirmed 2026-10-05 the shop carries the major brands).
+  ["michelin-winter-tires", "michelin winter tires", "brands", "Michelin Winter Tires",
+    "Michelin winter tires, mounted and balanced at Boss Tire on Danforth Rd, Scarborough. Buy 4 and your wheel alignment is 50% off.",
+    "Michelin winter tires at Boss Tire, Scarborough. Mounted and balanced. 50% off alignment with 4 tires. Call (647) 871-2393 with your size."],
+  ["michelin-x-ice", "michelin x-ice", "brands", "Michelin X-Ice Winter Tires",
+    "Michelin X-Ice winter tires at 375 Danforth Rd, Scarborough. Call with your size and we'll tell you what's in stock and your price.",
+    "Michelin X-Ice winter tires at Boss Tire, Scarborough. 50% off alignment with 4 tires. Call (647) 871-2393 with your size for your price."],
+  ["bridgestone-blizzak", "bridgestone blizzak", "brands", "Bridgestone Blizzak Tires",
+    "Bridgestone Blizzak winter tires at Boss Tire on Danforth Rd, Scarborough. Buy 4 and your wheel alignment is 50% off.",
+    "Bridgestone Blizzak winter tires at Boss Tire, Scarborough. 50% off alignment with 4 tires. Call (647) 871-2393 with your size."],
+  ["bridgestone-winter-tires", "bridgestone winter tires", "brands", "Bridgestone Winter Tires",
+    "Bridgestone winter tires, mounted and balanced at 375 Danforth Rd, Scarborough. Call with your size for stock and your price.",
+    "Bridgestone winter tires at Boss Tire, Scarborough. Mounted and balanced. 50% off alignment with 4 tires. Call (647) 871-2393."],
+  ["goodyear-winter-tires", "goodyear winter tires", "brands", "Goodyear Winter Tires",
+    "Goodyear winter tires at Boss Tire on Danforth Rd, Scarborough. Buy 4 and your wheel alignment is 50% off.",
+    "Goodyear winter tires at Boss Tire, Scarborough. Mounted and balanced. 50% off alignment with 4 tires. Call (647) 871-2393 with your size."],
 ];
 
 const WINTER_SALES_PAGES: LandingPage[] = WINTER_SALES_CAMPAIGN.map(([slug, keyword, kind, headline, sub, metaDescription]) => {
@@ -412,6 +443,7 @@ const WINTER_SALES_PAGES: LandingPage[] = WINTER_SALES_CAMPAIGN.map(([slug, keyw
     metaDescription,
     hero: { eyebrow: k.eyebrow, headline, sub, image: k.image, imageAlt: k.imageAlt },
     showAlignmentOffers: true,
+    askTireSize: true,
     steps: WINTER_TIRE_STEPS,
     faqs: [...k.faqs],
     cta: { heading: "Get your winters before the snow", sub: "Call with your tire size, get your price, and save 50% on your alignment when you buy 4." },

@@ -224,6 +224,7 @@ export const AD_SERVICES: Service[] = [
     blurb: "New, used and budget winter tires, fitted on Danforth Rd.",
     included: [
       "New, used and budget winter tires",
+      "Michelin, Goodyear, Bridgestone and other major brands",
       "Winter sets on their own steel or alloy rims",
       "Used tires checked for tread depth, age and sidewall damage",
       "Balanced on the machine and torqued to spec",

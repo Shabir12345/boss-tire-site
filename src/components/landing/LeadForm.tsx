@@ -24,6 +24,7 @@ export function LeadForm({
   source,
   vehiclePlaceholder = "e.g. 2019 Honda CR-V",
   submitLabel = "Book my visit",
+  askTireSize = false,
 }: {
   /** What they asked for, written into the email ("Wheel alignment"). */
   service: string;
@@ -32,6 +33,8 @@ export function LeadForm({
   vehiclePlaceholder?: string;
   /** Button text, named for the service: "Book my changeover". */
   submitLabel?: string;
+  /** Tire-sales pages: ask for the size so the shop can quote on the first call. */
+  askTireSize?: boolean;
 }) {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
@@ -67,10 +70,11 @@ export function LeadForm({
     }
     setStatus("sending");
     setError("");
-    const { vehicle, when, ...rest } = data;
+    const { vehicle, tireSize, when, ...rest } = data;
     const message = [
       `Request: ${service}`,
       `Vehicle: ${vehicle?.trim() || "(not given)"}`,
+      ...(askTireSize ? [`Tire size: ${tireSize?.trim() || "(not given)"}`] : []),
       `Best day or time: ${when?.trim() || "(not given)"}`,
     ].join("\n");
 
@@ -130,6 +134,12 @@ export function LeadForm({
         <label htmlFor="lead-vehicle" className={label}>Vehicle {optional}</label>
         <input id="lead-vehicle" name="vehicle" type="text" className={field} placeholder={vehiclePlaceholder} />
       </div>
+      {askTireSize && (
+        <div>
+          <label htmlFor="lead-tire-size" className={label}>Tire size {optional}</label>
+          <input id="lead-tire-size" name="tireSize" type="text" className={field} placeholder="e.g. 225/65R17, on the tire's sidewall" />
+        </div>
+      )}
       <fieldset>
         <legend className={label}>Best day or time {optional}</legend>
         <input type="hidden" name="when" value={when} />

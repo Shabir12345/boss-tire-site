@@ -59,6 +59,7 @@ export default async function LandingPageRoute({ params }: { params: Promise<{ s
         bookLabel={lp.bookLabel}
         service={`${service.name} (${lp.keyword})`}
         source={`lp_${lp.slug}`}
+        askTireSize={lp.askTireSize}
       />
       <TrustStrip variant="landing" />
       <ReviewQuotes service={lp.service} />

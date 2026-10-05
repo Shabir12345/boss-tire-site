@@ -28,6 +28,7 @@ export function LandingHero({
   bookLabel,
   service,
   source,
+  askTireSize = false,
 }: {
   eyebrow: string;
   headline: string;
@@ -40,6 +41,8 @@ export function LandingHero({
   service: string;
   /** "lp_<slug>", passed to the form. */
   source: string;
+  /** Show the optional tire size field (tire-sales pages). */
+  askTireSize?: boolean;
 }) {
   return (
     <section className="relative isolate overflow-hidden bg-[var(--color-ink)]">
@@ -82,7 +85,7 @@ export function LandingHero({
           <p className="font-display text-2xl font-bold uppercase tracking-wide text-[var(--color-heading)]">Request a time</p>
           <p className="mt-1 text-sm text-[var(--color-body)]">Leave your number and the shop will call you back.</p>
           <div className="mt-5">
-            <LeadForm service={service} source={source} submitLabel={bookLabel} />
+            <LeadForm service={service} source={source} submitLabel={bookLabel} askTireSize={askTireSize} />
           </div>
         </div>
       </div>
