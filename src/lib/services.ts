@@ -210,8 +210,30 @@ export const SERVICES: Service[] = [
 
 export const SERVICE_SLUGS = SERVICES.map((s) => s.slug);
 
+// Ad-only services: things the shop sells that aren't a fixed-price job, so they
+// stay off the services page and the catalog above. Google Ads landing pages
+// (landing-pages.ts) use them for "What you get" and review matching. Every
+// line here is already said on the organic tire pages (/tires,
+// /tires/used-tires, /tires/winter-rims-and-packages).
+export const AD_SERVICES: Service[] = [
+  {
+    slug: "winter-tires",
+    name: "Winter Tires",
+    shortName: "Winter tires",
+    category: "Tires",
+    blurb: "New, used and budget winter tires, fitted on Danforth Rd.",
+    included: [
+      "New, used and budget winter tires",
+      "Winter sets on their own steel or alloy rims",
+      "Used tires checked for tread depth, age and sidewall damage",
+      "Balanced on the machine and torqued to spec",
+      "Tire pressures set before you leave",
+    ],
+  },
+];
+
 export const getService = (slug: string): Service | undefined =>
-  SERVICES.find((s) => s.slug === slug);
+  SERVICES.find((s) => s.slug === slug) ?? AD_SERVICES.find((s) => s.slug === slug);
 
 export const FEATURED_SERVICES = SERVICES.filter((s) => s.featured);
 

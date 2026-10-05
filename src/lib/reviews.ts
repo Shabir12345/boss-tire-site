@@ -47,6 +47,7 @@ export const REVIEW_KEYWORDS: Record<string, RegExp> = {
   "muffler-repair": /muffler|exhaust|loud/i,
   "exhaust-repair": /exhaust|muffler|pipe|leak/i,
   tires: /\btires?\b|tyres?/i,
+  "winter-tires": /winter|snow tire|\btires?\b|tyres?/i,
 };
 
 /** "Ommama Raja" → "Ommama R." (Featurable's "first name + last initial" display). */

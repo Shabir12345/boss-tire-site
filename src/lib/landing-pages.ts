@@ -287,6 +287,138 @@ const MUFFLER_CAMPAIGN_PAGES: LandingPage[] = MUFFLER_CAMPAIGN.map(([slug, keywo
   organicPage: "/muffler-exhaust",
 }));
 
+// ─── Winter Tire Sales SKAG campaign ────────────────────────────────────────
+// "Boss Tire | Winter Tire Sales | Search SKAG | 2026": people buying winter
+// tires, not booking the swap (that's the changeover campaign). One page per ad
+// group, H1 = that ad group's first pinned headline, word for word. The offer is
+// the live buy-tires alignment discount (ALIGNMENT_OFFERS, confirmed 2026-10-05).
+// No prices: the set is priced on the call.
+
+const WINTER_TIRE_STEPS: Step[] = [
+  { title: "Call with your tire size", body: "It's on the sidewall or the driver's door jamb, a code like 225/65R17. Tell us your vehicle too." },
+  { title: "Get your price on the call", body: "We tell you what's in stock, new or used, on your rims or on their own, and the price before anything is fitted." },
+  { title: "Mounted and balanced", body: "Balanced on the machine, torqued to spec, and pressures set before you leave." },
+  { title: "Save on your alignment", body: "Buying 4 tires? Your wheel alignment is 50% off. Buying 2? It's 25% off." },
+];
+
+const WINTER_TIRE_PRICE_FAQ: Faq = {
+  q: "How much are winter tires?",
+  a: `It depends on your tire size and which tires you pick. Call ${BUSINESS.phoneDisplay} with your size and we'll give you the price for the set on the call, before anything is fitted.`,
+};
+const WINTER_TIRE_STOCK_FAQ: Faq = {
+  q: "Do you have my size in stock?",
+  a: `Stock changes through the season, so we check instead of guessing. Call ${BUSINESS.phoneDisplay} with your year, make, model and tire size and we'll tell you what we have, new or used.`,
+};
+const WINTER_TIRE_OFFER_FAQ: Faq = {
+  q: "How does the alignment offer work?",
+  a: "Buy 4 tires and your wheel alignment is 50% off. Buy 2 and it's 25% off. New tires on a car that's out of alignment wear unevenly, so it's the right time to have it checked.",
+};
+const WINTER_TIRE_WHEN_FAQ: Faq = {
+  q: "When should I put winter tires on?",
+  a: "Once daytime temperatures stay below about 7°C, usually late October to mid-November. Below that, all-season rubber hardens and loses grip well before the first snow.",
+};
+const WINTER_TIRE_USED_FAQ: Faq = {
+  q: "Are used winter tires safe?",
+  a: "A used tire that's been properly checked is a reasonable, safe buy. We check tread depth, age and sidewall condition on every tire before it's sold, and anything with sidewall damage doesn't go on the rack.",
+};
+const WINTER_TIRE_RIMS_FAQ: Faq = {
+  q: "Is it worth putting winter tires on their own rims?",
+  a: "For most drivers who swap twice a year, yes. The changeover becomes a wheel-off, wheel-on job, and the tires last longer because they aren't dismounted and remounted every season.",
+};
+const WINTER_TIRE_STEEL_FAQ: Faq = {
+  q: "Steel or alloy rims for winter?",
+  a: "Steel is cheaper and shrugs off road salt and curb knocks. Alloy is lighter and looks better. We fit both, so it comes down to what you want to spend.",
+};
+
+type WinterKind = "tires" | "used" | "packages";
+const WINTER_KIND = {
+  tires: {
+    eyebrow: "Winter tires · Scarborough",
+    image: "/photos/new-used-tires.jpg",
+    imageAlt: "Racks of new and used tires at the Boss Tire shop",
+    faqs: [WINTER_TIRE_PRICE_FAQ, WINTER_TIRE_STOCK_FAQ, WINTER_TIRE_OFFER_FAQ, WINTER_TIRE_WHEN_FAQ, WINTER_TIRE_RIMS_FAQ],
+    organicPage: "/tires",
+  },
+  used: {
+    eyebrow: "Used winter tires · Scarborough",
+    image: "/photos/new-used-tires.jpg",
+    imageAlt: "Racks of new and used tires at the Boss Tire shop",
+    faqs: [WINTER_TIRE_USED_FAQ, WINTER_TIRE_PRICE_FAQ, WINTER_TIRE_STOCK_FAQ, WINTER_TIRE_OFFER_FAQ],
+    organicPage: "/tires/used-tires",
+  },
+  packages: {
+    eyebrow: "Winter tire packages · Scarborough",
+    image: "/photos/rims-red.jpg",
+    imageAlt: "Alloy wheels on display at Boss Tire",
+    faqs: [WINTER_TIRE_RIMS_FAQ, WINTER_TIRE_STEEL_FAQ, WINTER_TIRE_PRICE_FAQ, WINTER_TIRE_OFFER_FAQ],
+    organicPage: "/tires/winter-rims-and-packages",
+  },
+} as const;
+
+// [slug, keyword, kind, H1 (= pinned headline), sub, meta description]
+const WINTER_SALES_CAMPAIGN: [string, string, WinterKind, string, string, string][] = [
+  ["winter-tires-near-me", "winter tires near me", "tires", "Winter Tires Near Me",
+    "New, used and budget winter tires at 375 Danforth Rd in Scarborough. Buy 4 and your wheel alignment is 50% off.",
+    "Winter tires at Boss Tire, 375 Danforth Rd, Scarborough. New, used and budget. 50% off alignment with 4 tires. Call (647) 871-2393."],
+  ["winter-tires", "winter tires", "tires", "Winter Tires",
+    "Get your winters before the first snow. New, used and budget sets fitted on Danforth Rd, with 50% off your alignment when you buy 4.",
+    "Winter tires in Scarborough: new, used and budget sets, mounted and balanced. 50% off alignment with 4 tires. Call (647) 871-2393."],
+  ["winter-tires-for-sale", "winter tires for sale", "tires", "Winter Tires for Sale",
+    "New, used and budget winter tires for sale at Boss Tire on Danforth Rd. Call with your size and we'll tell you what's in stock.",
+    "Winter tires for sale at Boss Tire, Scarborough. New, used and budget. 50% off alignment with 4 tires. Call (647) 871-2393 with your size."],
+  ["winter-tire-sale", "winter tire sale", "tires", "Winter Tire Sale",
+    "Buy 4 winter tires and your wheel alignment is 50% off. Buy 2 and it's 25% off. At Boss Tire, 375 Danforth Rd, Scarborough.",
+    "Winter tire sale at Boss Tire: 50% off wheel alignment with 4 tires, 25% off with 2. Scarborough. Call (647) 871-2393 for your price."],
+  ["snow-tires-near-me", "snow tires near me", "tires", "Snow Tires Near Me",
+    "Snow tires at 375 Danforth Rd in Scarborough, new, used and budget. Mounted, balanced and torqued to spec.",
+    "Snow tires at Boss Tire, 375 Danforth Rd, Scarborough. New, used and budget. 50% off alignment with 4 tires. Call (647) 871-2393."],
+  ["snow-tires-for-sale", "snow tires for sale", "tires", "Snow Tires for Sale",
+    "New, used and budget snow tires for sale on Danforth Rd in Scarborough. Call with your size for what's in stock and your price.",
+    "Snow tires for sale at Boss Tire, Scarborough. New, used and budget, mounted and balanced. Call (647) 871-2393 with your tire size."],
+  ["winter-tires-and-rims", "winter tires and rims", "packages", "Winter Tires and Rims",
+    "Winter tires mounted on their own steel or alloy rims, so every changeover is a quick wheel swap. Fitted at Boss Tire, Scarborough.",
+    "Winter tires and rims at Boss Tire, Scarborough. Steel or alloy rim packages, mounted and balanced. Call (647) 871-2393 with your size."],
+  ["winter-tire-packages", "winter tire packages", "packages", "Winter Tire Packages",
+    "Winter tires on their own steel or alloy rims, mounted and balanced at 375 Danforth Rd. Buy 4 tires and your alignment is 50% off.",
+    "Winter tire packages at Boss Tire, Scarborough. Steel or alloy rims, mounted and balanced. Call (647) 871-2393 for your price."],
+  ["used-winter-tires", "used winter tires", "used", "Used Winter Tires",
+    "Used winter tires checked for tread depth, age and sidewall damage before they're sold. At Boss Tire on Danforth Rd, Scarborough.",
+    "Used winter tires at Boss Tire, Scarborough. Every tire checked for tread, age and sidewall damage. Call (647) 871-2393 with your size."],
+  ["cheap-winter-tires", "cheap winter tires", "used", "Cheap Winter Tires",
+    "Budget and used winter tires that are checked before they're sold, at 375 Danforth Rd, Scarborough. Call with your size.",
+    "Cheap winter tires at Boss Tire, Scarborough: budget new and checked used sets. 50% off alignment with 4 tires. Call (647) 871-2393."],
+  ["winter-tires-toronto", "winter tires toronto", "tires", "Winter Tires Toronto",
+    "Winter tires in east Toronto at 375 Danforth Rd, Scarborough. New, used and budget, with 50% off your alignment when you buy 4.",
+    "Winter tires in Toronto at Boss Tire, 375 Danforth Rd, Scarborough. New, used and budget. Call (647) 871-2393 with your size."],
+  ["winter-tires-scarborough", "winter tires scarborough", "tires", "Winter Tires Scarborough",
+    "Boss Tire is at 375 Danforth Rd, Unit 3. New, used and budget winter tires, open Monday to Saturday, 9 to 7.",
+    "Winter tires in Scarborough at Boss Tire, 375 Danforth Rd, Unit 3. New, used and budget. Mon–Sat 9–7. Call (647) 871-2393."],
+  ["buy-winter-tires", "buy winter tires", "tires", "Buy Winter Tires",
+    "Call with your tire size, get your price, and buy your winters at Boss Tire on Danforth Rd. Buy 4 and save 50% on your alignment.",
+    "Buy winter tires at Boss Tire, Scarborough. New, used and budget. 50% off alignment with 4 tires. Call (647) 871-2393 for your price."],
+  ["winter-tire-shop-near-me", "winter tire shop near me", "tires", "Winter Tire Shop Near Me",
+    "Boss Tire is a tire shop at 375 Danforth Rd in Scarborough, open Monday to Saturday, 9 to 7. New, used and budget winter tires.",
+    "Winter tire shop at Boss Tire, 375 Danforth Rd, Scarborough. New, used and budget. Mon–Sat 9–7. Call (647) 871-2393."],
+];
+
+const WINTER_SALES_PAGES: LandingPage[] = WINTER_SALES_CAMPAIGN.map(([slug, keyword, kind, headline, sub, metaDescription]) => {
+  const k = WINTER_KIND[kind];
+  return {
+    slug,
+    keyword,
+    service: "winter-tires",
+    bookLabel: "Book my winter tires",
+    metaTitle: /scarborough|toronto/i.test(headline) ? headline : `${headline} in Scarborough`,
+    metaDescription,
+    hero: { eyebrow: k.eyebrow, headline, sub, image: k.image, imageAlt: k.imageAlt },
+    showAlignmentOffers: true,
+    steps: WINTER_TIRE_STEPS,
+    faqs: [...k.faqs],
+    cta: { heading: "Get your winters before the snow", sub: "Call with your tire size, get your price, and save 50% on your alignment when you buy 4." },
+    organicPage: k.organicPage,
+  };
+});
+
 export const LANDING_PAGES: LandingPage[] = [
   {
     slug: "winter-tire-changeover-scarborough",
@@ -384,6 +516,7 @@ export const LANDING_PAGES: LandingPage[] = [
   },
   ...WINTER_CAMPAIGN_PAGES,
   ...MUFFLER_CAMPAIGN_PAGES,
+  ...WINTER_SALES_PAGES,
 ];
 
 export const getLandingPage = (slug: string): LandingPage | undefined =>
