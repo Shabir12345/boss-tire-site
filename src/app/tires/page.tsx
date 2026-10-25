@@ -91,8 +91,11 @@ export default function TiresPage() {
             </div>
             <p className="mt-4 max-w-2xl text-sm text-[var(--color-body)]">
               The imports are honest, budget-friendly options, fitted properly and priced fairly. If you want
-              a specific size or brand, call and we will sort it out. Running winter
-              tires this season? See our{" "}
+              a specific size or brand, call and we will sort it out. Buying a winter set? See{" "}
+              <Link href="/tires/winter-tires" className="link-grow font-semibold text-[var(--color-red-deep)]">
+                winter tires
+              </Link>
+              . Already have winters? See our{" "}
               <Link href="/winter-tire-changeover" className="link-grow font-semibold text-[var(--color-red-deep)]">
                 winter changeover
               </Link>

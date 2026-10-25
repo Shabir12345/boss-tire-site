@@ -6,6 +6,7 @@ import { REVIEWS } from "@/lib/reviews";
 const NAV = [
   { href: "/services", label: "Services" },
   { href: "/tires", label: "Tires" },
+  { href: "/tires/winter-tires", label: "Winter Tires" },
   { href: "/muffler-exhaust", label: "Muffler & Exhaust" },
   { href: "/winter-tire-changeover", label: "Winter Changeover" },
   { href: "/blog", label: "Blog" },

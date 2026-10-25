@@ -50,6 +50,8 @@ describe("internal links", () => {
       "/services/wheel-balancing",
       "/services/rim-repair",
       "/services/caliper-painting",
+      "/tires/winter-tires",
+      "/services/tpms",
       "/blog",
     ];
     expect(newPages.filter((p) => !linked.has(p))).toEqual([]);
