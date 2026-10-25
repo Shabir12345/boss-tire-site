@@ -37,9 +37,9 @@ const FAQS = [
 ];
 
 export const metadata: Metadata = buildMetadata({
-  title: "Muffler & Exhaust Repair in Scarborough",
+  title: "Muffler Shop & Exhaust Repair in Scarborough",
   description:
-    "Muffler repair and replacement from $160 and exhaust repair from $150 at Boss Tire, Scarborough. Leaks, hangers, pipe work and welds, same day. Call (647) 871-2393.",
+    "Muffler shop on Danforth Rd, Scarborough: exhaust repair from $150, muffler repair and replacement from $160. Leaks, hangers, pipe work and welds, same day. Call (647) 871-2393.",
   path: "/muffler-exhaust",
   keywords: [
     "muffler repair scarborough",

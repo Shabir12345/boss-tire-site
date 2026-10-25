@@ -45,7 +45,7 @@ const FAQS = [
 ];
 
 export const metadata: Metadata = buildMetadata({
-  title: "Wheel Alignment in Scarborough",
+  title: "Wheel Alignment in Scarborough: $80, Same Day",
   description:
     "Wheel alignment at Boss Tire, Scarborough — $80, same day while you wait. Four-wheel, front-end and computerized alignments, camber/caster/toe set to spec. 50% off with 4 tires. Call (647) 871-2393.",
   path: "/services/wheel-alignment",

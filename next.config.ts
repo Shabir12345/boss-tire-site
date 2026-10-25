@@ -72,6 +72,13 @@ const nextConfig: NextConfig = {
       { source: "/product/boss-muffler-repair-replacement", destination: "/muffler-exhaust", permanent: true },
       { source: "/product/boss-exhaust-repair", destination: "/muffler-exhaust", permanent: true },
 
+      // ── Guessable /services/<slug> URLs for services whose page lives elsewhere ──
+      // /services/tire-changeover was reported as a 404 in Search Console (2026-10-25).
+      { source: "/services/tire-changeover", destination: "/winter-tire-changeover", permanent: true },
+      { source: "/services/tire-rebalancing", destination: "/services/wheel-balancing", permanent: true },
+      { source: "/services/muffler-repair", destination: "/muffler-exhaust", permanent: true },
+      { source: "/services/exhaust-repair", destination: "/muffler-exhaust/exhaust-leak-repair", permanent: true },
+
       // ── Legacy contact variants ──
       { source: "/order-tracking", destination: "/contact", permanent: true },
 

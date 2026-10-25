@@ -37,10 +37,14 @@ export const POSTS: Post[] = [
   },
   {
     slug: "when-to-put-winter-tires-on-toronto",
-    title: "When should you put winter tires on in Toronto?",
+    // Retitled 2026-10-25 from "When should you put winter tires on in Toronto?":
+    // Search Console showed position ~5 on 5,000+ impressions but a 0.65% CTR, so
+    // the title now leads with the exact query and answers it.
+    title: "When to put winter tires on in Toronto: the 7°C rule",
     description:
-      "The seven-degree rule, what the Ontario weather actually does, and why booking your changeover in October beats booking it after the first snow.",
+      "Put winter tires on once daytime highs stay below 7°C, which in Toronto is usually late October to mid-November. Here is why, and what waiting for the first snow costs you.",
     published: "2026-09-05",
+    updated: "2026-10-25",
     excerpt:
       "Seven degrees, not the first snowfall. Here is why, and what waiting until December actually costs you.",
     image: "/photos/winter-changeover.jpg",
