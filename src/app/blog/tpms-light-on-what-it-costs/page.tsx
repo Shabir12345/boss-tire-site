@@ -136,10 +136,10 @@ export default function TpmsLightOnPage() {
               {tpms.included[2].toLowerCase()}. The diagnosis comes first, so you find out whether you're
               looking at a dying sensor battery or a relearn that never ran after your last tire change before
               anything gets replaced. See{" "}
-              <Link href="/services#tpms" className="link-grow font-semibold text-[var(--color-red-deep)]">
-                the full service list
+              <Link href="/services/tpms" className="link-grow font-semibold text-[var(--color-red-deep)]">
+                our TPMS sensor service
               </Link>{" "}
-              for where TPMS sits alongside everything else we do.
+              for what the visit covers.
             </p>
             <p>
               If your light just came on, start by checking pressure at all four corners against the door-jamb

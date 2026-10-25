@@ -1,4 +1,4 @@
-import { BUSINESS } from "@/lib/business";
+import { BUSINESS, mapsLinkHref } from "@/lib/business";
 import { REVIEWS } from "@/lib/reviews";
 import { SERVICES, formatPrice, type Service } from "@/lib/services";
 import type { Post } from "@/lib/posts";
@@ -32,7 +32,14 @@ export function LocalBusinessJsonLd() {
       latitude: BUSINESS.geo.latitude,
       longitude: BUSINESS.geo.longitude,
     },
-    areaServed: BUSINESS.areaServed,
+    hasMap: mapsLinkHref,
+    // Named places, not one free-text string, so Google can tie the shop to
+    // the cities people search ("tire shop scarborough", "... toronto").
+    areaServed: [
+      { "@type": "City", name: "Scarborough", containedInPlace: { "@type": "City", name: "Toronto" } },
+      { "@type": "City", name: "Toronto" },
+      { "@type": "AdministrativeArea", name: "Greater Toronto Area" },
+    ],
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: [...BUSINESS.hours.days],

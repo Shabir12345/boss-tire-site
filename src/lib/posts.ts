@@ -54,6 +54,7 @@ export const POSTS: Post[] = [
     ],
     relatedServices: [
       "/winter-tire-changeover",
+      "/tires/winter-tires",
       "/tires/winter-rims-and-packages",
       "/services/tire-storage",
     ],
@@ -105,12 +106,12 @@ export const POSTS: Post[] = [
     image: "/photos/suv-wheel.jpg",
     imageAlt: "A wheel and tire being checked at Boss Tire",
     keywords: [
-      "tpms sensor replacement",
       "tpms light on",
+      "tire pressure light on",
       "tpms programming",
       "tire pressure sensor cost",
     ],
-    relatedServices: ["/services"],
+    relatedServices: ["/services/tpms"],
   },
   {
     slug: "is-a-muffler-delete-legal-in-ontario",

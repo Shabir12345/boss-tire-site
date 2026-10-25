@@ -91,7 +91,11 @@ export default function WinterChangeoverPage() {
               </p>
               <p className="mt-3 text-[var(--color-body)]">
                 Running winter tires this year? Ask us about fitment when you book and we will sort out the
-                right setup for your vehicle.
+                right setup for your vehicle. Still need a set?{" "}
+                <Link href="/tires/winter-tires" className="link-grow font-semibold text-[var(--color-red-deep)]">
+                  Shop winter tires
+                </Link>
+                .
               </p>
               <p className="mt-3 text-[var(--color-body)]">
                 Not ready to give up garage space for the off-season set?{" "}
