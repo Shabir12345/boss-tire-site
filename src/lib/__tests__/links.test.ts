@@ -52,6 +52,8 @@ describe("internal links", () => {
       "/services/caliper-painting",
       "/tires/winter-tires",
       "/services/tpms",
+      "/services/tire-rotation",
+      "/services/brakes",
       "/blog",
     ];
     expect(newPages.filter((p) => !linked.has(p))).toEqual([]);

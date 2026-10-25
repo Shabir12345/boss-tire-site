@@ -184,6 +184,13 @@ export default function WheelBalancingPage() {
                 under the adhesive on stick-on weights. A tire that was smooth in October can shake by February
                 without anything else changing.
               </p>
+              <p className="mt-4 text-[var(--color-body)]">
+                Front tires also wear faster than rears on most cars, balanced or not. A{" "}
+                <Link href="/services/tire-rotation" className="link-grow font-semibold text-[var(--color-red-deep)]">
+                  tire rotation
+                </Link>{" "}
+                evens that out so all four wear down together.
+              </p>
             </div>
 
             <div>

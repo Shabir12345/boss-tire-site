@@ -15,6 +15,8 @@ const DETAIL_PAGES: Record<string, string> = {
   "rim-repair": "/services/rim-repair",
   "caliper-painting": "/services/caliper-painting",
   tpms: "/services/tpms",
+  "tire-rotation": "/services/tire-rotation",
+  brakes: "/services/brakes",
   "muffler-repair": "/muffler-exhaust",
   "exhaust-repair": "/muffler-exhaust/exhaust-leak-repair",
 };
