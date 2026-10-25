@@ -132,6 +132,80 @@ export const POSTS: Post[] = [
     ],
     relatedServices: ["/muffler-exhaust", "/muffler-exhaust/exhaust-leak-repair"],
   },
+  {
+    slug: "are-winter-tires-mandatory-in-ontario",
+    title: "Are winter tires mandatory in Ontario?",
+    description:
+      "No, but every Ontario insurer has to offer a winter tire discount. What counts as a winter tire, the studded tire rules, and where in Canada they are the law.",
+    published: "2026-10-12",
+    excerpt:
+      "Not by law. But your insurer has to offer you a discount for running them, and the rules on studs, ticket risk and all-weather tires catch a lot of people out.",
+    image: "/photos/winter-tires.jpg",
+    imageAlt: "A winter tire on a snow-covered road",
+    keywords: [
+      "are winter tires mandatory in ontario",
+      "are winter tires mandatory in toronto",
+      "ontario winter tire law",
+      "winter tire insurance discount ontario",
+      "studded tires ontario",
+    ],
+    relatedServices: ["/winter-tire-changeover", "/tires"],
+  },
+  {
+    slug: "all-weather-vs-winter-tires",
+    title: "All-weather vs winter tires: which do you need in Toronto?",
+    description:
+      "All-weather tires stay on all year. Winter tires grip better on ice and in deep cold. How they differ, what each costs you over a year, and who should run which in Toronto.",
+    published: "2026-10-12",
+    excerpt:
+      "All-weather tires skip the twice-a-year swap. Winter tires stop shorter on ice. Which trade-off makes sense depends on where and how you drive.",
+    image: "/photos/new-used-tires.jpg",
+    imageAlt: "New and used tires on the racks at Boss Tire",
+    keywords: [
+      "all weather tires vs winter tires",
+      "are all weather tires good for winter in canada",
+      "all season vs all weather vs winter tires",
+      "do i need snow tires if i have all weather tires",
+    ],
+    relatedServices: ["/tires", "/winter-tire-changeover"],
+  },
+  {
+    slug: "do-you-need-4-winter-tires",
+    title: "Do you need 4 winter tires, or are 2 enough?",
+    description:
+      "Two winter tires on the front or back makes a car harder to control, not easier. Why it has to be four, what all-wheel drive does and doesn't fix, and cheaper ways to get a full set.",
+    published: "2026-10-12",
+    excerpt:
+      "Four. Two winter tires and two all-seasons gives you a car with two different levels of grip, and it shows up the first time you brake into an icy corner.",
+    image: "/photos/suv-wheel.jpg",
+    imageAlt: "An SUV wheel and tire in the Boss Tire bay",
+    keywords: [
+      "do i need 4 winter tires",
+      "can i put 2 winter tires on front only",
+      "2 winter tires and 2 all season",
+      "do i need winter tires if i have all wheel drive",
+    ],
+    relatedServices: ["/tires/used-tires", "/tires", "/winter-tire-changeover"],
+  },
+  {
+    slug: "how-long-do-winter-tires-last",
+    title: "How long do winter tires last?",
+    description:
+      "Winter tires wear out by tread depth and by age, not by a set number of seasons. When to replace them, how to read the date on the sidewall, and what shortens their life.",
+    published: "2026-10-12",
+    excerpt:
+      "Count tread and age, not winters. A winter tire at 4/32\" or ten years old is done, however many seasons it has seen.",
+    image: "/photos/winter-changeover.jpg",
+    imageAlt: "A winter tire being fitted during a seasonal changeover",
+    keywords: [
+      "how long do winter tires last",
+      "winter tire tread depth",
+      "when to replace winter tires",
+      "can i use 10 year old winter tires",
+      "used winter tires worth it",
+    ],
+    relatedServices: ["/tires/used-tires", "/services/tire-storage", "/tires"],
+  },
 ];
 
 export const getPost = (slug: string): Post | undefined =>

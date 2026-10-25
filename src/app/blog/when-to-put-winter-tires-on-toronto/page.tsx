@@ -97,9 +97,16 @@ export default function WhenToPutWinterTiresOnPage() {
             <p>
               None of this means winter tires are mandatory here the way they are in Quebec, where the law
               requires them on most vehicles by a set date each year. Ontario doesn't have that rule. What
-              Ontario does have is a lot of insurers who offer a discount to drivers running a proper winter set.
-              The details vary by provider, so it's worth a call to your own insurer to ask what they offer before
-              you assume there's nothing in it for you.
+              Ontario does have is a rule that every insurer must offer a discount to drivers running a proper
+              winter set. The details vary by provider, so it's worth a call to your own insurer to ask what they
+              offer. We cover the rules, the discount and studded tires in{" "}
+              <Link
+                href="/blog/are-winter-tires-mandatory-in-ontario"
+                className="link-grow font-semibold text-[var(--color-red-deep)]"
+              >
+                are winter tires mandatory in Ontario
+              </Link>
+              .
             </p>
             <p>
               That distinction matters because it changes how people think about timing. A Quebec driver has a

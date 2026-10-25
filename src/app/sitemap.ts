@@ -29,6 +29,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/blog/can-a-flat-tire-be-repaired", priority: 0.4 },
     { path: "/blog/tpms-light-on-what-it-costs", priority: 0.4 },
     { path: "/blog/is-a-muffler-delete-legal-in-ontario", priority: 0.4 },
+    { path: "/blog/are-winter-tires-mandatory-in-ontario", priority: 0.4 },
+    { path: "/blog/all-weather-vs-winter-tires", priority: 0.4 },
+    { path: "/blog/do-you-need-4-winter-tires", priority: 0.4 },
+    { path: "/blog/how-long-do-winter-tires-last", priority: 0.4 },
     { path: "/about", priority: 0.6 },
     { path: "/contact", priority: 0.7 },
   ];
