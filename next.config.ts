@@ -67,7 +67,7 @@ const nextConfig: NextConfig = {
       { source: "/product/tire-rebalancing", destination: "/services#tire-rebalancing", permanent: true },
       { source: "/product/tire-bolt-on", destination: "/services#tire-bolt-on", permanent: true },
       { source: "/product/oil-change", destination: "/services#oil-change", permanent: true },
-      { source: "/product/tpms-tire-pressure-monitor", destination: "/services#tpms", permanent: true },
+      { source: "/product/tpms-tire-pressure-monitor", destination: "/services/tpms", permanent: true },
       { source: "/product/caliper-painting-all-four", destination: "/services#caliper-painting", permanent: true },
       { source: "/product/boss-muffler-repair-replacement", destination: "/muffler-exhaust", permanent: true },
       { source: "/product/boss-exhaust-repair", destination: "/muffler-exhaust", permanent: true },
