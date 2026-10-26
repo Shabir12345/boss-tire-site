@@ -101,7 +101,7 @@ export const POSTS: Post[] = [
   },
   {
     slug: "tpms-light-on-what-it-costs",
-    title: "TPMS light on: what it means and what a sensor costs",
+    title: "Tire pressure (TPMS) light on: what it means and what it costs",
     description:
       "The tire pressure light can mean low pressure, a dead sensor battery, or a sensor that needs programming after a tire change. Here is how to tell which, and what it costs.",
     published: "2026-09-05",
@@ -119,7 +119,7 @@ export const POSTS: Post[] = [
   },
   {
     slug: "is-a-muffler-delete-legal-in-ontario",
-    title: "Is a muffler delete legal in Ontario?",
+    title: "Is a muffler delete legal in Ontario? Exhaust laws explained",
     description:
       "What Ontario's Highway Traffic Act says about muffler deletes, straight pipes and resonator deletes, what it means at a safety inspection, and the legal ways to get more sound.",
     published: "2026-09-27",
@@ -133,6 +133,8 @@ export const POSTS: Post[] = [
       "resonator delete",
       "straight pipe exhaust ontario",
       "muffler delete ticket ontario",
+      "ontario exhaust laws",
+      "is straight pipe legal in ontario",
     ],
     relatedServices: ["/muffler-exhaust", "/muffler-exhaust/exhaust-leak-repair"],
   },

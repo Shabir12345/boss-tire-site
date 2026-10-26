@@ -36,12 +36,13 @@ const FAQS = [
 ];
 
 export const metadata: Metadata = buildMetadata({
-  title: "Winter Rims & Tire Packages",
+  title: "Winter Tire & Rim Packages in Scarborough",
   description:
     "Winter tires mounted on their own rims, ready to swap in minutes each season. Steel and alloy rim packages fitted at Boss Tire, Danforth Rd, Scarborough. Call (647) 871-2393.",
   path: "/tires/winter-rims-and-packages",
   keywords: [
     "winter rims and tires",
+    "winter tires and rims packages",
     "tire and rim package",
     "winter tire packages toronto",
     "alloy rims toronto",
@@ -63,7 +64,7 @@ export default function WinterRimsAndPackagesPage() {
 
       <PageHeader
         eyebrow="Rims & Packages"
-        title="Winter tires on their own rims"
+        title="Winter tire and rim packages in Scarborough"
         sub="A second set of rims turns the seasonal changeover into a job that takes minutes instead of an afternoon — and it stops the bead damage that comes from mounting and unmounting the same tires twice a year."
         showCall
         image="/photos/rims-red.jpg"
