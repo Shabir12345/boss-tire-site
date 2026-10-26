@@ -50,7 +50,7 @@ export default function WinterChangeoverPage() {
       <FaqJsonLd faqs={FAQS} />
       <PageHeader
         eyebrow="Seasonal"
-        title="Winter tire changeover, done before the rush"
+        title="Winter tire change in Scarborough, done before the rush"
         sub="Book your seasonal swap early and you pick the time. Leave it until the first snowfall and the whole city is calling the same week."
         showCall
         price={{ label: "Changeover", amount: `From ${formatPrice(changeover ? requirePrice(changeover) : 160)}`, note: "depending on vehicle" }}

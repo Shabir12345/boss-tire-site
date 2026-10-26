@@ -38,7 +38,7 @@ export function HeroCinematic() {
       <div className="gutter-safe relative mx-auto w-full max-w-6xl pb-14 pt-28 sm:pb-20">
         <Eyebrow onDark>Scarborough · Tire &amp; Auto Shop</Eyebrow>
         <h1 className="mt-5 max-w-2xl text-4xl text-white sm:text-6xl">
-          Tires, alignment &amp; exhaust —{" "}
+          Scarborough tire shop: tires, alignment &amp; exhaust,{" "}
           <span className="text-[var(--color-red)]">same day.</span>
         </h1>
         <p className="mt-5 max-w-lg text-lg leading-relaxed text-[var(--color-on-dark)]">

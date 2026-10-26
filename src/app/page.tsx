@@ -13,12 +13,13 @@ import { FaqJsonLd } from "@/lib/jsonld";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Tire Shop, Wheel Alignment & Muffler Repair in Scarborough",
+  title: "Tire Shop in Scarborough: Tires, Rims & Alignment",
   description:
     "Boss Tire on Danforth Rd, Scarborough: new tires, seasonal changeovers, wheel alignment, muffler & exhaust and oil changes — published prices, same-day service. Call (647) 871-2393.",
   path: "/",
   keywords: [
     "tire shop scarborough",
+    "tires and rims scarborough",
     "wheel alignment scarborough",
     "muffler repair scarborough",
     "winter tire changeover scarborough",
