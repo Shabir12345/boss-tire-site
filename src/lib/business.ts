@@ -48,7 +48,13 @@ export const BUSINESS = {
     instagram: "https://www.instagram.com/bosstire0",
   },
   // Verified Google listing — reviews, hours, service area entity.
-  googleBusinessProfile: "https://www.google.com/maps/search/?api=1&query=Boss+Tire+375+Danforth+Rd+Scarborough",
+  // query_place_id pins the link to the verified listing itself, not a search.
+  googlePlaceId: "ChIJf3QGdO_P1IkRrhtJ4YJP-B4",
+  googleBusinessProfile:
+    "https://www.google.com/maps/search/?api=1&query=Boss+Tire+375+Danforth+Rd+Scarborough&query_place_id=ChIJf3QGdO_P1IkRrhtJ4YJP-B4",
+  // GBP "Ask for reviews" share link. boss-tire.ca/review redirects here (next.config.ts),
+  // so the counter card and texts to customers use a short link that never changes.
+  googleReviewLink: "https://g.page/r/Ca4bSeGCT_geEBM/review",
   // GA4 measurement ID carried over from the old site so history stays continuous.
   ga4: "G-39PPPBKJC6",
   // Google Ads conversion tracking. The old site had none. To turn it on, set

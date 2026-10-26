@@ -81,6 +81,9 @@ const nextConfig: NextConfig = {
 
       // ── Legacy contact variants ──
       { source: "/order-tracking", destination: "/contact", permanent: true },
+      // Short link for asking customers for a Google review (counter QR card, texts); same URL as BUSINESS.googleReviewLink.
+      // Temporary so the target can change if the GBP review link ever does.
+      { source: "/review", destination: "https://g.page/r/Ca4bSeGCT_geEBM/review", permanent: false },
 
       // ── Catch-all for the retired WooCommerce store ──
       // The 180 tire-SKU pages, tire category archives and pagination were

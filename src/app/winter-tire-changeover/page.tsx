@@ -21,6 +21,10 @@ const FAQS = [
     a: "Once daytime temperatures stay below about 7°C, usually late October to mid-November. Below that, all-season rubber hardens and loses grip well before the first snow. Booking in October means you pick the day instead of waiting in the November rush.",
   },
   {
+    q: "How much is a winter tire change?",
+    a: `A winter tire changeover at Boss Tire starts at ${changeover ? formatPrice(requirePrice(changeover)) : "a set price"} before tax${changeover?.priceNote ? `, ${changeover.priceNote}` : ""}. Call (647) 871-2393 with your vehicle and whether your winters are on their own rims, and we'll confirm the price.`,
+  },
+  {
     q: "How long does a changeover take?",
     a: "An on-rim swap is a same-day job while you wait. Tires that need mounting and balancing onto your rims take a little longer, and we quote a realistic time when you book.",
   },

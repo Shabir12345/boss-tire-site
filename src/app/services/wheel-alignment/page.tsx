@@ -39,6 +39,10 @@ const FAQS = [
     a: "Yes — four-wheel, front-end and computerized alignments. We set camber, caster and toe to your vehicle's spec so the car tracks straight and the tires wear evenly.",
   },
   {
+    q: "Is a tire alignment the same as a wheel alignment?",
+    a: "Yes. Tire alignment, car alignment and wheel alignment are all names for the same job: adjusting the angles of the wheels so they point straight and sit flat on the road. The tires are what show the result, which is why people often call it a tire alignment.",
+  },
+  {
     q: "Does an alignment make tires last longer?",
     a: "Yes. When the wheels are out of alignment the tires scrub as they roll, wearing the edges quickly. Setting them back to spec stops that uneven wear, so a good set of tires lasts much closer to its rated mileage.",
   },
