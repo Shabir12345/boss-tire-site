@@ -56,7 +56,7 @@ export default function MufflerExhaustPage() {
       <FaqJsonLd faqs={FAQS} />
       <PageHeader
         eyebrow="Muffler & Exhaust"
-        title="Quieter drive, same day"
+        title="Muffler & exhaust repair in Scarborough, same day"
         sub="Muffler and exhaust work done on Danforth Rd while you wait. We find the actual problem, show you, and quote before we touch it."
         showCall
         price={{ label: "Muffler", amount: `From ${formatPrice(muffler ? requirePrice(muffler) : 160)}`, note: "varies by vehicle" }}

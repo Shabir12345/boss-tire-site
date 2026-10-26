@@ -61,14 +61,14 @@ const nextConfig: NextConfig = {
       // instead of 301-ing into a 404. When per-service pages are built, repoint
       // these to /services/<slug>. Anchors match the service slugs in services.ts.
       { source: "/product/wheel-alignment", destination: "/services/wheel-alignment", permanent: true },
-      { source: "/product/rim-repair-bend-repairs", destination: "/services#rim-repair", permanent: true },
+      { source: "/product/rim-repair-bend-repairs", destination: "/services/rim-repair", permanent: true },
       { source: "/product/tire-changeover", destination: "/winter-tire-changeover", permanent: true },
-      { source: "/product/tire-storage", destination: "/services#tire-storage", permanent: true },
-      { source: "/product/tire-rebalancing", destination: "/services#tire-rebalancing", permanent: true },
+      { source: "/product/tire-storage", destination: "/services/tire-storage", permanent: true },
+      { source: "/product/tire-rebalancing", destination: "/services/wheel-balancing", permanent: true },
       { source: "/product/tire-bolt-on", destination: "/services#tire-bolt-on", permanent: true },
-      { source: "/product/oil-change", destination: "/services#oil-change", permanent: true },
+      { source: "/product/oil-change", destination: "/services/oil-change", permanent: true },
       { source: "/product/tpms-tire-pressure-monitor", destination: "/services/tpms", permanent: true },
-      { source: "/product/caliper-painting-all-four", destination: "/services#caliper-painting", permanent: true },
+      { source: "/product/caliper-painting-all-four", destination: "/services/caliper-painting", permanent: true },
       { source: "/product/boss-muffler-repair-replacement", destination: "/muffler-exhaust", permanent: true },
       { source: "/product/boss-exhaust-repair", destination: "/muffler-exhaust", permanent: true },
 

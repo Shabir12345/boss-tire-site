@@ -73,7 +73,7 @@ export default function WheelAlignmentPage() {
 
       <PageHeader
         eyebrow="Wheel Alignment"
-        title="Set straight, same day"
+        title="Wheel alignment in Scarborough, same day"
         sub="Four-wheel alignment on Danforth Rd while you wait — camber, caster and toe set to your vehicle's spec so it tracks true and your tires last."
         showCall
         price={{ label: "Wheel alignment", amount: formatPrice(requirePrice(alignment)), note: "before tax" }}
