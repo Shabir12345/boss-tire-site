@@ -572,6 +572,101 @@ const ALIGNMENT_CAMPAIGN_PAGES: LandingPage[] = ALIGNMENT_CAMPAIGN.map(([slug, k
   };
 });
 
+// ─── Exhaust Repair SKAG campaign ───────────────────────────────────────────
+// "Boss Tire | Exhaust Repair | Search SKAG | 2026": one page per ad group, H1 =
+// that ad group's first pinned headline, word for word. Muffler searches belong
+// to the Muffler Repair campaign. No prices. No catalytic, custom or performance
+// work until the shop confirms it (2026-10-28).
+
+const EXHAUST_STEPS: Step[] = [
+  { title: "Describe what you hear", body: "Rumble, rattle, hiss or exhaust smell. Call or walk in and tell us what's going on." },
+  { title: "We put it on the lift", body: "We find the leak or the failed pipe, hanger or weld and show you, instead of guessing from the sound." },
+  { title: "You approve the price", body: "Repair or replace, you get the number first. Nothing starts until you say yes." },
+  { title: "Checked before you go", body: "Repaired, checked for leaks, and back on the road." },
+];
+
+const EXHAUST_FAQS: Faq[] = [
+  {
+    q: "How much does exhaust repair cost?",
+    a: "It depends on your vehicle and what's failed. We put it on the lift, show you the problem, and give you the price before any work starts.",
+  },
+  {
+    q: "Is an exhaust leak dangerous?",
+    a: "It can be. A leak ahead of the muffler can let exhaust fumes into the cabin, so if you smell exhaust inside the car, have it checked soon.",
+  },
+  {
+    q: "Do I need a whole new exhaust system?",
+    a: "Often not. A single rusted pipe, a broken hanger or a failed weld can be repaired on its own. We tell you honestly which one you're looking at.",
+  },
+  {
+    q: "Can I walk in?",
+    a: "Yes, Monday to Saturday, 9 to 7. Call ahead with your make and model and we'll tell you when we can look at it.",
+  },
+];
+
+// [slug, keyword, H1 (= pinned headline), sub, meta description]
+const EXHAUST_CAMPAIGN: [string, string, string, string, string][] = [
+  ["exhaust-shop-near-me", "exhaust shop near me", "Exhaust Shop Near Me",
+    "Boss Tire is an exhaust and muffler shop at 375 Danforth Rd in Scarborough. We find what's failing, show you, and quote before we touch it.",
+    "Exhaust shop at Boss Tire, 375 Danforth Rd, Scarborough. We show you the problem and quote first. Mon–Sat 9–7. Call (647) 871-2393."],
+  ["exhaust-shop", "exhaust shop", "Exhaust Shop",
+    "Leaks, rusted pipes, broken hangers and weld repairs at our Danforth Rd shop. We show you the problem and quote before any work.",
+    "Exhaust repair at Boss Tire on Danforth Rd, Scarborough. Quote before any work starts. Call (647) 871-2393."],
+  ["exhaust-repair-near-me", "exhaust repair near me", "Exhaust Repair Near Me",
+    "Boss Tire is on Danforth Rd in Scarborough. Tell us what you're hearing, we find where it's failing, and you get the price before we start.",
+    "Exhaust repair at Boss Tire on Danforth Rd, Scarborough. We show you the problem and quote before any work. Call (647) 871-2393."],
+  ["exhaust-repair", "exhaust repair", "Exhaust Repair",
+    "Not every loud exhaust needs a new system. We put it on the lift, show you what's failing, and quote the repair before we start.",
+    "Exhaust repair at Boss Tire in Scarborough. We show you the problem on the lift and quote before any work. Call (647) 871-2393."],
+  ["car-exhaust-repair-near-me", "car exhaust repair near me", "Car Exhaust Repair Near Me",
+    "Rumble, rattle or exhaust smell from your car? We put it on the lift at our Danforth Rd shop and quote the fix before we start.",
+    "Car exhaust repair at Boss Tire, Scarborough. We find the problem, show you, and quote before any work. Call (647) 871-2393."],
+  ["exhaust-shop-toronto", "exhaust shop toronto", "Exhaust Shop Toronto",
+    "Boss Tire is an exhaust and muffler shop on Danforth Rd in Scarborough, in east Toronto. Walk in Monday to Saturday, 9 to 7.",
+    "Exhaust shop in east Toronto: Boss Tire, 375 Danforth Rd, Scarborough. Repair or replace, quoted first. Call (647) 871-2393."],
+  ["exhaust-repair-toronto", "exhaust repair toronto", "Exhaust Repair Toronto",
+    "Exhaust repair in east Toronto at 375 Danforth Rd, Scarborough. We find the real problem, show you, and quote before any work.",
+    "Exhaust repair in Toronto at Boss Tire, 375 Danforth Rd, Scarborough. Quote before any work starts. Call (647) 871-2393."],
+  ["exhaust-shop-scarborough", "exhaust shop scarborough", "Exhaust Shop Scarborough",
+    "Boss Tire is at 375 Danforth Rd, Unit 3, in Scarborough. Exhaust leaks, pipes, hangers and welds, quoted before any work starts.",
+    "Exhaust shop at Boss Tire, 375 Danforth Rd, Unit 3, Scarborough. Quoted before any work. Mon–Sat 9–7. Call (647) 871-2393."],
+  ["exhaust-repair-scarborough", "exhaust repair scarborough", "Exhaust Repair Scarborough",
+    "Exhaust repair on Danforth Rd in Scarborough. We put it on the lift, show you what's failing, and quote before we start.",
+    "Exhaust repair in Scarborough at Boss Tire, 375 Danforth Rd, Unit 3. Quote before any work. Call (647) 871-2393."],
+  ["exhaust-leak-repair", "exhaust leak repair", "Exhaust Leak Repair",
+    "Hissing, ticking or exhaust smell in the cabin? We find the leak, show you where it is, and quote the repair before we start.",
+    "Exhaust leak repair at Boss Tire, Scarborough. We find the leak, show you, and quote first. Mon–Sat 9–7. Call (647) 871-2393."],
+  ["exhaust-pipe-repair", "exhaust pipe repair", "Exhaust Pipe Repair",
+    "Rusted, cracked or hanging exhaust pipe? We repair the section that's failed instead of replacing the whole system when we can.",
+    "Exhaust pipe repair at Boss Tire, 375 Danforth Rd, Scarborough. Quote before any work starts. Call (647) 871-2393."],
+  ["exhaust-near-me", "exhaust near me", "Exhaust Near Me",
+    "Exhaust repair at 375 Danforth Rd in Scarborough, open Monday to Saturday, 9 to 7. Walk in or call ahead.",
+    "Exhaust repair at Boss Tire, 375 Danforth Rd, Scarborough. Mon–Sat 9–7. Call (647) 871-2393 for your quote."],
+  ["exhaust-welding-near-me", "exhaust welding near me", "Exhaust Welding Near Me",
+    "Cracked pipe or failed joint? We do exhaust weld repairs where a weld will fix it, and tell you honestly when it won't.",
+    "Exhaust weld repairs at Boss Tire, 375 Danforth Rd, Scarborough. Quote before any work. Call (647) 871-2393."],
+];
+
+const EXHAUST_CAMPAIGN_PAGES: LandingPage[] = EXHAUST_CAMPAIGN.map(([slug, keyword, headline, sub, metaDescription]) => ({
+  slug,
+  keyword,
+  service: "exhaust-repair",
+  bookLabel: "Book an exhaust check",
+  metaTitle: /scarborough|toronto/i.test(headline) ? headline : `${headline} in Scarborough`,
+  metaDescription,
+  hero: {
+    eyebrow: "Exhaust repair · Scarborough",
+    headline,
+    sub,
+    image: "/photos/muffler-bay.jpg",
+    imageAlt: "The Boss Tire muffler and exhaust bay with a car up on the lift",
+  },
+  steps: EXHAUST_STEPS,
+  faqs: EXHAUST_FAQS,
+  cta: { heading: "Something loud under the car?", sub: "Call the shop, describe what you hear, and we'll tell you what it likely is and what it costs." },
+  organicPage: "/muffler-exhaust",
+}));
+
 export const LANDING_PAGES: LandingPage[] = [
   {
     slug: "winter-tire-changeover-scarborough",
@@ -649,6 +744,7 @@ export const LANDING_PAGES: LandingPage[] = [
   ...MUFFLER_CAMPAIGN_PAGES,
   ...WINTER_SALES_PAGES,
   ...ALIGNMENT_CAMPAIGN_PAGES,
+  ...EXHAUST_CAMPAIGN_PAGES,
 ];
 
 export const getLandingPage = (slug: string): LandingPage | undefined =>
