@@ -451,6 +451,127 @@ const WINTER_SALES_PAGES: LandingPage[] = WINTER_SALES_CAMPAIGN.map(([slug, keyw
   };
 });
 
+// ─── Wheel Alignment SKAG campaign ──────────────────────────────────────────
+// "Boss Tire | Wheel Alignment | Search SKAG | 2026": one page per ad group, H1 =
+// that ad group's first pinned headline, word for word. The wheel-alignment-
+// scarborough entry below is the tenth ad group's page. No prices: the price is
+// given on the call. No equipment claims (computerized, 3D, printouts) until the
+// shop confirms them (Shabir 2026-10-28).
+
+const ALIGNMENT_STEPS: Step[] = [
+  { title: "Tell us what it's doing", body: "Pulling, crooked steering wheel, uneven wear. Call or walk in and describe it." },
+  { title: "We check it first", body: "We measure it and tell you honestly whether it actually needs doing." },
+  { title: "You approve the price", body: "You get the price for your vehicle before we start. Nothing happens until you say yes." },
+  { title: "Set to spec", body: "Camber, caster and toe set to your vehicle's spec so it tracks straight." },
+];
+
+const ALIGNMENT_FAQS: Faq[] = [
+  {
+    q: "How much is a wheel alignment?",
+    a: "It depends on your vehicle. Call with your year, make and model and we'll give you the price on the call. Buying tires with us? The alignment is 50% off with 4 tires and 25% off with 2.",
+  },
+  {
+    q: "How do I know if I need one?",
+    a: "The clearest signs are the steering wheel sitting off-centre, the car pulling to one side, or tires wearing faster on one edge. It's also worth checking after a hard pothole or curb hit. If you're not sure, we'll check it and tell you honestly.",
+  },
+  {
+    q: "Can I walk in?",
+    a: "Yes, Monday to Saturday, 9 to 7. Call ahead with your year, make and model and we'll tell you when we can fit you in.",
+  },
+  {
+    q: "Should I get an alignment with new tires?",
+    a: "It's the best time to. A car that's out of alignment wears new tires unevenly, and with 4 new tires from us the alignment is half off.",
+  },
+];
+
+// [slug, keyword, H1 (= pinned headline), sub, meta description]
+const ALIGNMENT_CAMPAIGN: [string, string, string, string, string][] = [
+  ["alignment-near-me", "alignment near me", "Alignment Near Me",
+    "Boss Tire does wheel alignments at 375 Danforth Rd in Scarborough. Tell us what the car is doing and ask for your price on the call.",
+    "Wheel alignment at Boss Tire, 375 Danforth Rd, Scarborough. Ask for your price on the call. Mon–Sat 9–7. Call (647) 871-2393."],
+  ["wheel-alignment-near-me", "wheel alignment near me", "Wheel Alignment Near Me",
+    "Car pulling or steering wheel off-centre? Boss Tire on Danforth Rd sets your alignment to spec. Walk in Monday to Saturday, 9 to 7.",
+    "Wheel alignment near you at Boss Tire, 375 Danforth Rd, Scarborough. Price given on the call. Call (647) 871-2393."],
+  ["car-alignment-near-me", "car alignment near me", "Car Alignment Near Me",
+    "Car alignment at 375 Danforth Rd in Scarborough. We check it first, tell you honestly if it needs doing, and give you the price before we start.",
+    "Car alignment at Boss Tire, Scarborough. Checked first, priced before any work. Mon–Sat 9–7. Call (647) 871-2393."],
+  ["wheel-alignment", "wheel alignment", "Wheel Alignment",
+    "Pulling, crooked steering wheel or uneven tire wear? Boss Tire on Danforth Rd sets camber, caster and toe to your vehicle's spec.",
+    "Wheel alignment at Boss Tire on Danforth Rd, Scarborough. Set to your vehicle's spec, priced on the call. Call (647) 871-2393."],
+  ["boss-tires-wheel-alignment", "boss tires wheel alignment", "Boss Tires Wheel Alignment",
+    "You found us: Boss Tire, 375 Danforth Rd, Unit 3, Scarborough. Call ahead or walk in for your alignment, Monday to Saturday, 9 to 7.",
+    "Boss Tires wheel alignment, 375 Danforth Rd, Unit 3, Scarborough. Mon–Sat 9–7. Call (647) 871-2393 for your price."],
+  ["alignment-shop-near-me", "alignment shop near me", "Alignment Shop Near Me",
+    "Boss Tire is a tire and alignment shop at 375 Danforth Rd in Scarborough. Rated 4.8 on Google. Ask for your price on the call.",
+    "Alignment shop at Boss Tire, 375 Danforth Rd, Scarborough. Rated 4.8 on Google. Mon–Sat 9–7. Call (647) 871-2393."],
+  ["alignment-scarborough", "alignment scarborough", "Alignment Scarborough",
+    "Wheel alignment on Danforth Rd in Scarborough. We check it, tell you honestly if it needs doing, and quote before we start.",
+    "Wheel alignment in Scarborough at Boss Tire, 375 Danforth Rd, Unit 3. Quoted before any work. Call (647) 871-2393."],
+  ["wheel-alignment-toronto", "wheel alignment toronto", "Wheel Alignment Toronto",
+    "Wheel alignment in east Toronto at 375 Danforth Rd, Scarborough. Walk in Monday to Saturday, 9 to 7, or call ahead.",
+    "Wheel alignment in Toronto at Boss Tire, 375 Danforth Rd, Scarborough. Price given on the call. Call (647) 871-2393."],
+  ["wheel-alignment-cost", "wheel alignment cost", "Wheel Alignment Cost",
+    "The cost depends on your vehicle. Call with your year, make and model and ask for your price. Buying 4 tires? Your alignment is half off.",
+    "Ask for your wheel alignment price at Boss Tire, Scarborough. Call with your year, make and model: (647) 871-2393."],
+  ["cheap-wheel-alignment-near-me", "cheap wheel alignment near me", "Cheap Wheel Alignment Near Me",
+    "Want a fair price on your alignment? Call with your year, make and model and ask. Buying tires? Save 50% on the alignment with 4.",
+    "Affordable wheel alignment at Boss Tire, Scarborough. Ask for your price on the call. Half off with 4 tires. (647) 871-2393."],
+  ["tire-alignment-near-me", "tire alignment near me", "Tire Alignment Near Me",
+    "Tires wearing on one edge or the car pulling? Boss Tire on Danforth Rd checks your alignment and sets it to spec.",
+    "Tire alignment near you at Boss Tire, 375 Danforth Rd, Scarborough. Mon–Sat 9–7. Call (647) 871-2393 for your price."],
+  ["wheel-alignment-service-near-me", "wheel alignment service near me", "Wheel Alignment Service Near Me",
+    "Wheel alignment service at 375 Danforth Rd in Scarborough. We check it first and give you the price before any work starts.",
+    "Wheel alignment service at Boss Tire, Scarborough. Checked first, quoted before any work. Call (647) 871-2393."],
+  ["car-alignment", "car alignment", "Car Alignment",
+    "Car pulling to one side or steering wheel off-centre? We check it at our Danforth Rd shop and quote before we start.",
+    "Car alignment at Boss Tire on Danforth Rd, Scarborough. Quote before any work starts. Mon–Sat 9–7. Call (647) 871-2393."],
+  ["tire-alignment", "tire alignment", "Tire Alignment",
+    "A proper alignment helps your tires wear evenly and last longer. Boss Tire on Danforth Rd sets it to your vehicle's spec.",
+    "Tire alignment at Boss Tire, 375 Danforth Rd, Scarborough. Set to spec, priced on the call. Call (647) 871-2393."],
+  ["front-end-alignment-near-me", "front end alignment near me", "Front End Alignment Near Me",
+    "Front end alignment at 375 Danforth Rd in Scarborough. Tell us what the steering is doing and ask for your price on the call.",
+    "Front end alignment at Boss Tire, Scarborough. Ask for your price on the call. Mon–Sat 9–7. Call (647) 871-2393."],
+  ["4-wheel-alignment-near-me", "4 wheel alignment near me", "4 Wheel Alignment Near Me",
+    "4 wheel alignment at Boss Tire on Danforth Rd, Scarborough. Camber, caster and toe set to your vehicle's spec on all four wheels.",
+    "4 wheel alignment at Boss Tire, 375 Danforth Rd, Scarborough. Priced on the call. Mon–Sat 9–7. Call (647) 871-2393."],
+  ["best-alignment-shop-near-me", "best alignment shop near me", "Best Alignment Shop Near Me? Read Our Reviews",
+    "Boss Tire is rated 4.8 on Google by our customers. Alignments at 375 Danforth Rd, Scarborough, priced before we start.",
+    "Alignment shop rated 4.8 on Google: Boss Tire, 375 Danforth Rd, Scarborough. Mon–Sat 9–7. Call (647) 871-2393."],
+  ["wheel-alignment-and-balancing-near-me", "wheel alignment and balancing near me", "Wheel Alignment and Balancing",
+    "Alignment and tire balancing under one roof on Danforth Rd in Scarborough. Ask for your price on the call.",
+    "Wheel alignment and balancing at Boss Tire, Scarborough. Priced on the call. Mon–Sat 9–7. Call (647) 871-2393."],
+  ["alignment-service-near-me", "alignment service near me", "Alignment Service Near Me",
+    "Alignment service at 375 Danforth Rd, Scarborough. Walk in Monday to Saturday, 9 to 7, or call ahead with your vehicle.",
+    "Alignment service at Boss Tire, 375 Danforth Rd, Scarborough. Quote before any work. Call (647) 871-2393."],
+  ["wheel-alignment-check-near-me", "wheel alignment check near me", "Wheel Alignment Check Near Me",
+    "Not sure your alignment is off? Bring it to Danforth Rd and we'll check it and tell you honestly whether it needs doing.",
+    "Wheel alignment check at Boss Tire, Scarborough. We tell you honestly if it needs doing. Call (647) 871-2393."],
+];
+
+const ALIGNMENT_CAMPAIGN_PAGES: LandingPage[] = ALIGNMENT_CAMPAIGN.map(([slug, keyword, headline, sub, metaDescription]) => {
+  const title = /scarborough|toronto/i.test(headline) ? headline : `${headline} in Scarborough`;
+  return {
+    slug,
+    keyword,
+    service: "wheel-alignment",
+    bookLabel: "Book my alignment",
+    metaTitle: title.length <= 48 ? title : headline.length <= 48 ? headline : "Alignment Shop in Scarborough",
+    metaDescription,
+    hero: {
+      eyebrow: "Wheel alignment · Scarborough",
+      headline,
+      sub,
+      image: "/photos/alignment.jpg",
+      imageAlt: "A wheel alignment being done on a car at Boss Tire in Scarborough",
+    },
+    showAlignmentOffers: true,
+    steps: ALIGNMENT_STEPS,
+    faqs: ALIGNMENT_FAQS,
+    cta: { heading: "Pulling to one side?", sub: "Call the shop, tell us what the car's doing, and ask for your price." },
+    organicPage: "/services/wheel-alignment",
+  };
+});
+
 export const LANDING_PAGES: LandingPage[] = [
   {
     slug: "winter-tire-changeover-scarborough",
@@ -499,30 +620,8 @@ export const LANDING_PAGES: LandingPage[] = [
       imageAlt: "A four-wheel alignment being performed on a car at Boss Tire",
     },
     showAlignmentOffers: true,
-    steps: [
-      { title: "Tell us what it's doing", body: "Pulling, crooked steering wheel, uneven wear. Call or walk in and describe it." },
-      { title: "We measure first", body: "The car goes on the alignment machine and we tell you honestly whether it needs doing." },
-      { title: "Set to spec", body: "Camber, caster and toe set to your manufacturer's spec on all four wheels." },
-      { title: "See what changed", body: "We show you the before-and-after numbers before you drive off." },
-    ],
-    faqs: [
-      {
-        q: "How much is a wheel alignment?",
-        a: "It depends on your vehicle. Call with your year, make and model and we'll give you the price on the call. Buying tires with us? The alignment is 50% off with 4 tires and 25% off with 2.",
-      },
-      {
-        q: "How long does it take?",
-        a: "Call ahead with your year, make and model and we'll tell you how long yours will take and when we can fit you in.",
-      },
-      {
-        q: "How do I know if I need one?",
-        a: "The clearest signs are the steering wheel sitting off-centre, the car pulling to one side, or tires wearing faster on one edge. It's also worth checking after a hard pothole or curb hit. If you're not sure, we'll measure it and tell you honestly.",
-      },
-      {
-        q: "Do you do four-wheel alignments?",
-        a: "Yes: four-wheel, front-end and computerized alignments, set to your vehicle's spec so it tracks straight and the tires wear evenly.",
-      },
-    ],
+    steps: ALIGNMENT_STEPS,
+    faqs: ALIGNMENT_FAQS,
     cta: { heading: "Pulling to one side?", sub: "Call the shop, tell us what the car's doing, and we'll get it tracking straight." },
     organicPage: "/services/wheel-alignment",
   },
@@ -549,6 +648,7 @@ export const LANDING_PAGES: LandingPage[] = [
   ...WINTER_CAMPAIGN_PAGES,
   ...MUFFLER_CAMPAIGN_PAGES,
   ...WINTER_SALES_PAGES,
+  ...ALIGNMENT_CAMPAIGN_PAGES,
 ];
 
 export const getLandingPage = (slug: string): LandingPage | undefined =>
