@@ -66,7 +66,7 @@ export default function TireStoragePage() {
 
       <PageHeader
         eyebrow="Tire Storage"
-        title="Your off-season set, kept properly"
+        title="Tire storage in Scarborough for your off-season set"
         sub="For half the year your off-season set is doing nothing but taking up floor space. Leave it with us instead and it comes back ready to go straight back on the car when the weather turns."
         showCall
         price={{ label: "Tire storage", amount: `From ${formatPrice(requirePrice(storage))}`, note: "before tax" }}

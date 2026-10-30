@@ -71,7 +71,7 @@ export default function OilChangePage() {
 
       <PageHeader
         eyebrow="Oil Change"
-        title="Oil and filter, done while you wait"
+        title="Oil change in Scarborough, done while you wait"
         sub="A quick, honest oil change on Danforth Rd — the right oil for your engine, a fresh filter, and a look under the hood before you go. No appointment needed."
         showCall
         price={{ label: "Oil change", amount: formatPrice(requirePrice(oil)), note: "before tax" }}

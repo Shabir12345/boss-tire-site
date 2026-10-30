@@ -68,7 +68,7 @@ export default function FlatTireRepairPage() {
 
       <PageHeader
         eyebrow="Flat Tire Repair"
-        title="Punctures fixed properly, same day"
+        title="Flat tire repair in Scarborough, same day"
         sub="A nail in the tread does not have to mean a new tire. We take the tire off the rim, find the leak, patch it from the inside and rebalance it before it goes back on."
         showCall
       />
