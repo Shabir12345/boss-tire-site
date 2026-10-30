@@ -15,6 +15,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/services/rim-repair", priority: 0.8 },
     { path: "/services/caliper-painting", priority: 0.8 },
     { path: "/services/tpms", priority: 0.8 },
+    { path: "/services/tire-rotation", priority: 0.8 },
+    { path: "/services/brakes", priority: 0.8 },
     { path: "/tires", priority: 0.9 },
     { path: "/tires/used-tires", priority: 0.8 },
     { path: "/tires/winter-tires", priority: 0.8 },

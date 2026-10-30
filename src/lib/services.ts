@@ -109,6 +109,20 @@ export const SERVICES: Service[] = [
     ],
   },
   {
+    slug: "tire-rotation",
+    name: "Tire Rotation",
+    shortName: "Rotation",
+    category: "Tires",
+    // No price: the owner confirmed the shop rotates tires (2026-10-25) but not
+    // what it charges. Renders as "Call for a quote" until it is. Do not guess one.
+    blurb: "Tires moved around the car so they wear evenly and last longer.",
+    included: [
+      "Tires moved to new positions to even out wear",
+      "Tread checked on all four",
+      "Pressures set to the door-jamb spec",
+    ],
+  },
+  {
     slug: "wheel-alignment",
     name: "Wheel Alignment",
     shortName: "Alignment",
@@ -162,6 +176,21 @@ export const SERVICES: Service[] = [
       "TPMS sensor diagnosis",
       "Sensor service or replacement",
       "System reset and verification",
+    ],
+  },
+  {
+    slug: "brakes",
+    name: "Brake Repair",
+    shortName: "Brakes",
+    category: "Mechanical",
+    // No price: the owner confirmed the shop does brakes (2026-10-25) but not
+    // what it charges, and brake jobs vary by car. Renders as "Call for a
+    // quote" until it is. Do not guess one.
+    blurb: "Squealing, grinding or a soft pedal, checked and fixed.",
+    included: [
+      "Brake inspection",
+      "Pads and rotors replaced when they need it",
+      "Told what it costs before any work starts",
     ],
   },
   {

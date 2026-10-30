@@ -42,6 +42,8 @@ export const REVIEW_KEYWORDS: Record<string, RegExp> = {
   "wheel-alignment": /align/i,
   "rim-repair": /\brims?\b|curb|bent|wheel repair/i,
   "oil-change": /oil/i,
+  "tire-rotation": /rotat/i,
+  brakes: /brake/i,
   tpms: /tpms|sensor|pressure light/i,
   "caliper-painting": /caliper/i,
   "muffler-repair": /muffler|exhaust|loud/i,

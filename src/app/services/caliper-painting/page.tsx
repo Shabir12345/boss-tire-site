@@ -176,6 +176,13 @@ export default function CaliperPaintingPage() {
                 Paint doesn't add anything. The caliper stays the same size and shape it was engineered to be, and
                 there's no clip to fail. That's why it's the way the job gets done properly.
               </p>
+              <p className="mt-4 text-[var(--color-body)]">
+                Paint is cosmetic. If the brakes squeal, grind or feel soft, that's a{" "}
+                <Link href="/services/brakes" className="link-grow font-semibold text-[var(--color-red-deep)]">
+                  brake repair
+                </Link>{" "}
+                job first, and it's worth doing before the calipers get their new colour.
+              </p>
             </div>
 
             <div>
