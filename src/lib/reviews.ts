@@ -6,7 +6,7 @@ import { BUSINESS } from "./business";
 // Google profile (via Featurable gbpLocationSummary) 2026-09-29: 4.8 from 334.
 export const REVIEWS = {
   rating: 4.8,
-  count: 334,
+  count: 365,
   source: "Google",
 } as const;
 
