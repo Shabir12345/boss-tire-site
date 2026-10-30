@@ -41,7 +41,7 @@ export default function TiresPage() {
       <BreadcrumbJsonLd items={[{ name: "Home", path: "/" }, { name: "Tires", path: "/tires" }]} />
       <PageHeader
         eyebrow="Tires"
-        title="New & used tires, fitted the same day"
+        title="New & used tires in Scarborough, fitted the same day"
         sub="Tell us your size and we will get you rolling: mounted, balanced and torqued while you wait, at a fair price you hear up front."
         showCall
         image="/photos/tires-shop.jpg"

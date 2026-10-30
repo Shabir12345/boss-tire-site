@@ -81,7 +81,7 @@ export default function WheelBalancingPage() {
 
       <PageHeader
         eyebrow="Wheel Balancing"
-        title="Wheel balancing: stop the highway shake"
+        title="Wheel balancing in Scarborough: stop the highway shake"
         sub="If the steering wheel starts shaking once you get up to speed on the 401 or the DVP, an out-of-balance tire is the most common cause, and the cheapest one to fix."
         showCall
         price={{ label: "Wheel balancing", amount: perTire, note: `${balancing.priceNote}, before tax` }}

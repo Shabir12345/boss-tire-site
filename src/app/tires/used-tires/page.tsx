@@ -82,7 +82,7 @@ export default function UsedTiresPage() {
 
       <PageHeader
         eyebrow="Used Tires"
-        title="Good tires, less money"
+        title="Used tires in Scarborough: good tires, less money"
         sub="A safe used set is a better buy than a cheap new one. We check tread depth, age and sidewall condition on every tire before it goes anywhere near your car."
         showCall
         image="/photos/new-used-tires.jpg"

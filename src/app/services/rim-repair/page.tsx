@@ -83,7 +83,7 @@ export default function RimRepairPage() {
 
       <PageHeader
         eyebrow="Rim Repair"
-        title="Rim repair: curb rash, cracks and bends"
+        title="Rim repair in Scarborough: curb rash, cracks and bends"
         sub="Toronto potholes bend rims and Toronto parking scrapes them. Most of that damage can be fixed for a lot less than a new wheel, and we'll tell you honestly when it can't."
         showCall
         price={{ label: "Rim repair", amount: formatPrice(requirePrice(rim)), note: "before tax" }}
