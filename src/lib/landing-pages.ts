@@ -667,6 +667,100 @@ const EXHAUST_CAMPAIGN_PAGES: LandingPage[] = EXHAUST_CAMPAIGN.map(([slug, keywo
   organicPage: "/muffler-exhaust",
 }));
 
+// ─── Brake Repair SKAG campaign ─────────────────────────────────────────────
+// "Boss Tire | Brake Repair | Search SKAG | 2026": one page per ad group, H1 =
+// that ad group's first pinned headline, word for word. No prices (brake jobs
+// vary by car and the shop hasn't set one). Nothing beyond what services.ts
+// and /services/brakes already say: inspection, pads and rotors when they need
+// it, price before any work. No calipers, lines, ABS or turnaround promises
+// until the shop confirms them (2026-11-03).
+
+const BRAKE_STEPS: Step[] = [
+  { title: "Tell us what you hear or feel", body: "Squeal, grind, shake or a soft pedal. Call or walk in and tell us what the brakes are doing." },
+  { title: "We check them on the lift", body: "Wheels off, pads and rotors measured, and we show you what we find instead of guessing from the noise." },
+  { title: "You approve the price", body: "Pads only, or pads and rotors: you get the number first. Nothing starts until you say yes." },
+  { title: "Checked before you go", body: "Brakes put back together, checked, and you're back on the road." },
+];
+
+const BRAKE_FAQS: Faq[] = [
+  {
+    q: "How much does a brake job cost?",
+    a: "It depends on your car and on what it needs: pads on one axle, pads and rotors, or more. So we look first and tell you the price before any work starts.",
+  },
+  {
+    q: "Do I need new rotors too?",
+    a: "Not always. If the rotors are still in good shape, we tell you and replace the pads only. If they're worn or uneven, we show you why before quoting them.",
+  },
+  {
+    q: "Is it safe to drive with grinding brakes?",
+    a: "Get it seen as soon as you can. Grinding usually means the pad is worn through and metal is cutting into the rotor. The car still stops, but less well, and the repair grows with every drive.",
+  },
+  {
+    q: "Can I walk in?",
+    a: "Yes, Monday to Saturday, 9 to 7. Call ahead with your make and model and we'll tell you when we can look at it.",
+  },
+];
+
+// [slug, keyword, H1 (= pinned headline), sub, meta description]
+const BRAKE_CAMPAIGN: [string, string, string, string, string][] = [
+  ["brake-repair-near-me", "brake repair near me", "Brake Repair Near Me",
+    "Boss Tire is at 375 Danforth Rd in Scarborough. We check your brakes on the lift, show you what we find, and quote before any work.",
+    "Brake repair at Boss Tire, 375 Danforth Rd, Scarborough. We check, show you, and quote first. Mon–Sat 9–7. Call (647) 871-2393."],
+  ["brakes-near-me", "brakes near me", "Brakes Near Me",
+    "Squealing, grinding or a soft pedal? Bring it to our Danforth Rd shop in Scarborough and we'll tell you what your brakes need.",
+    "Brakes checked and fixed at Boss Tire on Danforth Rd, Scarborough. Quote before any work starts. Call (647) 871-2393."],
+  ["brake-shop-near-me", "brake shop near me", "Brake Shop Near Me",
+    "A local Scarborough shop for brakes, tires, alignment and exhaust. We look first and give you the price before we start.",
+    "Brake shop at Boss Tire, 375 Danforth Rd, Scarborough. Inspection, pads and rotors, quoted first. Call (647) 871-2393."],
+  ["brake-repair", "brake repair", "Brake Repair",
+    "Not every noise means new rotors. We put it on the lift, measure the pads and rotors, and quote only what your brakes need.",
+    "Brake repair at Boss Tire in Scarborough. Pads and rotors checked on the lift and quoted before any work. Call (647) 871-2393."],
+  ["brake-pad-replacement", "brake pad replacement", "Brake Pad Replacement",
+    "Pads getting low or squealing? We check how much pad is left, look at the rotors, and quote the replacement before we start.",
+    "Brake pad replacement at Boss Tire, 375 Danforth Rd, Scarborough. Quote before any work starts. Call (647) 871-2393."],
+  ["brake-pad-replacement-near-me", "brake pad replacement near me", "Brake Pad Replacement Near Me",
+    "Brake pads replaced at 375 Danforth Rd in Scarborough. We show you the worn pads and give you the price before any work.",
+    "Brake pad replacement near you: Boss Tire, Danforth Rd, Scarborough. Mon–Sat 9–7. Call (647) 871-2393 for your quote."],
+  ["brake-pads-and-rotors", "brake pads and rotors", "Brake Pads and Rotors",
+    "Pads and rotors replaced when they need it, and pads only when the rotors are still good. You see the parts and the price first.",
+    "Brake pads and rotors replaced at Boss Tire, Scarborough. We tell you honestly what needs doing. Call (647) 871-2393."],
+  ["brake-replacement-cost", "brake replacement cost", "Brake Replacement Cost",
+    "Brake jobs vary by car, so we check yours and give you the price on the call or at the shop before any work starts.",
+    "Brake replacement cost at Boss Tire, Scarborough: we check your car and give you the price before we start. Call (647) 871-2393."],
+  ["brake-repair-scarborough", "brake repair scarborough", "Brake Repair Scarborough",
+    "Brake repair on Danforth Rd in Scarborough. We check the pads and rotors, show you what we find, and quote before we start.",
+    "Brake repair in Scarborough at Boss Tire, 375 Danforth Rd, Unit 3. Quote before any work. Call (647) 871-2393."],
+  ["brake-repair-toronto", "brake repair toronto", "Brake Repair Toronto",
+    "Boss Tire is on Danforth Rd in Scarborough, in east Toronto. Brakes checked, explained and quoted before any work starts.",
+    "Brake repair in east Toronto: Boss Tire, 375 Danforth Rd, Scarborough. Quote before any work. Call (647) 871-2393."],
+  ["brake-inspection-near-me", "brake inspection near me", "Brake Inspection Near Me",
+    "Not sure your brakes need work? Bring it to Danforth Rd and we'll check them and tell you honestly whether they need doing.",
+    "Brake inspection at Boss Tire, Scarborough. We tell you honestly what your brakes need. Mon–Sat 9–7. Call (647) 871-2393."],
+];
+
+const BRAKE_CAMPAIGN_PAGES: LandingPage[] = BRAKE_CAMPAIGN.map(([slug, keyword, headline, sub, metaDescription]) => {
+  const title = /scarborough|toronto/i.test(headline) ? headline : `${headline} in Scarborough`;
+  return {
+    slug,
+    keyword,
+    service: "brakes",
+    bookLabel: "Book a brake check",
+    metaTitle: title.length <= 48 ? title : headline,
+    metaDescription,
+    hero: {
+      eyebrow: "Brake repair · Scarborough",
+      headline,
+      sub,
+      image: "/photos/muffler-bay.jpg",
+      imageAlt: "A car up on the lift in the Boss Tire service bay on Danforth Rd",
+    },
+    steps: BRAKE_STEPS,
+    faqs: BRAKE_FAQS,
+    cta: { heading: "Brakes making noise?", sub: "Call the shop, tell us what they're doing, and we'll tell you what it likely is and what it costs." },
+    organicPage: "/services/brakes",
+  };
+});
+
 export const LANDING_PAGES: LandingPage[] = [
   {
     slug: "winter-tire-changeover-scarborough",
@@ -745,6 +839,7 @@ export const LANDING_PAGES: LandingPage[] = [
   ...WINTER_SALES_PAGES,
   ...ALIGNMENT_CAMPAIGN_PAGES,
   ...EXHAUST_CAMPAIGN_PAGES,
+  ...BRAKE_CAMPAIGN_PAGES,
 ];
 
 export const getLandingPage = (slug: string): LandingPage | undefined =>
