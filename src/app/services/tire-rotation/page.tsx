@@ -37,7 +37,7 @@ const FAQS = [
   },
   {
     q: "Is a rotation the same as an alignment or balancing?",
-    a: `No. A rotation moves the tires to different corners. Balancing (${formatPrice(requirePrice(balancing))} per tire) cancels out heavy spots that cause a shake at speed, and an alignment (${formatPrice(requirePrice(alignment))}) sets the angles of the wheels so the car tracks straight. Uneven wear on one edge of a tire usually points to alignment, and a rotation won't fix that.`,
+    a: `No. A rotation moves the tires to different corners. Balancing (${formatPrice(requirePrice(balancing))} per tire) cancels out heavy spots that cause a shake at speed, and an alignment (from ${formatPrice(requirePrice(alignment))}) sets the angles of the wheels so the car tracks straight. Uneven wear on one edge of a tire usually points to alignment, and a rotation won't fix that.`,
   },
 ];
 

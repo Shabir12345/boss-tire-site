@@ -49,7 +49,7 @@ const FAQS = [
   },
   {
     q: "Do I need an alignment after a pothole bent my rim?",
-    a: `Often, yes. An impact hard enough to bend a rim can knock the alignment out too. If the car pulls or the steering wheel sits off-centre after the repair, a wheel alignment (${formatPrice(requirePrice(alignment))}) is the next step.`,
+    a: `Often, yes. An impact hard enough to bend a rim can knock the alignment out too. If the car pulls or the steering wheel sits off-centre after the repair, a wheel alignment (from ${formatPrice(requirePrice(alignment))}) is the next step.`,
   },
 ];
 

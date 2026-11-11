@@ -17,7 +17,7 @@ export const HOME_FAQS = [
   },
   {
     q: "Do you do wheel alignment?",
-    a: "Yes. A full wheel alignment is $80, and it's discounted when you buy your tires here — 50% off with four tires, 25% off with two. A proper alignment stops uneven wear, so the tires you just paid for actually last.",
+    a: "Yes. A full wheel alignment starts at $80 (the price may vary depending on your car's make and model), and it's discounted when you buy your tires here — 50% off with four tires, 25% off with two. A proper alignment stops uneven wear, so the tires you just paid for actually last.",
   },
   {
     q: "Can you repair my muffler or exhaust?",
