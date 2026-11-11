@@ -8,7 +8,7 @@ import { FaqSection } from "@/components/sections/FaqSection";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildMetadata } from "@/lib/seo";
 import { BreadcrumbJsonLd, FaqJsonLd, ServiceJsonLd } from "@/lib/jsonld";
-import { getService, formatPrice, requirePrice, ALIGNMENT_OFFERS } from "@/lib/services";
+import { getService, formatPrice, requirePrice, ALIGNMENT_OFFERS, ALIGNMENT_PRICE_NOTE } from "@/lib/services";
 
 const alignment = getService("wheel-alignment")!;
 
@@ -24,7 +24,7 @@ const SIGNS = [
 const FAQS = [
   {
     q: "How much is a wheel alignment in Scarborough?",
-    a: `A wheel alignment at Boss Tire is ${formatPrice(requirePrice(alignment))}, before tax. It's also 50% off when you buy 4 tires with us, or 25% off with 2 tires — so with four new tires the alignment is $40. Call (647) 871-2393 with your vehicle and we'll confirm the exact number.`,
+    a: `A wheel alignment at Boss Tire starts at ${formatPrice(requirePrice(alignment))}, before tax. The price may vary depending on your vehicle's make and model. It's also 50% off when you buy 4 tires with us, or 25% off with 2 tires, so with four new tires an alignment starts at $40. Call (647) 871-2393 with your year, make and model and we'll confirm the exact number.`,
   },
   {
     q: "How do I know if I need an alignment?",
@@ -49,9 +49,9 @@ const FAQS = [
 ];
 
 export const metadata: Metadata = buildMetadata({
-  title: "Wheel Alignment in Scarborough: $80, Same Day",
+  title: "Wheel Alignment in Scarborough: From $80, Same Day",
   description:
-    "Wheel alignment at Boss Tire, Scarborough — $80, same day while you wait. Four-wheel, front-end and computerized alignments, camber/caster/toe set to spec. 50% off with 4 tires. Call (647) 871-2393.",
+    "Wheel alignment at Boss Tire, Scarborough — from $80 (varies by make and model), same day while you wait. Four-wheel, front-end and computerized alignments, camber/caster/toe set to spec. 50% off with 4 tires. Call (647) 871-2393.",
   path: "/services/wheel-alignment",
   keywords: [
     "wheel alignment scarborough",
@@ -80,7 +80,7 @@ export default function WheelAlignmentPage() {
         title="Wheel alignment in Scarborough, same day"
         sub="Four-wheel alignment on Danforth Rd while you wait — camber, caster and toe set to your vehicle's spec so it tracks true and your tires last."
         showCall
-        price={{ label: "Wheel alignment", amount: formatPrice(requirePrice(alignment)), note: "before tax" }}
+        price={{ label: "Wheel alignment", amount: `From ${formatPrice(requirePrice(alignment))}`, note: "varies by make and model" }}
         image="/photos/alignment.jpg"
         imageAlt="A four-wheel alignment being performed on a car at Boss Tire"
       />
@@ -123,10 +123,13 @@ export default function WheelAlignmentPage() {
                   Wheel Alignment
                 </span>
                 <span className="tabular font-display text-4xl font-extrabold text-[var(--color-heading)]">
+                  <span className="mr-1.5 text-base font-bold uppercase tracking-wide text-[var(--color-muted)]">From</span>
                   {formatPrice(requirePrice(alignment))}
                 </span>
               </div>
-              <p className="mt-4 text-sm text-[var(--color-muted)]">Price before tax. Same-day, while you wait.</p>
+              <p className="mt-4 text-sm text-[var(--color-muted)]">
+                Starting price, before tax. {ALIGNMENT_PRICE_NOTE} Same-day, while you wait.
+              </p>
 
               <div className="mt-6">
                 <span className="font-display text-sm font-bold uppercase tracking-[0.14em] text-[var(--color-red-deep)]">

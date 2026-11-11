@@ -35,7 +35,7 @@ const FAQS = [
   },
   {
     q: "What's the difference between balancing and alignment?",
-    a: `Balancing fixes vibration: it evens out the weight around each wheel so it spins smoothly. Alignment fixes pulling and uneven wear: it sets the angles the wheels sit at. A shake at speed is a balancing job (${perTire} ${balancing.priceNote}); a car that drifts to one side needs an alignment (${formatPrice(requirePrice(alignment))}).`,
+    a: `Balancing fixes vibration: it evens out the weight around each wheel so it spins smoothly. Alignment fixes pulling and uneven wear: it sets the angles the wheels sit at. A shake at speed is a balancing job (${perTire} ${balancing.priceNote}); a car that drifts to one side needs an alignment (from ${formatPrice(requirePrice(alignment))}).`,
   },
   {
     q: "How often should tires be balanced?",
@@ -202,7 +202,7 @@ export default function WheelBalancingPage() {
                 <Link href="/services/wheel-alignment" className="link-grow font-semibold text-[var(--color-red-deep)]">
                   Wheel alignment
                 </Link>{" "}
-                is {formatPrice(requirePrice(alignment))}. We wrote up{" "}
+                starts at {formatPrice(requirePrice(alignment))}, depending on make and model. We wrote up{" "}
                 <Link
                   href="/blog/wheel-balancing-vs-wheel-alignment"
                   className="link-grow font-semibold text-[var(--color-red-deep)]"

@@ -100,8 +100,8 @@ export default function WheelBalancingVsAlignmentPage() {
             <p>
               Alignment is the job when the symptom is directional rather than a shake: the car drifting to one
               side on a flat road, the steering wheel off-centre when you're going straight, or a tire wearing
-              down faster on its inside or outside edge than the rest of the tread. At Boss Tire an alignment is{" "}
-              {formatPrice(requirePrice(alignment))}, before tax. We've laid out the full case for it and what's
+              down faster on its inside or outside edge than the rest of the tread. At Boss Tire an alignment starts at{" "}
+              {formatPrice(requirePrice(alignment))} before tax, and the price may vary with your vehicle's make and model. We've laid out the full case for it and what's
               covered on the{" "}
               <Link href="/services/wheel-alignment" className="link-grow font-semibold text-[var(--color-red-deep)]">
                 wheel alignment

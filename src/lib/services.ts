@@ -7,7 +7,8 @@
 // Not carried over without Fawad's confirmation (content manifest §2, §7):
 //   - "per wheel" on tire storage (the old site never said it — shown as a flat
 //     price here until confirmed)
-//   - the $79.99 vs $80 alignment split (using $80, the product price)
+//   - the $79.99 vs $80 alignment split (using $80, the product price). Since
+//     2026-11-11 the owner shows it as "starting at $80": it varies by make and model.
 // Two prices "can vary" and say so. Nothing here invents a claim the shop
 // hasn't already published.
 
@@ -25,6 +26,7 @@ export interface Service {
   category: ServiceCategory;
   price?: number; // CAD, ex. tax. Absent = no confirmed price; the page says "call for a quote".
   priceNote?: string; // e.g. "per tire", "price can vary by vehicle"
+  startingAt?: boolean; // price is a minimum ("starting at"); schema publishes it as minPrice
   blurb: string; // one-line card blurb
   included: string[]; // what the job covers (from WooCommerce short descriptions — new material)
   featured?: boolean; // surfaced on the homepage
@@ -128,6 +130,8 @@ export const SERVICES: Service[] = [
     shortName: "Alignment",
     category: "Wheels & Alignment",
     price: 80,
+    startingAt: true,
+    priceNote: "and up, depending on make and model",
     blurb: "Four wheels set straight — the car tracks true and tires last.",
     included: [
       "Four-wheel, front-end, or computerized alignment",
@@ -285,6 +289,9 @@ export const servicesByCategory = (): { category: ServiceCategory; items: Servic
 // "$60" / "$60.99" — no trailing ".00", cents shown only when non-zero.
 export const formatPrice = (n: number): string =>
   Number.isInteger(n) ? `$${n}` : `$${n.toFixed(2)}`;
+
+// The sentence that goes beside the "starting at" alignment price.
+export const ALIGNMENT_PRICE_NOTE = "Price may vary depending on your vehicle's make and model.";
 
 // Pages built around one always-priced service call this instead of asserting
 // with `!`. These pages are statically generated, so an unpriced service fails

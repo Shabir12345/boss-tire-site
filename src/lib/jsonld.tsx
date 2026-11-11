@@ -6,6 +6,20 @@ import type { Post } from "@/lib/posts";
 // The old site had no LocalBusiness type at all — only Organization + Place with
 // PostalAddress fields shifted one position, so no hours, geo, price range or
 // rating. This is the corrected AutoRepair / TireShop entity.
+
+// A fixed price publishes as `price`; a "starting at" price publishes as a
+// PriceSpecification with minPrice, so search engines don't read it as exact.
+function priceFields(s: Service) {
+  if (s.price === undefined) return {};
+  if (s.startingAt) {
+    return {
+      priceCurrency: "CAD",
+      priceSpecification: { "@type": "PriceSpecification", minPrice: s.price, priceCurrency: "CAD" },
+    };
+  }
+  return { price: s.price, priceCurrency: "CAD" };
+}
+
 export function LocalBusinessJsonLd() {
   const data = {
     "@context": "https://schema.org",
@@ -58,8 +72,7 @@ export function LocalBusinessJsonLd() {
       itemOffered: { "@type": "Service", name: s.name },
       ...(s.price !== undefined
         ? {
-            price: s.price,
-            priceCurrency: "CAD",
+            ...priceFields(s),
             description: s.priceNote ? `${formatPrice(s.price)} ${s.priceNote}` : formatPrice(s.price),
           }
         : {}),
@@ -107,7 +120,7 @@ export function ServiceJsonLd({ service }: { service: Service }) {
     serviceType: service.name,
   };
   if (service.price !== undefined) {
-    data.offers = { "@type": "Offer", price: service.price, priceCurrency: "CAD" };
+    data.offers = { "@type": "Offer", ...priceFields(service) };
   }
   return (
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
