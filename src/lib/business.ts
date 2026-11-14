@@ -35,13 +35,23 @@ export const BUSINESS = {
   },
   // Real storefront geo (from the Google Business Profile) for LocalBusiness schema.
   geo: { latitude: 43.7048237, longitude: -79.2685917 },
+  // Hours changed 2026-11-14: open seven days (was Mon–Sat 9–7, Sunday closed).
   hours: {
-    weekdays: "Mon–Sat: 9:00 AM – 7:00 PM",
-    weekend: "Sunday: Closed",
-    // Machine form for openingHoursSpecification.
-    open: "09:00",
-    close: "19:00",
-    days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] as const,
+    weekdays: "Mon–Sat: 9:00 AM – 9:00 PM",
+    weekend: "Sunday: 11:00 AM – 6:00 PM",
+    // Compact form for tight spots (mobile call bar, form footers).
+    short: "Mon–Sat 9–9 · Sun 11–6",
+    // Prose form for sentences and FAQ answers.
+    sentence: "Monday to Saturday 9 AM to 9 PM, Sunday 11 AM to 6 PM",
+    // Machine form: openingHoursSpecification and the live open/closed status.
+    schedule: [
+      {
+        days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        open: "09:00",
+        close: "21:00",
+      },
+      { days: ["Sunday"], open: "11:00", close: "18:00" },
+    ],
   },
   socials: {
     facebook: "https://www.facebook.com/profile.php?id=61556088204894",

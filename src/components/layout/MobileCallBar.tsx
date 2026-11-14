@@ -40,7 +40,7 @@ export function MobileCallBar() {
             <p className="font-display text-sm font-bold uppercase leading-none tracking-wide text-white">
               Same-day service
             </p>
-            <p className="mt-1 truncate text-xs text-white/60">Mon–Sat 9–7 · Scarborough</p>
+            <p className="mt-1 truncate text-xs text-white/60">Open 7 days · Scarborough</p>
           </div>
           <CallButton className="cta-attention flex-shrink-0" trackLocation="mobile_call_bar" />
         </div>

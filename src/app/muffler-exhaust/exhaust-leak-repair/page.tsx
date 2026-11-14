@@ -194,7 +194,7 @@ export default function ExhaustLeakRepairPage() {
                   {formatPrice(requirePrice(exhaust))}
                 </span>
               </div>
-              <p className="mt-4 text-sm text-[var(--color-muted)]">Price before tax. Walk in, six days a week.</p>
+              <p className="mt-4 text-sm text-[var(--color-muted)]">Price before tax. Walk in, seven days a week.</p>
               <p className="mt-5 text-[var(--color-body)]">
                 We inspect on arrival, show you where the leak actually is, and quote before we touch anything.
               </p>

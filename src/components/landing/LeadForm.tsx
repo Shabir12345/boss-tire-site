@@ -187,7 +187,7 @@ export function LeadForm({
       >
         {status === "sending" ? "Sending…" : submitLabel}
       </button>
-      <p className="text-xs text-[var(--color-muted)]">We&apos;ll call you to confirm a time. Mon–Sat, 9 to 7.</p>
+      <p className="text-xs text-[var(--color-muted)]">We&apos;ll call you to confirm a time. Mon–Sat 9 to 9, Sun 11 to 6.</p>
     </form>
   );
 }

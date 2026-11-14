@@ -9,7 +9,7 @@ import { BUSINESS } from "@/lib/business";
 // the homepage with the storefront shot to close on the real place.
 export function CTABand({
   heading = "Need it done today?",
-  sub = "Call the shop and you'll have a straight answer and a fair price in under a minute. Mon–Sat, 9 to 7.",
+  sub = "Call the shop and you'll have a straight answer and a fair price in under a minute. Mon–Sat 9 to 9, Sun 11 to 6.",
   cut = false,
   image,
 }: {

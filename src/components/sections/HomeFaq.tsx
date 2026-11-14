@@ -9,7 +9,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 export const HOME_FAQS = [
   {
     q: "Do I need an appointment, or can I just walk in?",
-    a: "Walk in. Boss Tire takes same-day walk-ins six days a week, and most jobs — a changeover, an oil change, an alignment — are done while you wait. Call ahead at (647) 871-2393 and we'll have a bay ready when you pull up.",
+    a: "Walk in. Boss Tire takes same-day walk-ins seven days a week, and most jobs — a changeover, an oil change, an alignment — are done while you wait. Call ahead at (647) 871-2393 and we'll have a bay ready when you pull up.",
   },
   {
     q: "How much does a tire changeover cost at Boss Tire?",
@@ -25,7 +25,7 @@ export const HOME_FAQS = [
   },
   {
     q: "Where is Boss Tire, and when are you open?",
-    a: "Boss Tire is at 375 Danforth Rd, Unit 3, in Scarborough — open Monday to Saturday, 9 AM to 7 PM, and closed Sunday. We're rated 4.8 stars by over 300 drivers on Google. Call (647) 871-2393 before you head over and we'll be ready for you.",
+    a: "Boss Tire is at 375 Danforth Rd, Unit 3, in Scarborough — open Monday to Saturday 9 AM to 9 PM, and Sunday 11 AM to 6 PM. We're rated 4.8 stars by over 300 drivers on Google. Call (647) 871-2393 before you head over and we'll be ready for you.",
   },
   {
     q: "What else does Boss Tire do besides tires?",

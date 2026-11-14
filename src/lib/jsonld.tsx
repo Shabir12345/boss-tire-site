@@ -40,12 +40,12 @@ export function LocalBusinessJsonLd() {
       { "@type": "City", name: "Toronto" },
       { "@type": "AdministrativeArea", name: "Greater Toronto Area" },
     ],
-    openingHoursSpecification: {
+    openingHoursSpecification: BUSINESS.hours.schedule.map((s) => ({
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: [...BUSINESS.hours.days],
-      opens: BUSINESS.hours.open,
-      closes: BUSINESS.hours.close,
-    },
+      dayOfWeek: [...s.days],
+      opens: s.open,
+      closes: s.close,
+    })),
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: REVIEWS.rating,

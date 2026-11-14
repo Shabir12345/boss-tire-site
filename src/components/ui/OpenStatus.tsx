@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { shopStatus, type ShopStatus } from "@/lib/hours";
 import { BUSINESS } from "@/lib/business";
 
-// Live "Open now · until 7 PM" / "Closed · opens tomorrow at 9 AM" line. Pages
+// Live "Open now · until 9 PM" / "Closed · opens tomorrow at 9 AM" line. Pages
 // are static, so the status is computed on the client after mount (rendering it
 // at build time would freeze whatever the time was during the deploy). Until
 // then it reserves its line with the plain hours so nothing shifts.
@@ -41,7 +41,7 @@ export function OpenStatus({
   return (
     <p className={`flex flex-wrap items-center gap-x-2 gap-y-1 text-sm ${text} ${className}`} aria-live="polite">
       <span className={`h-2 w-2 shrink-0 rounded-full ${status ? dot : "bg-transparent"}`} aria-hidden />
-      <span className={status ? "font-semibold" : ""}>{status ? status.label : BUSINESS.hours.weekdays}</span>
+      <span className={status ? "font-semibold" : ""}>{status ? status.label : BUSINESS.hours.short}</span>
       {suffix && (
         // Own line on phones (no dangling separator), inline after a dot on wider screens.
         <span className="basis-full pl-4 opacity-80 sm:basis-auto sm:pl-0">

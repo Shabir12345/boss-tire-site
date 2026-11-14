@@ -29,7 +29,7 @@ const FAQS = [
   },
   {
     q: "When should I bring my off-season set in?",
-    a: `Bring it in whenever you do your changeover — most people hand off the set they just took off the car in the same visit. Demand for changeovers picks up hard from mid-October on, so if you'd rather not wait behind everyone else booking in the same week, come earlier. Walk-ins are welcome, ${BUSINESS.hours.weekdays}.`,
+    a: `Bring it in whenever you do your changeover — most people hand off the set they just took off the car in the same visit. Demand for changeovers picks up hard from mid-October on, so if you'd rather not wait behind everyone else booking in the same week, come earlier. Walk-ins are welcome, ${BUSINESS.hours.sentence}.`,
   },
   {
     q: "What if I sell the car while you have my tires?",
@@ -199,7 +199,7 @@ export default function TireStoragePage() {
                 if you want to pick your week rather than join the rush.
               </p>
               <p className="mt-4 text-[var(--color-body)]">
-                No appointment needed to drop tires off. Walk in, {BUSINESS.hours.weekdays}, and we'll get your
+                No appointment needed to drop tires off. Walk in, {BUSINESS.hours.sentence}, and we'll get your
                 set tagged and put away. If you're stacking a few jobs into the same visit, the{" "}
                 <Link href="/services" className="link-grow font-semibold text-[var(--color-red-deep)]">
                   full service list and prices
