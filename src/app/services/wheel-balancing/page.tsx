@@ -31,7 +31,7 @@ const SIGNS = [
 const FAQS = [
   {
     q: "How much does wheel balancing cost?",
-    a: `Wheel balancing at Boss Tire is ${perTire} ${balancing.priceNote}, before tax, so ${fullSet} for all four. Call ${BUSINESS.phoneDisplay} or walk in, ${BUSINESS.hours.weekdays}.`,
+    a: `Wheel balancing at Boss Tire is ${perTire} ${balancing.priceNote}, before tax, so ${fullSet} for all four. Call ${BUSINESS.phoneDisplay} or walk in, ${BUSINESS.hours.sentence}.`,
   },
   {
     q: "What's the difference between balancing and alignment?",
@@ -140,7 +140,7 @@ export default function WheelBalancingPage() {
                 One of the cheapest fixes in the shop, for one of the most annoying problems.
               </p>
               <p className="mt-5 text-[var(--color-body)]">
-                No appointment needed. Walk in, {BUSINESS.hours.weekdays}, or call {BUSINESS.phoneDisplay} and
+                No appointment needed. Walk in, {BUSINESS.hours.sentence}, or call {BUSINESS.phoneDisplay} and
                 tell us what the car is doing.
               </p>
               <p className="mt-5 text-sm text-[var(--color-muted)]">

@@ -145,7 +145,7 @@ export default function WinterTiresPage() {
               <p className="mt-5 text-[var(--color-body)]">
                 Your price depends on your tire size and which tires you pick, so we quote it on the call
                 instead of putting a number here that doesn't match your car. Call {BUSINESS.phoneDisplay} with
-                the size on your sidewall (a code like 225/65R17), {BUSINESS.hours.weekdays}.
+                the size on your sidewall (a code like 225/65R17), {BUSINESS.hours.sentence}.
               </p>
               <p className="mt-5 text-sm text-[var(--color-muted)]">
                 Already own winters?{" "}

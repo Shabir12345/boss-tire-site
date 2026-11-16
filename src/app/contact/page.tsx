@@ -11,7 +11,7 @@ import { BUSINESS, addressDisplay, telHref, telHrefSecondary, mailHref, mapsEmbe
 export const metadata: Metadata = buildMetadata({
   title: "Contact & Directions",
   description:
-    "Call Boss Tire at (647) 871-2393 or visit 375 Danforth Rd, Unit 3, Scarborough. Open Mon–Sat 9–7. Send a message for a quote and we'll get right back to you.",
+    "Call Boss Tire at (647) 871-2393 or visit 375 Danforth Rd, Unit 3, Scarborough. Open 7 days: Mon–Sat 9–9, Sun 11–6. Send a message for a quote and we'll get right back to you.",
   path: "/contact",
   keywords: ["boss tire contact", "boss tire scarborough phone", "boss tire directions"],
 });

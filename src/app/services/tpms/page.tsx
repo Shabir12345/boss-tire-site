@@ -138,7 +138,7 @@ export default function TpmsPage() {
                 The diagnosis is part of the job, not an extra.
               </p>
               <p className="mt-5 text-[var(--color-body)]">
-                No appointment needed. Walk in, {BUSINESS.hours.weekdays}, or call {BUSINESS.phoneDisplay} and
+                No appointment needed. Walk in, {BUSINESS.hours.sentence}, or call {BUSINESS.phoneDisplay} and
                 tell us what the light is doing: solid, flashing, or only on cold mornings.
               </p>
               <p className="mt-5 text-sm text-[var(--color-muted)]">

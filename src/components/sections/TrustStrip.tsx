@@ -15,7 +15,7 @@ const TRUST = [
 // Ad landing pages (/lp/*) show no prices and promise no turnaround time, so
 // they get their own four. The rating reads from lib/reviews like every badge.
 const TRUST_LANDING = [
-  { label: "Walk-ins welcome", sub: "Mon–Sat, 9 AM to 7 PM" },
+  { label: "Walk-ins welcome", sub: "Open 7 days a week" },
   { label: `${REVIEWS.rating}★ on ${REVIEWS.source}`, sub: `From ${REVIEWS.count} reviews` },
   { label: "A quote before we start", sub: "You approve the price first" },
   { label: "Tires + exhaust, one shop", sub: "Tires, wheels, alignment, exhaust" },

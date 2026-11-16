@@ -69,7 +69,7 @@ export default function HomePage() {
         <HomeFaq />
       </div>
       <div className="cv-auto">
-        <CTABand image="/photos/storefront.jpg" heading="Come by the shop" sub="Find us at 375 Danforth Rd in Scarborough, Mon–Sat 9 to 7. Call ahead and we'll have you in and out." />
+        <CTABand image="/photos/storefront.jpg" heading="Come by the shop" sub="Find us at 375 Danforth Rd in Scarborough, Mon–Sat 9 to 9 and Sunday 11 to 6. Call ahead and we'll have you in and out." />
       </div>
     </>
   );

@@ -30,7 +30,7 @@ const FAQS = [
   },
   {
     q: "Do I need an appointment for an oil change?",
-    a: "No — walk in. An oil change is a quick, same-day job at Boss Tire, six days a week. Calling ahead at (647) 871-2393 just means we'll have a bay ready when you arrive.",
+    a: "No — walk in. An oil change is a quick, same-day job at Boss Tire, seven days a week. Calling ahead at (647) 871-2393 just means we'll have a bay ready when you arrive.",
   },
   {
     q: "What's included in a Boss Tire oil change?",
