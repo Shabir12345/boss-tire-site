@@ -19,13 +19,15 @@ const inter = Inter({
 
 const barlowCondensed = Barlow_Condensed({
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
+  // 600 dropped: no heading/button uses it, and every weight listed here is
+  // preloaded, so each extra weight is ~15KB fighting the hero image on mobile.
+  weight: ["700", "800"],
   variable: "--font-barlow-condensed",
   display: "swap",
-  // Display font (headings/buttons) — never the LCP element, and `swap` renders
-  // it without blocking. Not preloading it frees early mobile bandwidth for the
-  // LCP hero image; the italic style was unused, so it's dropped too.
-  preload: false,
+  // Display font (headings/buttons). Preloaded: when it arrived late (not
+  // preloaded) the swap re-wrapped the hero H1 and pushed the Call button down,
+  // a 0.12 layout shift on mobile. Preloading lands it before first paint, so
+  // headings render in Barlow from the start. The italic style was unused.
 });
 
 export const viewport: Viewport = {
