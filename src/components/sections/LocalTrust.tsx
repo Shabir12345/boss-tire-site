@@ -15,7 +15,7 @@ import { getService } from "@/lib/services";
 // mention this page's service shown first. If Featurable can't be reached, the
 // live widget stands in.
 
-function Stars({ n = 5 }: { n?: number }) {
+export function Stars({ n = 5 }: { n?: number }) {
   return (
     <span className="flex text-[var(--color-red)]" aria-label={`${n} out of 5 stars`} role="img">
       {Array.from({ length: n }).map((_, i) => (
@@ -30,7 +30,7 @@ function Stars({ n = 5 }: { n?: number }) {
 const monthLabel = (iso: string) =>
   new Date(iso).toLocaleDateString("en-CA", { month: "short", year: "numeric", timeZone: "America/Toronto" });
 
-function QuoteCard({ r }: { r: GoogleReview }) {
+export function QuoteCard({ r }: { r: GoogleReview }) {
   return (
     <figure className="flex h-full flex-col rounded-lg border border-[var(--color-border)] bg-[var(--color-paper)] p-5">
       <Stars n={Math.round(r.rating)} />
