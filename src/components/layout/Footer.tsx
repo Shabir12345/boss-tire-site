@@ -25,8 +25,8 @@ export function Footer() {
             <Image
               src="/logo-boss.png"
               alt="Boss Tire — Your Tire Partner"
-              width={180}
-              height={82}
+              width={123}
+              height={56}
               className="h-14 w-auto"
             />
             <p className="mt-4 text-sm">

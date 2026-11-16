@@ -31,7 +31,10 @@ export function WhatWeDo({ onDark = false }: { onDark?: boolean }) {
                 alt={t.alt}
                 fill
                 sizes="(min-width: 1024px) 18rem, (min-width: 640px) 45vw, 90vw"
-                quality={85}
+                // 75 (was 85): these tiles sit inside Chrome's lazy-load distance on mobile,
+                // so they download alongside the hero and slow its paint. At tile size
+                // under the colour grade, 75 is visually the same.
+                quality={75}
                 // Unified grade so the four photos read as one set: slight
                 // desaturation + a contrast/brightness pull evens out their
                 // different colour temperatures. Hover lifts brightness and

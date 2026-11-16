@@ -33,13 +33,15 @@ function Wordmark() {
     <Image
       src="/logo-boss.png"
       alt="Boss Tire — Your Tire Partner"
-      width={158}
-      height={72}
-      // Eager but NOT priority: a priority logo emits its own image preload that
-      // competes with the LCP hero for the first mobile connections. fetchPriority
-      // high keeps it prompt without preloading ahead of the hero.
+      // Intrinsic size = rendered size (h-12 = 48px tall), so the srcset is
+      // 128w/256w (~10KB) instead of 256w/384w (~23KB). React 19 preloads this
+      // above-the-fold img, so its bytes compete with the LCP hero.
+      width={105}
+      height={48}
+      // Eager but NOT high priority: in Next 16 fetchPriority="high" also emits an
+      // image preload, which competed with the LCP hero for the first mobile
+      // connections. It's in the initial HTML, so it still loads promptly.
       loading="eager"
-      fetchPriority="high"
       className="h-12 w-auto"
     />
   );
