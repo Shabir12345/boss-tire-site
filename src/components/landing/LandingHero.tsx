@@ -25,7 +25,10 @@ export function LandingHero({
   sub,
   image,
   imageAlt,
+  bullets,
   bookLabel,
+  formHeading = "Request a time",
+  formSub = "Leave your number and the shop will call you back.",
   service,
   source,
   askTireSize = false,
@@ -35,8 +38,12 @@ export function LandingHero({
   sub: string;
   image: string;
   imageAlt: string;
+  /** Three short reasons to pick the shop, shown as a checklist under the sub. */
+  bullets: readonly string[];
   /** Form button, e.g. "Book my changeover". */
   bookLabel: string;
+  formHeading?: string;
+  formSub?: string;
   /** Service name, written into the lead email. */
   service: string;
   /** "lp_<slug>", passed to the form. */
@@ -58,11 +65,18 @@ export function LandingHero({
           <h1 className="mt-4 max-w-3xl text-4xl text-white sm:text-6xl">{headline}</h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-[var(--color-on-dark)]">{sub}</p>
 
+          <ul className="mt-6 space-y-2.5">
+            {bullets.map((b) => (
+              <li key={b} className="flex items-start gap-3 text-base font-medium text-white sm:text-lg">
+                <svg viewBox="0 0 20 20" width="20" height="20" fill="none" aria-hidden className="mt-0.5 shrink-0 text-[var(--color-red)] sm:mt-1">
+                  <path d="M4 10.5l3.5 3.5L16 5.5" stroke="currentColor" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                {b}
+              </li>
+            ))}
+          </ul>
           {/* No price on ad pages: it's given on the call (owner decision 2026-09-29). */}
-          <p className="mt-6 inline-flex flex-col gap-1 rounded-md border border-white/15 bg-white/5 px-4 py-3">
-            <span className="font-display text-lg font-bold uppercase tracking-wide text-white">Call for a quote for your vehicle</span>
-            <span className="text-xs text-[var(--color-on-dark-mute)]">You approve the price before any work starts.</span>
-          </p>
+          <p className="mt-4 text-sm text-[var(--color-on-dark-mute)]">Price for your vehicle given on the call. Nothing starts until you approve it.</p>
 
           <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4">
             <CallButton size="lg" className="cta-attention" trackLocation="lp_hero" />
@@ -82,8 +96,8 @@ export function LandingHero({
         </div>
 
         <div id="quote" className="scroll-mt-20 rounded-lg bg-[var(--color-paper)] p-6 shadow-xl sm:p-7">
-          <p className="font-display text-2xl font-bold uppercase tracking-wide text-[var(--color-heading)]">Request a time</p>
-          <p className="mt-1 text-sm text-[var(--color-body)]">Leave your number and the shop will call you back.</p>
+          <p className="font-display text-2xl font-bold uppercase tracking-wide text-[var(--color-heading)]">{formHeading}</p>
+          <p className="mt-1 text-sm text-[var(--color-body)]">{formSub}</p>
           <div className="mt-5">
             <LeadForm service={service} source={source} submitLabel={bookLabel} askTireSize={askTireSize} />
           </div>
