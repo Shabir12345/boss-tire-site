@@ -56,13 +56,31 @@ export default async function LandingPageRoute({ params }: { params: Promise<{ s
         sub={lp.hero.sub}
         image={lp.hero.image}
         imageAlt={lp.hero.imageAlt}
+        bullets={lp.bullets}
         bookLabel={lp.bookLabel}
+        formHeading={lp.form?.heading}
+        formSub={lp.form?.sub}
         service={`${service.name} (${lp.keyword})`}
         source={`lp_${lp.slug}`}
         askTireSize={lp.askTireSize}
       />
       <TrustStrip variant="landing" />
       <ReviewQuotes service={lp.service} />
+
+      {/* The keyword-relevant body copy: the search term again as an H2, then
+          what this exact job involves. Relevance and originality are two of the
+          things Google's landing page experience rating reads. */}
+      <section className="bg-[var(--color-paper)]">
+        <div className="gutter-safe mx-auto max-w-3xl pt-16 sm:pt-20">
+          <Eyebrow>{lp.hero.eyebrow}</Eyebrow>
+          <h2 className="mt-4 text-3xl text-[var(--color-heading)] sm:text-4xl">{lp.about.heading}</h2>
+          <div className="mt-5 space-y-4 text-lg leading-relaxed text-[var(--color-body)]">
+            {lp.about.body.map((para) => (
+              <p key={para}>{para}</p>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* What you get (services.ts) beside what happens when you come in. */}
       <section className="bg-[var(--color-paper)]">
@@ -71,7 +89,7 @@ export default async function LandingPageRoute({ params }: { params: Promise<{ s
             <Eyebrow>What you get</Eyebrow>
             <h2 className="mt-4 text-3xl text-[var(--color-heading)]">What your {service.name.toLowerCase()} includes</h2>
             <p className="mt-3 text-[var(--color-body)]">
-              The price depends on your vehicle. Call {BUSINESS.phoneDisplay} and we&apos;ll give it to you on the call, before any work starts.
+              {`The price depends on your vehicle. Call ${BUSINESS.phoneDisplay} and we'll give it to you on the call, before any work starts.`}
             </p>
             <ul className="mt-6 space-y-2">
               {/* services.ts is shared with the organic pages; drop turnaround
@@ -153,7 +171,7 @@ export default async function LandingPageRoute({ params }: { params: Promise<{ s
         </div>
       </section>
 
-      <CTABand heading={lp.cta.heading} sub={lp.cta.sub} />
+      <CTABand heading={lp.cta.heading} sub={lp.cta.sub} secondary={{ href: "#quote", label: "Or have the shop call you back" }} />
     </>
   );
 }

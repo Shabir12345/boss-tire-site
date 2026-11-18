@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { track, reportAdsConversion } from "@/lib/analytics";
 import { BUSINESS } from "@/lib/business";
 import { ATTRIBUTION_KEYS, fillAttributionInputs, readAttribution } from "@/lib/attribution";
@@ -187,7 +188,10 @@ export function LeadForm({
       >
         {status === "sending" ? "Sending…" : submitLabel}
       </button>
-      <p className="text-xs text-[var(--color-muted)]">We&apos;ll call you to confirm a time. Mon–Sat 9 to 9, Sun 11 to 6.</p>
+      <p className="text-xs text-[var(--color-muted)]">
+        We only use your number to call you back about this request.{" "}
+        <Link href="/privacy" className="underline underline-offset-2">Privacy</Link>
+      </p>
     </form>
   );
 }

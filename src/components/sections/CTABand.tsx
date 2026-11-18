@@ -12,11 +12,14 @@ export function CTABand({
   sub = "Call the shop and you'll have a straight answer and a fair price in under a minute. Mon–Sat 9 to 9, Sun 11 to 6.",
   cut = false,
   image,
+  secondary,
 }: {
   heading?: string;
   sub?: string;
   cut?: boolean;
   image?: string;
+  /** A quieter second action under the Call button, e.g. jump to the call-back form. */
+  secondary?: { href: string; label: string };
 }) {
   return (
     <section className={`relative isolate overflow-hidden bg-[var(--color-ink)] ${cut ? "cut-top" : ""}`}>
@@ -35,6 +38,15 @@ export function CTABand({
         <div className="mt-8 flex justify-center">
           <CallButton size="lg" className="cta-attention" trackLocation="cta_band" />
         </div>
+        {secondary && (
+          <a
+            href={secondary.href}
+            data-track-location="cta_band"
+            className="link-grow mt-4 inline-block text-sm font-semibold text-white"
+          >
+            {secondary.label}
+          </a>
+        )}
         <ReviewBadge onDark className="mt-6 justify-center" />
       </div>
     </section>

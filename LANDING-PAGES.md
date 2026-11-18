@@ -37,11 +37,12 @@ question a first-time, paid visitor has.
 
 | # | Section | The visitor's question it answers |
 |---|---------|-----------------------------------|
-| 1 | **Hero + booking form** | Is this what I searched for? Can I trust them? Can I book without calling? |
+| 1 | **Hero + form** | Is this what I searched for? Can I trust them? Can I book without calling? |
 | 2 | **Trust strip + Google reviews** | Why this shop over the one below it in the results? |
-| 3 | **What you get + what to expect** | Exactly what do I get? What happens when I show up? |
-| 4 | **FAQ + visit the shop** | My specific doubt (cost, time, appointment). Where are they, are they open? |
-| 5 | **Closing CTA** | OK, I'm convinced. |
+| 3 | **About this job** (`about`) | Do these people actually know this job? |
+| 4 | **What you get + what to expect** | Exactly what do I get? What happens when I show up? |
+| 5 | **FAQ + visit the shop** | My specific doubt (cost, time, appointment). Where are they, are they open? |
+| 6 | **Closing CTA** | OK, I'm convinced. (Call, or jump back to the form.) |
 
 ### 1. Hero — two columns, the decision on the left, the form on the right
 
@@ -50,12 +51,20 @@ question a first-time, paid visitor has.
   keyword and H1 is the biggest single lever on both conversion rate and
   Quality Score. *(Tested.)*
 - **Sub-headline:** one or two sentences — what they get, where, how fast.
-- **No price.** Owner decision 2026-09-29: the price is given on the call. The
-  hero shows "Call for a quote for your vehicle" instead, and a test fails if
-  any entry contains a dollar amount.
+- **3 bullets** (`bullets`, each ≤ 45 characters) *(tested)*: three
+  scannable reasons, each a fact the shop stands behind ("Pads and rotors
+  measured on the lift"). They replace a paragraph a paid visitor won't read.
+- **No price.** Owner decision 2026-09-29: the price is given on the call. A
+  small line under the bullets says so, and a test fails if any entry contains
+  a dollar amount.
 - **Call button** (primary, red) and the **linked Google rating** beside it.
 - **Hours and address** row: live open/closed status and a directions link.
-- **Booking form** in a white card ("Request a time"): name and phone
+- **Form** in a white card. The heading defaults to "Request a time"; set
+  `form` to match intent: sales pages use "Get your price" (button "Get my tire
+  price"), diagnosis pages (brakes, muffler, exhaust) "Request a call back". A
+  quote request is a smaller ask than booking a slot. The form links to
+  `/privacy`.
+- Form fields: name and phone
   (required), vehicle (optional) and best day as tap-to-pick chips (Today /
   Tomorrow / This Saturday / Other, optional), plus hidden gclid, gbraid, wbraid
   and UTM fields. The button is the entry's `bookLabel`. On a phone it stacks
@@ -71,7 +80,16 @@ we start, tires + exhaust) and three verbatim Google reviews from Featurable,
 the ones about the page's service first. Reviews quoting a price or a
 turnaround time are skipped, never edited.
 
-### 3. What you get + what to expect
+### 3. About this job — keyword-relevant body copy *(tested)*
+
+`about.heading` repeats the search term (usually "<H1> at Boss Tire"), and
+`about.body` is 2–3 short paragraphs about exactly this job: signs, what we do,
+repair vs replace, the offer, where and when. This is the section Google's
+landing page experience rating reads for **relevance and originality**: without
+it, ~100 pages shared identical body copy and only the H1 changed. Write it per
+campaign kind (packages ≠ used tires ≠ brand tires), never generic.
+
+### 4. What you get + what to expect
 
 Left: "What's included", from `services.ts`, and a line saying the price is
 given on the call before any work starts. Set
@@ -80,7 +98,7 @@ entry's 3 or 4 **steps** *(tested)*. Name each step as what the customer does or
 sees. Always include the step where **they approve the price before work
 starts** — it's the shop's strongest reassurance.
 
-### 4. FAQ — 3 to 5 questions *(tested)* — beside the visit card
+### 5. FAQ — 3 to 5 questions *(tested)* — beside the visit card
 
 Answer the objections, not trivia: price ("how much": it depends on the
 vehicle and is given on the call), time ("how long"),

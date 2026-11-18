@@ -32,6 +32,23 @@ describe("Google Ads landing pages", () => {
         expect(missing, `H1 "${lp.hero.headline}" is missing keyword words`).toEqual([]);
       });
 
+      it("repeats the keyword in the body section's H2 and says something specific", () => {
+        const h2 = lp.about.heading.toLowerCase();
+        const missing = lp.keyword
+          .toLowerCase()
+          .split(/\s+/)
+          .filter((w) => !["near", "me", "in", "the", "a"].includes(w))
+          .filter((w) => !h2.includes(w));
+        expect(missing, `about heading "${lp.about.heading}" is missing keyword words`).toEqual([]);
+        expect(lp.about.body.length).toBeGreaterThanOrEqual(2);
+        expect(lp.about.body.length).toBeLessThanOrEqual(3);
+      });
+
+      it("has 3 short hero bullets", () => {
+        expect(lp.bullets).toHaveLength(3);
+        for (const b of lp.bullets) expect(b.length, b).toBeLessThanOrEqual(45);
+      });
+
       it("keeps the title and description inside search/ad preview limits", () => {
         // The layout appends " | Boss Tire" (12 chars) to the title.
         expect(lp.metaTitle.length, lp.metaTitle).toBeLessThanOrEqual(48);
@@ -49,6 +66,11 @@ describe("Google Ads landing pages", () => {
           lp.hero.headline,
           lp.hero.sub,
           lp.bookLabel,
+          ...lp.bullets,
+          lp.about.heading,
+          ...lp.about.body,
+          lp.form?.heading ?? "",
+          lp.form?.sub ?? "",
           ...lp.steps.flatMap((s) => [s.title, s.body]),
           ...lp.faqs.flatMap((f) => [f.q, f.a]),
           lp.cta.heading,

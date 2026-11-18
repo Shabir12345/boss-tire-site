@@ -79,10 +79,11 @@ describe("page metadata", () => {
   // + 5 blog posts + 1 blog index = 20, then 3 service pages + 1 post on
   // 2026-09-27 = 24, then 4 winter question posts on 2026-10-12 = 28, then
   // /tires/winter-tires + /services/tpms on 2026-10-25 = 30, then
-  // /services/tire-rotation + /services/brakes = 32). If a page is added or removed without
+  // /services/tire-rotation + /services/brakes = 32, then /privacy on
+  // 2026-11-18 = 33). If a page is added or removed without
   // this number changing too, that is a signal to look, not a reason to pass.
-  it("finds all 32 page routes", () => {
-    expect(files.length).toBe(32);
+  it("finds all 33 page routes", () => {
+    expect(files.length).toBe(33);
   });
 
   it("gives every page a unique title", () => {

@@ -22,6 +22,24 @@ import type { Faq } from "./services";
 import { BUSINESS } from "./business";
 import type { Step } from "@/components/sections/ProcessSteps";
 
+const WHERE = `${BUSINESS.address.street}, ${BUSINESS.address.locality}`;
+const WHEN = BUSINESS.hours.sentence;
+
+/** The about-section H2: the page's H1 words plus the shop's name. A headline
+ *  that is a question or already names the shop is used as it is. */
+const aboutHeading = (headline: string) =>
+  /\?|boss/i.test(headline) ? headline.replace(/\?.*$/, "") : `${headline} at Boss Tire`;
+
+/** Form copy for pages where the visitor wants a price, not a slot. */
+const PRICE_FORM = {
+  heading: "Get your price",
+  sub: "Leave your number and the shop will call you back with what's in stock and your price.",
+};
+const CHECK_FORM = {
+  heading: "Request a call back",
+  sub: "Leave your number and the shop will call you back to talk it through and find you a time.",
+};
+
 export interface LandingPage {
   /** URL slug: /lp/<slug>. Lowercase words joined by hyphens, usually the keyword. */
   slug: string;
@@ -46,8 +64,22 @@ export interface LandingPage {
     imageAlt: string;
   };
 
+  /** Three short, scannable reasons in the hero, each a fact the shop stands
+   *  behind. They replace a paragraph a paid visitor won't read. */
+  bullets: [string, string, string];
+
   /** Form button, named for the service: "Book my changeover". */
   bookLabel: string;
+
+  /** Form card heading and line under it. Defaults to "Request a time". Sales
+   *  pages ask for a price, not an appointment: "Get your price". */
+  form?: { heading: string; sub: string };
+
+  /** The keyword-relevant body section: an H2 that repeats the search term and
+   *  2–3 short paragraphs about exactly this service. It is what makes each
+   *  page relevant (and not a copy of its neighbours) to Google's landing page
+   *  experience check, and it answers "do these people know this job?". */
+  about: { heading: string; body: string[] };
 
   /** Show the buy-tires alignment discount in the price card. */
   showAlignmentOffers?: boolean;
@@ -127,6 +159,27 @@ const STORAGE_FAQS: Faq[] = [
   },
 ];
 
+const CHANGEOVER_BULLETS: [string, string, string] = [
+  "Walk-ins welcome, open 7 days",
+  "Balanced and torqued to manufacturer spec",
+  "You approve the price before we start",
+];
+const CHANGEOVER_ABOUT = [
+  "Every tire is looked over before it goes on. If your winters need mounting onto your rims, they're mounted and balanced on the machine. Then each wheel is torqued to your vehicle's spec and the pressures are set on all four.",
+  "Winters already on their own rims? It's a wheel-off, wheel-on swap. Same rims for both sets? We dismount and remount them for you. Tell us which when you call, with your year, make and model, and you'll get the price for your vehicle on the call.",
+  `We're at ${WHERE}, open ${WHEN}. The set that comes off can stay with us until next season.`,
+];
+const STORAGE_BULLETS: [string, string, string] = [
+  "Kept clean and dry",
+  "Tagged by wheel position",
+  "Drop off at your changeover",
+];
+const STORAGE_ABOUT = [
+  "A home garage swings hot in summer and cold in winter, and damp corners or direct sun age rubber faster than it should. With us your off-season set sits clean and dry, and you get the corner of your garage back.",
+  "Each tire is tagged by wheel position, so at your next changeover it goes back on the corner it came off. Most people hand the set over at their changeover, in the same visit.",
+  `Call with your vehicle and we'll tell you what your set costs to store before you drop it off. We're at ${WHERE}, open ${WHEN}.`,
+];
+
 // [slug, keyword, kind, H1 (= pinned headline), sub, meta description]
 const WINTER_CAMPAIGN: [string, string, "changeover" | "storage", string, string, string][] = [
   ["tire-changeover-near-me", "tire changeover near me", "changeover", "Tire Changeover Near Me",
@@ -189,6 +242,8 @@ const WINTER_CAMPAIGN_PAGES: LandingPage[] = WINTER_CAMPAIGN.map(([slug, keyword
     keyword,
     service: storage ? "tire-storage" : "tire-changeover",
     bookLabel: storage ? "Book tire storage" : "Book my changeover",
+    bullets: storage ? STORAGE_BULLETS : CHANGEOVER_BULLETS,
+    about: { heading: aboutHeading(headline), body: storage ? STORAGE_ABOUT : CHANGEOVER_ABOUT },
     metaTitle: /scarborough/i.test(headline) ? headline : `${headline} in Scarborough`,
     metaDescription,
     hero: {
@@ -236,6 +291,17 @@ const MUFFLER_FAQS: Faq[] = [
   },
 ];
 
+const MUFFLER_BULLETS: [string, string, string] = [
+  "We show you the problem on the lift",
+  "Repaired when a repair will do",
+  "You approve the price before we start",
+];
+const MUFFLER_ABOUT = [
+  "A loud muffler usually comes down to one of a few things: the muffler itself rusted through, a cracked pipe, a broken hanger or a failed joint. We put the car on the lift, find which one it is, and show you before we quote.",
+  "If a repair will fix it, we tell you that instead of selling you a whole new system. If the muffler is past saving, we replace it, fit it and check the system for leaks before you drive off.",
+  `Drone, rattle or exhaust smell? Walk in or call ahead. We're at ${WHERE}, open ${WHEN}.`,
+];
+
 // [slug, keyword, H1 (= pinned headline), sub, meta description]
 const MUFFLER_CAMPAIGN: [string, string, string, string, string][] = [
   ["muffler-shop-near-me", "muffler shop near me", "Muffler Shop Near Me",
@@ -275,6 +341,9 @@ const MUFFLER_CAMPAIGN_PAGES: LandingPage[] = MUFFLER_CAMPAIGN.map(([slug, keywo
   keyword,
   service: "muffler-repair",
   bookLabel: "Book a muffler check",
+  bullets: MUFFLER_BULLETS,
+  form: CHECK_FORM,
+  about: { heading: aboutHeading(headline), body: MUFFLER_ABOUT },
   metaTitle: /scarborough/i.test(headline) ? headline : `${headline} in Scarborough`,
   metaDescription,
   hero: {
@@ -338,9 +407,25 @@ const WINTER_TIRE_BRANDS_FAQ: Faq = {
   a: `Michelin, Goodyear and Bridgestone, along with the other major brands and budget options. Stock changes through the season, so call ${BUSINESS.phoneDisplay} with your size and we'll tell you what we have.`,
 };
 
+const PACKAGE_STEPS: Step[] = [
+  { title: "Call with your vehicle", body: "Tell us your year, make and model, and your tire size if you have it. It's on the sidewall or the driver's door jamb, a code like 225/65R17." },
+  { title: "Pick steel or alloy", body: "Steel is cheaper and shrugs off salt and curb knocks. Alloy is lighter and looks better. You get the price for the package on the call." },
+  { title: "Mounted on your new rims", body: "Your winters are mounted and balanced on their own rims, torqued to spec, with pressures set on all four." },
+  { title: "Every changeover after is a swap", body: "From then on it's wheels off, wheels on. Buying 4 tires? Your wheel alignment is 50% off." },
+];
+
+const OFFER_BULLET = "50% off alignment when you buy 4 tires";
+
 type WinterKind = "tires" | "used" | "packages" | "brands";
 const WINTER_KIND = {
   tires: {
+    bullets: ["New, used and budget winter tires", "Michelin, Goodyear, Bridgestone and more", OFFER_BULLET],
+    about: [
+      "We sell new, used and budget winter tires, so there's a set for most budgets. Call with your tire size, and we'll tell you what's in stock and give you the price for the set on the call, before anything is fitted.",
+      "Every set is mounted, balanced on the machine, torqued to spec and set to the right pressure before you leave. Buy 4 tires and your wheel alignment is 50% off, or 25% off with 2: new tires on a car that's out of alignment wear unevenly.",
+      `Below about 7°C, all-season rubber hardens and loses grip well before the first snow. We're at ${WHERE}, open ${WHEN}.`,
+    ],
+    steps: WINTER_TIRE_STEPS,
     eyebrow: "Winter tires · Scarborough",
     image: "/photos/new-used-tires.jpg",
     imageAlt: "Racks of new and used tires at the Boss Tire shop",
@@ -348,6 +433,13 @@ const WINTER_KIND = {
     organicPage: "/tires",
   },
   used: {
+    bullets: ["Checked for tread, age and sidewall damage", "Budget new sets too", OFFER_BULLET],
+    about: [
+      "A used winter tire that's been properly checked is a reasonable, safe way to save. We check tread depth, age and sidewall condition on every used tire before it's sold, and anything with sidewall damage doesn't go on the rack.",
+      "If the used sets in your size aren't right, we have budget new winter tires as well. Call with your size and we'll tell you what we have and the price for the set on the call.",
+      `Every set is mounted, balanced and torqued to spec, and 4 tires get you 50% off your wheel alignment. We're at ${WHERE}, open ${WHEN}.`,
+    ],
+    steps: WINTER_TIRE_STEPS,
     eyebrow: "Used winter tires · Scarborough",
     image: "/photos/new-used-tires.jpg",
     imageAlt: "Racks of new and used tires at the Boss Tire shop",
@@ -355,6 +447,13 @@ const WINTER_KIND = {
     organicPage: "/tires/used-tires",
   },
   packages: {
+    bullets: ["Steel or alloy rims", "Mounted and balanced on the rims", "Every changeover after is a quick swap"],
+    about: [
+      "A winter tire package is a set of winter tires mounted on their own rims. Once your winters have their own wheels, every changeover is wheels off, wheels on: no breaking the bead, no remounting the same tires twice a year, and less wear on the tires.",
+      "Steel rims are the cheaper choice and shrug off road salt, slush and the odd curb tap. Alloy is lighter and looks better. Winter rims are often a size down from the summer set, which is normal: a taller sidewall costs less to fit with a winter tire. We fit both.",
+      `Call with your year, make and model and we'll price the package, tires and rims together, on the call. Buy 4 tires and your alignment is 50% off. We're at ${WHERE}, open ${WHEN}.`,
+    ],
+    steps: PACKAGE_STEPS,
     eyebrow: "Winter tire packages · Scarborough",
     image: "/photos/rims-red.jpg",
     imageAlt: "Alloy wheels on display at Boss Tire",
@@ -362,6 +461,13 @@ const WINTER_KIND = {
     organicPage: "/tires/winter-rims-and-packages",
   },
   brands: {
+    bullets: ["Michelin, Goodyear and Bridgestone", "Mounted, balanced, torqued to spec", OFFER_BULLET],
+    about: [
+      "We carry Michelin, Goodyear and Bridgestone winter tires along with the other major brands and budget options. Stock changes through the season, so call with your tire size and we'll tell you what we have in your size and the price for the set.",
+      "Every set is mounted, balanced on the machine, torqued to spec and set to the right pressure before you leave. Buy 4 tires and your wheel alignment is 50% off, or 25% off with 2.",
+      `We're at ${WHERE}, open ${WHEN}. Call ahead and we'll have your set ready.`,
+    ],
+    steps: WINTER_TIRE_STEPS,
     eyebrow: "Brand winter tires · Scarborough",
     image: "/photos/new-used-tires.jpg",
     imageAlt: "Racks of new and used tires at the Boss Tire shop",
@@ -438,13 +544,16 @@ const WINTER_SALES_PAGES: LandingPage[] = WINTER_SALES_CAMPAIGN.map(([slug, keyw
     slug,
     keyword,
     service: "winter-tires",
-    bookLabel: "Book my winter tires",
+    bookLabel: kind === "packages" ? "Get my package price" : "Get my tire price",
+    bullets: [...k.bullets] as [string, string, string],
+    form: PRICE_FORM,
+    about: { heading: aboutHeading(headline), body: [...k.about] },
     metaTitle: /scarborough|toronto/i.test(headline) ? headline : `${headline} in Scarborough`,
     metaDescription,
     hero: { eyebrow: k.eyebrow, headline, sub, image: k.image, imageAlt: k.imageAlt },
     showAlignmentOffers: true,
     askTireSize: true,
-    steps: WINTER_TIRE_STEPS,
+    steps: [...k.steps],
     faqs: [...k.faqs],
     cta: { heading: "Get your winters before the snow", sub: "Call with your tire size, get your price, and save 50% on your alignment when you buy 4." },
     organicPage: k.organicPage,
@@ -482,6 +591,17 @@ const ALIGNMENT_FAQS: Faq[] = [
     q: "Should I get an alignment with new tires?",
     a: "It's the best time to. A car that's out of alignment wears new tires unevenly, and with 4 new tires from us the alignment is half off.",
   },
+];
+
+const ALIGNMENT_BULLETS: [string, string, string] = [
+  "Camber, caster and toe set to spec",
+  "Checked first, with an honest answer",
+  "50% off with 4 new tires",
+];
+const ALIGNMENT_ABOUT = [
+  "The clearest signs your alignment is out are a steering wheel that sits off-centre when you drive straight, a car that pulls to one side, or tires wearing faster on one edge. A hard pothole or curb hit can knock it out too.",
+  "We measure it first and tell you honestly whether it needs doing. If it does, camber, caster and toe are set to your vehicle's spec so the car tracks straight and the tires wear evenly. You get the price for your vehicle before we start.",
+  `Buying tires with us? The alignment is 50% off with 4 tires and 25% off with 2. We're at ${WHERE}, open ${WHEN}.`,
 ];
 
 // [slug, keyword, H1 (= pinned headline), sub, meta description]
@@ -555,6 +675,8 @@ const ALIGNMENT_CAMPAIGN_PAGES: LandingPage[] = ALIGNMENT_CAMPAIGN.map(([slug, k
     keyword,
     service: "wheel-alignment",
     bookLabel: "Book my alignment",
+    bullets: ALIGNMENT_BULLETS,
+    about: { heading: aboutHeading(headline), body: ALIGNMENT_ABOUT },
     metaTitle: title.length <= 48 ? title : headline.length <= 48 ? headline : "Alignment Shop in Scarborough",
     metaDescription,
     hero: {
@@ -602,6 +724,17 @@ const EXHAUST_FAQS: Faq[] = [
     q: "Can I walk in?",
     a: "Yes, Monday to Saturday 9 to 9, and Sunday 11 to 6. Call ahead with your make and model and we'll tell you when we can look at it.",
   },
+];
+
+const EXHAUST_BULLETS: [string, string, string] = [
+  "Leaks, pipes, hangers and welds",
+  "We show you the problem on the lift",
+  "You approve the price before we start",
+];
+const EXHAUST_ABOUT = [
+  "Most exhaust problems are one failed part, not the whole system: a leak at a joint, a rusted or cracked pipe, a broken hanger or a weld that's let go. We put the car on the lift, find the one that's failing and show you before we quote.",
+  "Where a weld or a single section will fix it, we repair that instead of replacing the whole system, and we tell you honestly when it won't. Everything is checked for leaks before you drive off.",
+  `Smell exhaust inside the car? Have it checked soon: a leak ahead of the muffler can let fumes into the cabin. We're at ${WHERE}, open ${WHEN}.`,
 ];
 
 // [slug, keyword, H1 (= pinned headline), sub, meta description]
@@ -652,6 +785,9 @@ const EXHAUST_CAMPAIGN_PAGES: LandingPage[] = EXHAUST_CAMPAIGN.map(([slug, keywo
   keyword,
   service: "exhaust-repair",
   bookLabel: "Book an exhaust check",
+  bullets: EXHAUST_BULLETS,
+  form: CHECK_FORM,
+  about: { heading: aboutHeading(headline), body: EXHAUST_ABOUT },
   metaTitle: /scarborough|toronto/i.test(headline) ? headline : `${headline} in Scarborough`,
   metaDescription,
   hero: {
@@ -699,6 +835,17 @@ const BRAKE_FAQS: Faq[] = [
     q: "Can I walk in?",
     a: "Yes, Monday to Saturday 9 to 9, and Sunday 11 to 6. Call ahead with your make and model and we'll tell you when we can look at it.",
   },
+];
+
+const BRAKE_BULLETS: [string, string, string] = [
+  "Pads and rotors measured on the lift",
+  "Pads only when the rotors are still good",
+  "You approve the price before we start",
+];
+const BRAKE_ABOUT = [
+  "Squealing, grinding, shaking when you brake or a soft pedal each point to something different. We take the wheels off, measure the pads and rotors, and show you what we find instead of guessing from the noise.",
+  "If the rotors are still in good shape, we tell you and replace the pads only. If they're worn or uneven, we show you why before quoting them. Nothing starts until you've approved the price.",
+  `Grinding usually means a pad is worn through, and the repair grows with every drive, so get it seen soon. We're at ${WHERE}, open ${WHEN}.`,
 ];
 
 // [slug, keyword, H1 (= pinned headline), sub, meta description]
@@ -769,6 +916,9 @@ const BRAKE_CAMPAIGN_PAGES: LandingPage[] = BRAKE_CAMPAIGN.map(([slug, keyword, 
     keyword,
     service: "brakes",
     bookLabel: "Book a brake check",
+    bullets: BRAKE_BULLETS,
+    form: CHECK_FORM,
+    about: { heading: aboutHeading(headline), body: BRAKE_ABOUT },
     metaTitle: title.length <= 48 ? title : headline,
     metaDescription,
     hero: {
@@ -791,6 +941,8 @@ export const LANDING_PAGES: LandingPage[] = [
     keyword: "winter tire changeover scarborough",
     service: "tire-changeover",
     bookLabel: "Book my changeover",
+    bullets: CHANGEOVER_BULLETS,
+    about: { heading: "Winter tire changeover in Scarborough at Boss Tire", body: CHANGEOVER_ABOUT },
     metaTitle: "Winter Tire Changeover in Scarborough",
     metaDescription:
       "Winter tire changeover in Scarborough: mounted, balanced and torqued to spec. Call Boss Tire, 375 Danforth Rd, for a quote for your vehicle.",
@@ -822,6 +974,8 @@ export const LANDING_PAGES: LandingPage[] = [
     keyword: "wheel alignment scarborough",
     service: "wheel-alignment",
     bookLabel: "Book my alignment",
+    bullets: ALIGNMENT_BULLETS,
+    about: { heading: "Wheel alignment in Scarborough at Boss Tire", body: ALIGNMENT_ABOUT },
     metaTitle: "Wheel Alignment in Scarborough",
     metaDescription:
       "Wheel alignment in Scarborough: camber, caster and toe set to your vehicle's spec. Call Boss Tire on Danforth Rd for a quote for your car.",
@@ -843,6 +997,9 @@ export const LANDING_PAGES: LandingPage[] = [
     keyword: "muffler repair scarborough",
     service: "muffler-repair",
     bookLabel: "Book a muffler check",
+    bullets: MUFFLER_BULLETS,
+    form: CHECK_FORM,
+    about: { heading: "Muffler repair in Scarborough at Boss Tire", body: MUFFLER_ABOUT },
     metaTitle: "Muffler Repair in Scarborough",
     metaDescription:
       "Muffler repair and replacement in Scarborough. We find the real problem, show you, and quote before any work. Call Boss Tire on Danforth Rd.",
