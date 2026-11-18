@@ -62,7 +62,12 @@ export function LandingHero({
       <div className="gutter-safe relative mx-auto grid w-full max-w-6xl gap-10 pb-14 pt-10 sm:pt-16 lg:grid-cols-[1fr_24rem] lg:items-center lg:gap-14 lg:pb-20">
         <div>
           <Eyebrow onDark>{eyebrow}</Eyebrow>
-          <h1 className="mt-4 max-w-3xl text-4xl text-white sm:text-6xl">{headline}</h1>
+          {/* On a phone the rating beside the Call button wraps below the fold,
+              so the first screen had no proof at all. Show it above the H1 there. */}
+          <div className="mt-3 sm:hidden">
+            <ReviewBadge onDark />
+          </div>
+          <h1 className="mt-3 max-w-3xl text-4xl text-white sm:mt-4 sm:text-6xl">{headline}</h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-[var(--color-on-dark)]">{sub}</p>
 
           <ul className="mt-6 space-y-2.5">
@@ -80,7 +85,9 @@ export function LandingHero({
 
           <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4">
             <CallButton size="lg" className="cta-attention" trackLocation="lp_hero" />
-            <ReviewBadge onDark />
+            <span className="hidden sm:block">
+              <ReviewBadge onDark />
+            </span>
           </div>
 
           <div className="mt-8 grid max-w-xl grid-cols-2 gap-6 border-t border-white/10 pt-6">

@@ -9,7 +9,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { CallButton } from "@/components/ui/Button";
 import { OpenStatus } from "@/components/ui/OpenStatus";
 import { buildMetadata } from "@/lib/seo";
-import { BUSINESS, addressDisplay, mapsLinkHref } from "@/lib/business";
+import { BUSINESS, addressDisplay, mapsLinkHref, telHref } from "@/lib/business";
 import { LANDING_PAGES, getLandingPage } from "@/lib/landing-pages";
 import { ALIGNMENT_OFFERS, getService } from "@/lib/services";
 
@@ -89,7 +89,11 @@ export default async function LandingPageRoute({ params }: { params: Promise<{ s
             <Eyebrow>What you get</Eyebrow>
             <h2 className="mt-4 text-3xl text-[var(--color-heading)]">What your {service.name.toLowerCase()} includes</h2>
             <p className="mt-3 text-[var(--color-body)]">
-              {`The price depends on your vehicle. Call ${BUSINESS.phoneDisplay} and we'll give it to you on the call, before any work starts.`}
+              The price depends on your vehicle.{" "}
+              <a href={telHref} className="font-semibold text-[var(--color-red-deep)] underline underline-offset-4" data-track-location="lp_price">
+                Call {BUSINESS.phoneDisplay}
+              </a>{" "}
+              and we&apos;ll give it to you on the call, before any work starts.
             </p>
             <ul className="mt-6 space-y-2">
               {/* services.ts is shared with the organic pages; drop turnaround

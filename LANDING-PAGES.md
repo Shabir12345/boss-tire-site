@@ -123,7 +123,7 @@ open/closed status, hours, directions, Call, and one link to the organic page.
 
 ## Photos
 
-Hero images must exist in `public/photos` *(tested)*. **Real photos of the shop,
+Hero images must exist in `public/photos` *(tested)*. **The photo must show the searched-for service**: brake pages use `caliper.jpg`, not the exhaust bay, whose "Muffler Specialists" sign told brake searchers they had landed on an exhaust shop. **Real photos of the shop,
 bays and team beat stock every time** — a paid visitor who recognises the
 building when they pull in already trusts the place. Three current photos are
 stock (see `public/photos/IMAGE-CREDITS.md`); replace them as real ones arrive.

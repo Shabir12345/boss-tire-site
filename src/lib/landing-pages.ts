@@ -250,9 +250,9 @@ const WINTER_CAMPAIGN_PAGES: LandingPage[] = WINTER_CAMPAIGN.map(([slug, keyword
       eyebrow: `${storage ? "Tire storage" : "Tire changeover"} · Scarborough`,
       headline,
       sub,
-      image: storage ? "/photos/winter-tires.jpg" : "/photos/winter-changeover.jpg",
+      image: storage ? "/photos/showroom.jpg" : "/photos/winter-changeover.jpg",
       imageAlt: storage
-        ? "A winter tire on a snow-covered road"
+        ? "Inside the Boss Tire shop on Danforth Rd, with tires and wheels on the walls"
         : "A technician mounting a tire on the changer during a seasonal changeover",
     },
     steps: storage ? STORAGE_STEPS : CHANGEOVER_STEPS,
@@ -925,8 +925,10 @@ const BRAKE_CAMPAIGN_PAGES: LandingPage[] = BRAKE_CAMPAIGN.map(([slug, keyword, 
       eyebrow: "Brake repair · Scarborough",
       headline,
       sub,
-      image: "/photos/muffler-bay.jpg",
-      imageAlt: "A car up on the lift in the Boss Tire service bay on Danforth Rd",
+      // A brake photo, not the exhaust bay: the muffler sign in that shot told
+      // brake searchers they had landed on an exhaust shop.
+      image: "/photos/caliper.jpg",
+      imageAlt: "A red Boss Tires brake caliper over a drilled rotor",
     },
     steps: BRAKE_STEPS,
     faqs: BRAKE_FAQS,
